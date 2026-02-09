@@ -1,0 +1,1412 @@
+[
+    {
+        "id": 0,
+        "dataset": "eTour",
+        "Name": "DeleteCulturalHeritage",
+        "Brief Description": "Delete a cultural object in the system.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "View the list of CulturalHeritage as a result of the use case SearchCulturalHeritage, it selects and activates a function of elimination.",
+            "Asks confirmation.",
+            "Confirm the operation.",
+            "Delete the cultural choice."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful elimination of the cultural.",
+            "Operator Agency cancels the operation.",
+            "Interruption of connection to the server ETOUR."
+        ],
+        "Quality requirements": [
+            "The system requirements blocks of input controls on receipt of confirmation of cancellation to avoid multiple submissions before the end of the operation."
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "eTour",
+        "Name": "InsertCulturalHeritage",
+        "Brief Description": "Inserts a new cultural object in the system.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Activate the feature for the insertion of a new cultural good.",
+            "Displays the corresponding form.",
+            "Fill out the form with the data of the cultural and submit.",
+            "Verify the data entered and asks for confirmation of the transaction.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation.",
+            "Memorize your new cultural good."
+        ],
+        "Postcondition": [
+            "The system shall notify the proper inclusion of the cultural.",
+            "Operator Agency cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": [
+            "The system requirements will not accept duplicates cultural heritage."
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "eTour",
+        "Name": "ModifyCulturalHeritage",
+        "Brief Description": "Change data of a cultural object in the system.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "View the list of cultural goods as a result of the use case SearchCulturalHeritage, it selects and activates a function of change.",
+            "Load the data of the cultural and displays the form for editing.",
+            "Change data in the form and submit.",
+            "Verify the data entered and asks for confirmation of the transaction.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation.",
+            "Stores the modified data of the cultural."
+        ],
+        "Postcondition": [
+            "The notification system has been changing the data of the cultural.",
+            "Operator Agency cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": [
+            "The system requirements blocks of input controls in the form once we receive confirmation of the change to avoid multiple submissions before the end of the operation."
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "eTour",
+        "Name": "SearchCulturalHeritage",
+        "Brief Description": "Returns the list of cultural objects in the system according to certain parameters.",
+        "Actors": [],
+        "Precondition": [],
+        "Basic flow": [
+            "Activate the search functionality of a cultural object.",
+            "Show the form for research.",
+            "Fill in the search form and submit.",
+            "Processing the request."
+        ],
+        "Postcondition": [
+            "The system returns a list of cultural goods that meet the search criteria.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": [
+            "The system requirements should return the results within a set time."
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "eTour",
+        "Name": "ViewCulturalHeritageCard",
+        "Brief Description": "View the details of the selected cultural.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "View the list of cultural goods as a result of the use case SearchCulturalHeritage, it selects and activates a function to view the card.",
+            "Loads the data for the selected cultural."
+        ],
+        "Postcondition": [
+            "The system displays the details of the selected cultural.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 5,
+        "dataset": "eTour",
+        "Name": "DeleteRefreshmentPoint",
+        "Brief Description": "Delete a refreshment from the system.",
+        "Actors": [
+            "initialization Operator Agency."
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "View a list of points of rest as a result of the use case SearchCulturalHeritage, it selects and activates a function of elimination.",
+            "Asks for confirmation of the transaction.",
+            "Confirm the deletion.",
+            "Deletes the selected point of rest."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful elimination of the point of rest.",
+            "Operator Agency cancels the operation.",
+            "Interruption ETOUR connection to the server."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 6,
+        "dataset": "eTour",
+        "Name": "ActiveConvention",
+        "Brief Description": "Convention active request by a refreshment point.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The Agency is in the form of a designated point of rest."
+        ],
+        "Basic flow": [
+            "Enable the activation function of the Convention.",
+            "Load the data request of the Convention from the point of rest and displays the corresponding form.",
+            "Check the data of the agreement and decide for activation.",
+            "Asks for confirmation of the activation.",
+            "Confirm the operation.",
+            "Processing the request."
+        ],
+        "Postcondition": [
+            "The system shall notify the activation of the convention.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 7,
+        "dataset": "eTour",
+        "Name": "ModifyDataRefreshmentPointAgency",
+        "Brief Description": "Edit the data pertaining to a designated point of rest.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "View a list of points of rest as a result of the use case SearchRefreshmentPoint, it selects an active and functional data changes.",
+            "Upload data from the point of rest and displays the form of change.",
+            "Change data in the form and submit.",
+            "Verify the data entered in form and asks for confirmation of the transaction.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation.",
+            "Stores the modified data of the point of rest."
+        ],
+        "Postcondition": [
+            "The system has been reporting the information required by the point of rest.",
+            "Operator Agency cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": [
+            "The system requirements blocks of input controls in the form once we receive confirmation of the change to avoid multiple submissions before the end of the operation."
+        ]
+    },
+    {
+        "id": 8,
+        "dataset": "eTour",
+        "Name": "SearchRefreshmentPoint",
+        "Brief Description": "Returns the list of points of rest in the system according to certain parameters.",
+        "Actors": [],
+        "Precondition": [],
+        "Basic flow": [
+            "Activate the search functionality of a point of rest.",
+            "Show the form for research.",
+            "Fill in the search form and submit.",
+            "Processing the request."
+        ],
+        "Postcondition": [
+            "The system returns a list of points of rest which meet your search criteria.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": [
+            "The system performs the operation in 15 seconds maximum"
+        ]
+    },
+    {
+        "id": 9,
+        "dataset": "eTour",
+        "Name": "ViewRefreshmentPointCard",
+        "Brief Description": "View the details of a selected point of rest.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "View the list of points of rest as a result of the use case SearchRefreshmentPoint, it selects and activates a function to view the card.",
+            "Upload data to a selected restaurant."
+        ],
+        "Postcondition": [
+            "The system displays the details of the selected point of rest.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 10,
+        "dataset": "eTour",
+        "Name": "ViewConventionHistory",
+        "Brief Description": "View the history of conventions derived from a selected point of rest.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The Agency is in the form of a designated point of rest."
+        ],
+        "Basic flow": [
+            "Access the features on the display of historical conventions.",
+            "Upload data on conventions from the restaurant selected."
+        ],
+        "Postcondition": [
+            "The system displays the history of conventions concerning the point of eating selected.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 11,
+        "dataset": "eTour",
+        "Name": "ViewTouristCard",
+        "Brief Description": "View the details of a selected account Tourist.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Tourists from the list obtained by activating the use case SearchTourist will select and activate a function for displaying the card.",
+            "Upload data to the selected account."
+        ],
+        "Postcondition": [
+            "The system displays the card's Tourist selected.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 12,
+        "dataset": "eTour",
+        "Name": "Active / InactiveTouristAccount",
+        "Brief Description": "Enable or disable the account of a tourist.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The Agency is in the form of a tourist."
+        ],
+        "Basic flow": [
+            "Activate the feature for the activation / deactivation by a given sheet tourist.",
+            "Asks for confirmation of activation / deactivation.",
+            "Confirm the operation.",
+            "Enable / disable the account of the visitor you selected."
+        ],
+        "Postcondition": [
+            "The notification of the outcome.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 13,
+        "dataset": "eTour",
+        "Name": "SearchTourist",
+        "Brief Description": "Returns the list of tourist account in the system according to certain parameters.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Access the search functionality of a tourist.",
+            "Show the form.",
+            "Fill out the form and submit.",
+            "Processing the request."
+        ],
+        "Postcondition": [
+            "The system returns a list of accounts that meet Tourist your search criteria.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 14,
+        "dataset": "eTour",
+        "Name": "ModifyTouristAccountData",
+        "Brief Description": "Change data of a selected account Tourist.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Tourists from the list obtained by activating the use case SearchTourist it selects and activates a function to modify data.",
+            "Loads the data selected and displays them in a form allowing the change.",
+            "Edit the fields in the form and submit.",
+            "Verify the information and asks for confirmation of the change.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation.",
+            "Stores the modified data selected account."
+        ],
+        "Postcondition": [
+            "The system has been reporting the information required by the selected account Tourist.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 15,
+        "dataset": "eTour",
+        "Name": "DeleteTouristAccount",
+        "Brief Description": "Delete the account of a tourist from the system.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Tourists from the list obtained by activating the use case SearchTourist will select and activate a feature for disposal.",
+            "Asks for confirmation of the transaction.",
+            "Confirm the operation.",
+            "Delete the selected data."
+        ],
+        "Postcondition": [
+            "The notification system has been elimination of selected accounts Tourist.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 16,
+        "dataset": "eTour",
+        "Name": "ModifyBanner",
+        "Brief Description": "Changing the image of a banner ad.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Receives a list of turning points of the rest use case SearchRefreshmentPoint and select one from accessing the function of editing a banner.",
+            "View the list of banner associated with the point of rest.",
+            "Select a banner from the list and enter the editing functionality.",
+            "Displays a form for the selection of an image.",
+            "Select a picture and send the request to change the system.",
+            "Check the characteristics of the inserted and asks for confirmation of the change of the banner.",
+            "In the event that the inserted image is not valid, enable the use case Errored.",
+            "Confirmation of the transaction change.",
+            "Bookmark this new image for the selected banner."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful modification of the banner.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 17,
+        "dataset": "eTour",
+        "Name": "CheckBannerNumber",
+        "Brief Description": "Check if a point Refreshments included the maximum number of allowed banners to it.",
+        "Actors": [],
+        "Precondition": [
+            "The agency wants to put a new banner"
+        ],
+        "Basic flow": [
+            "Load the data of the Convention of refreshment point and verify that the number of banners is less than the specified number of the current banner.",
+            "If not checked, will end the operation input and displays a notification.",
+            "Confirmation of the reading of the notification.",
+            "Recovers the previous state."
+        ],
+        "Postcondition": [
+            "The system returns control to the user interaction.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 18,
+        "dataset": "eTour",
+        "Name": "DeleteBanner",
+        "Brief Description": "Delete a banner ad associated with a refreshment bar on the computer.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Receives a list of turning points of the rest use case SearchRefreshmentPoint and select one from accessing the function of removal of the banner.",
+            "View the list of banner associated with the point of rest.",
+            "Select a banner from the list and enter the function of elimination.",
+            "Displays a message confirming the deletion.",
+            "Confirm the operation.",
+            "Removes the banner."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful elimination of the selected banner.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 19,
+        "dataset": "eTour",
+        "Name": "InsertBanner",
+        "Brief Description": "Inserting a new banner associated with a point of rest.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Receives a list of turning points of the rest use case SearchRefreshmentPoint and select one from the list and access to the function of inserting banners.",
+            "Displays a form for the selection of an image.",
+            "Select an image and sends the request for entering the system.",
+            "Check the characteristics of the inserted, check that the number of banner did not exceed the maximum point of the restaurant and asks for confirmation of the insertion of the banner.",
+            "In the event that the inserted image is not valid, enable the use case Errored.",
+            "Confirm the operation of insertion.",
+            "Remember the banners associated with the selected point of rest."
+        ],
+        "Postcondition": [
+            "The notification about the insertion of new banner to the Refreshments selected.",
+            "The Operator Agency cancels the operation.",
+            "The point of eating has already entered the maximum number of banners allowed.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 20,
+        "dataset": "eTour",
+        "Name": "InsertNews",
+        "Brief Description": "Inserts a new news in the system.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Activate the feature to insert a news.",
+            "Displays the corresponding form.",
+            "Fill out the form and submit.",
+            "Verify the data entered and asks for confirmation of the transaction.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation of insertion.",
+            "Stores the data of the new news."
+        ],
+        "Postcondition": [
+            "The system shall notify the proper placement of the news.",
+            "The Operator Agency cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 21,
+        "dataset": "eTour",
+        "Name": "DeleteNews",
+        "Brief Description": "Delete a news in the system.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Activate the function of elimination of a news.",
+            "View all news in a form.",
+            "Select a news from the list and submit the form.",
+            "Asks for confirmation of the transaction.",
+            "Confirm the deletion of the news.",
+            "Delete the data news."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful elimination of the news.",
+            "The Operator Agency cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 22,
+        "dataset": "eTour",
+        "Name": "ModifyNews",
+        "Brief Description": "Change data of a news on the computer.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Activate the editing functionality of a news.",
+            "View all news in a form.",
+            "Select a news from the list and submit the form.",
+            "Load the data of news and displays them in a form for editing.",
+            "Change data in the form and submit.",
+            "Check the modified information and asks for confirmation of the transaction.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation of changing the data news.",
+            "Stores data modified news."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful amendment of news.",
+            "The Operator Agency cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 23,
+        "dataset": "eTour",
+        "Name": "ViewFeedback",
+        "Brief Description": "View all feedback for a particular site.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "View the list of sites as a result of the use case SearchSite, it selects and activates a function to view the feedback.",
+            "Upload Site Feedback selected."
+        ],
+        "Postcondition": [
+            "The system displays all feedback regarding the site selected.",
+            "Interruption of the connection to the server"
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 24,
+        "dataset": "eTour",
+        "Name": "ViewReportStatistic",
+        "Brief Description": "View statistical report relating to a selected location.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Activate the feature on the statistical report.",
+            "Upload the list of places in the system and displays them in a form.",
+            "Select a location and submit the form.",
+            "Upload midsize site feedback obtained by activating the SearchSite use case for the location selected.",
+            "Prepare the statistical report."
+        ],
+        "Postcondition": [
+            "The system displays the statistical report for the selected location.",
+            "Interruption of the connection to the server"
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 25,
+        "dataset": "eTour",
+        "Name": "ModifyComment",
+        "Brief Description": "Editing a comment by a feedback selected.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "View the list of sites as a result of the use case SearchSite, it selects and activates a function of change in the selected comment.",
+            "Upload feedback issued to that site and displays them in a form.",
+            "Select a feedback from the list and submit the form.",
+            "Displays a form for editing the comment of feedback selected.",
+            "Edit the comment and submit the form.",
+            "Verify the data entered and asks for confirmation of the change.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation.",
+            "Remember the comment changed."
+        ],
+        "Postcondition": [
+            "The notification system has been modified for the comment feedback selected.",
+            "Operator Agency cancels the operation.",
+            "Interruption of the connection to the server"
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 26,
+        "dataset": "eTour",
+        "Name": "SearchSite",
+        "Brief Description": "Searching for a specific site on the computer.",
+        "Actors": [],
+        "Precondition": [],
+        "Basic flow": [
+            "Activate the search functionality of a site.",
+            "Show the form for research",
+            "Fill in the form of research and submit",
+            "Processing the request"
+        ],
+        "Postcondition": [
+            "The system returns a list of sites found",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": [
+            "The system requirements should return the results within a time limit set"
+        ]
+    },
+    {
+        "id": 27,
+        "dataset": "eTour",
+        "Name": "DeleteTag",
+        "Brief Description": "Removes one or more search tags in the system.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Access the functionality to delete a tag.",
+            "Research in the existing system, the tags and displays them in a form.",
+            "Select one or more tags from the list and sends the request for deletion.",
+            "Delete the selected search tag."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful elimination of selected tags.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 28,
+        "dataset": "eTour",
+        "Name": "ExistingErrorTag",
+        "Brief Description": "He was asked to enter a search tags already in the system.",
+        "Actors": [],
+        "Precondition": [
+            "He was asked to enter a search tags already in the system."
+        ],
+        "Basic flow": [
+            "Notice the error message and asks for confirmation of its reading.",
+            "Confirmation of the reading of the notification.",
+            "Recovers the previous state."
+        ],
+        "Postcondition": [
+            "The system returns control to the user interaction."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 29,
+        "dataset": "eTour",
+        "Name": "InsertTag",
+        "Brief Description": "Inserts a new tag search.",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Access the functionality of inserting new tag search.",
+            "Show the form for entering a tag.",
+            "Fill out the form with the required information and submit.",
+            "Verify the data entered and check if the tag is already present in the system.",
+            "In the latter case the active use case ExistingErrorTag.",
+            "Instead, if the data is invalid or insufficient, the system activates the use case Errored."
+        ],
+        "Postcondition": [
+            "The notification about the inclusion of the tag.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 30,
+        "dataset": "eTour",
+        "Name": "ModifyPassword",
+        "Brief Description": "The Agency Operator chooses to change the password associated with your account",
+        "Actors": [
+            "initialization Agency Operator"
+        ],
+        "Precondition": [
+            "The agency has logged."
+        ],
+        "Basic flow": [
+            "Choose to change your password by pressing the appropriate Button",
+            "Upload the form to change the password associated with that work agency",
+            "Change your password by entering the new choice and confirming",
+            "Save your changes"
+        ],
+        "Postcondition": [
+            "The system confirms the success of Operation",
+            "Interruption of the connection to the server"
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 31,
+        "dataset": "eTour",
+        "Name": "ModifyPasswordError",
+        "Brief Description": "He was asked to enter a password but is not confirmed in a correct way.",
+        "Actors": [],
+        "Precondition": [
+            "It has been pressed the button to confirm the password change"
+        ],
+        "Basic flow": [
+            "Notify an error message.",
+            "Confirmation of the reading of the notification.",
+            "Back to change your password."
+        ],
+        "Postcondition": [
+            "The system returns control to the user interaction."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 32,
+        "dataset": "eTour",
+        "Name": "Registration",
+        "Brief Description": "Requires the creation of a new system.",
+        "Actors": [
+            "initialized by Guest User"
+        ],
+        "Precondition": [
+            "Guest User have access to the system."
+        ],
+        "Basic flow": [
+            "Enable the logging feature.",
+            "View the registration form.",
+            "Fill out the form and submit.",
+            "Verify the data entered and asks for confirmation of the transaction.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation.",
+            "Create a new account with the data entered."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful operation of recording.",
+            "Guest User cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 33,
+        "dataset": "eTour",
+        "Name": "SEARCH",
+        "Brief Description": "Research and cultural heritage for all.",
+        "Actors": [
+            "initialized by Guest User"
+        ],
+        "Precondition": [
+            "Guest User logs on."
+        ],
+        "Basic flow": [
+            "Activate the search functionality.",
+            "Displays the corresponding form.",
+            "Fill out the form and submit.",
+            "Gets the position of the Guest citing the case of use location and process research."
+        ],
+        "Postcondition": [
+            "The system displays a list of sites that meet the search criteria.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 34,
+        "dataset": "eTour",
+        "Name": "LOGIN",
+        "Brief Description": "Ensures a registered user to access the system with the privileges that fall.",
+        "Actors": [
+            "initialization Registered User"
+        ],
+        "Precondition": [
+            "A registered user has access to the system."
+        ],
+        "Basic flow": [
+            "Activate the login feature.",
+            "Displays the corresponding form.",
+            "Fill out the form with login information and submit.",
+            "Check the correctness of the data, if not corrected on the use case LoginError."
+        ],
+        "Postcondition": [
+            "The system displays the area of work registered.",
+            "The registered user cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 35,
+        "dataset": "eTour",
+        "Name": "LoginError",
+        "Brief Description": "The data supplied for the login is incorrect.",
+        "Actors": [],
+        "Precondition": [
+            "The data supplied for the login is incorrect."
+        ],
+        "Basic flow": [
+            "Notice that the data entered for the login is not valid and asks for confirmation of the reading.",
+            "Confirmation of the reading of the notification.",
+            "Recovers the previous state."
+        ],
+        "Postcondition": [
+            "The system returns control to the user interaction."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 36,
+        "dataset": "eTour",
+        "Name": "Logout",
+        "Brief Description": "Ends the current session.",
+        "Actors": [
+            "initialization Registered User"
+        ],
+        "Precondition": [
+            "A registered user has previously made a successful Login."
+        ],
+        "Basic flow": [
+            "Access the functionality of disconnection from the system.",
+            "Asks for confirmation of the transaction.",
+            "Confirm the request for disconnection.",
+            "Disconnects the Registered User."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful operation logout."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 37,
+        "dataset": "eTour",
+        "Name": "InsertBanner",
+        "Brief Description": "Inserting a new banner associated with the point of rest.",
+        "Actors": [
+            "initialization Operator Point Of Restaurants"
+        ],
+        "Precondition": [
+            "The Point Of Restaurant Operator has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Select the feature for the insertion of a new banner.",
+            "Displays a form for the selection of an image.",
+            "Select an image and sends the request for entering the system.",
+            "Check the characteristics of the inserted, check that the number of banner did not exceed the maximum point of the restaurant and asks for confirmation of the insertion of the banner.",
+            "In the event that the inserted image is not valid, enable the use case Errored.",
+            "Confirm the operation of insertion.",
+            "Remember the banners associated with the point of rest."
+        ],
+        "Postcondition": [
+            "The notification about the insertion of new banner.",
+            "The Point Of Operator Restaurant cancels the operation.",
+            "The point of eating has already entered the maximum number of banners allowed.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 38,
+        "dataset": "eTour",
+        "Name": "ModifyBanner",
+        "Brief Description": "Changing the image of a banner ad.",
+        "Actors": [
+            "initialization Operator Point Of Restaurants"
+        ],
+        "Precondition": [
+            "The Point Of Restaurant Operator has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Select the editing functionality of the banner.",
+            "View the list of banner associated with the point of rest.",
+            "Select a banner from the list and enter the editing functionality.",
+            "Displays a form for the selection of an image.",
+            "Select a picture and send the request to change the system.",
+            "Check the characteristics of the inserted and asks for confirmation of the change of the banner.",
+            "In the event that the inserted image is not valid, enable the use case Errored.",
+            "Confirmation of the transaction change.",
+            "Bookmark this new image for the selected banner."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful modification of the banner.",
+            "The Point Of Operator Restaurant cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 39,
+        "dataset": "eTour",
+        "Name": "DeleteBanner",
+        "Brief Description": "Delete a banner ad associated with the point of rest.",
+        "Actors": [
+            "initialization Operator Point Of Restaurants"
+        ],
+        "Precondition": [
+            "The Point Of Restaurant Operator has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Select the feature for removal of the banner.",
+            "View the list of banner associated with the point of rest.",
+            "Select a banner from the list and enter the function of elimination.",
+            "Displays a message confirming the deletion.",
+            "Confirm the operation.",
+            "Removes the banner."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful elimination of the selected banner.",
+            "The Point Of Operator Restaurant cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 40,
+        "dataset": "eTour",
+        "Name": "ModifyMenu",
+        "Brief Description": "Change the daily menu of a restaurant.",
+        "Actors": [
+            "initialization Operator Point Of Restaurants"
+        ],
+        "Precondition": [
+            "The Point Of Restaurant Operator has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Activate the editing functionality of the menu.",
+            "Displays a form with seven days of the week.",
+            "Select a day of the week and submit the form.",
+            "Upload the data menu for the selected day and loads them into a form.",
+            "Edit menu of the selected day and submit the form.",
+            "Verify the data entered and asks for confirmation of the edit menu.",
+            "Where the data are insufficient or invalid, the active use case Errored.",
+            "Confirm the operation.",
+            "Saves changes to the menu selected."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful modification of the menu.",
+            "Restaurant Point Of Operator cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 41,
+        "dataset": "eTour",
+        "Name": "DeleteMenu",
+        "Brief Description": "Delete a daily menu of a restaurant.",
+        "Actors": [
+            "initialization Operator Point Of Restaurants"
+        ],
+        "Precondition": [
+            "The Point Of Restaurant Operator has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Enable the functionality of deleting a menu.",
+            "Displays a form containing the seven days of the week.",
+            "Select a day of the week and submit the form.",
+            "Calls to confirm the deletion.",
+            "Confirm the operation.",
+            "Delete the daily menu selection."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful elimination of the daily menu selection.",
+            "Restaurant Point Of Operator cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 42,
+        "dataset": "eTour",
+        "Name": "ModifyRefreshmentPoint",
+        "Brief Description": "Change data point associated refreshment.",
+        "Actors": [
+            "initialization Operator Point Of Restaurants"
+        ],
+        "Precondition": [
+            "The Point Restaurant Operator has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Enable the functionality of the information required by the point of rest.",
+            "Upload data point Refreshments and displays them in a form.",
+            "Change data in the form and submit.",
+            "Verify the data entered and asks for confirmation of the change.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation.",
+            "Stores the modified data of the point of rest."
+        ],
+        "Postcondition": [
+            "The notification system has been changing the data point selected restaurants.",
+            "Restaurant Point Of Operator cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 43,
+        "dataset": "eTour",
+        "Name": "ConventionRequest",
+        "Brief Description": "Require to conclude a Convention between the points of rest and the agency involved.",
+        "Actors": [
+            "initialization Operator Point Of Restaurants"
+        ],
+        "Precondition": [
+            "The Point Of Restaurant Operator has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Enable the functionality to request the Convention to the Agency.",
+            "Displays a form for entering data of the Convention.",
+            "Inserts the data in the form of the agreement and submit.",
+            "Verify the data entered and asks for confirmation of the request.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the operation.",
+            "Send the request to the Convention."
+        ],
+        "Postcondition": [
+            "The notification about the call for the Convention to the Agency.",
+            "Restaurant Point Of Operator cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 44,
+        "dataset": "eTour",
+        "Name": "ViewPersonalStatistic",
+        "Brief Description": "Viewing statistics for Point Of Restaurants",
+        "Actors": [
+            "initialization Operator Point Of Restaurants"
+        ],
+        "Precondition": [
+            "The Point Of Restaurant Operator has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Select the feature to display personal statistics.",
+            "Displays a form that shows data for the statistics associated refreshment point."
+        ],
+        "Postcondition": [
+            "The system displays the data on the screen.",
+            "Interruption of the connection to the server."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 45,
+        "dataset": "eTour",
+        "Name": "ModifySearchPreference",
+        "Brief Description": "Edit your personal search preferences.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "The Tourist has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Access to functionality for the modification of personal search preferences.",
+            "Upload your search preferences and displays them in a form.",
+            "Edit the fields in the form and submit.",
+            "Asks confirmation.",
+            "Confirmation for changing search preferences.",
+            "Memorize search preferences changed."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful modification of search preferences.",
+            "The Tourist cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 46,
+        "dataset": "eTour",
+        "Name": "ModifyTouristData",
+        "Brief Description": "Change data associated with your account.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "Tourism has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Access to functionality for the modification of data.",
+            "Loads the data and displays them in a form.",
+            "Edit the fields in the form and submit.",
+            "Check the modified information and asks for confirmation of the change.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirmation of the transaction change.",
+            "Stores the modified data."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful modification of data.",
+            "The Tourist cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 47,
+        "dataset": "eTour",
+        "Name": "ModifyGenericPreference",
+        "Brief Description": "Edit Preferences generic personal.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "Tourism has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Access to functionality for the modification of generic personal preferences.",
+            "Upload your preferences and the general view in a form.",
+            "Edit the fields in the form and submit.",
+            "Asks for confirmation of the change.",
+            "Confirm the operation.",
+            "Stores preferences changed."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful modification of general preferences.",
+            "The Tourist cancels the operation.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 48,
+        "dataset": "eTour",
+        "Name": "ViewPreferredSite",
+        "Brief Description": "View the list of personal favorites.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "The Tourist has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Select the feature to display the list of personal favorites.",
+            "Upload the list of bookmarks."
+        ],
+        "Postcondition": [
+            "The system displays the list of bookmarks.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 49,
+        "dataset": "eTour",
+        "Name": "ViewVisitedSites",
+        "Brief Description": "View the list of sites for which it has issued a feedback.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "Tourist has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Select the feature to display the list of sites visited personal.",
+            "Upload the list of sites for which the tourist has issued a Feedback"
+        ],
+        "Postcondition": [
+            "The system displays a list of sites visited.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 50,
+        "dataset": "eTour",
+        "Name": "InsertPreferenceSite",
+        "Brief Description": "Inserts a site selected in the list of bookmarks.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "The tourist card is in a particular site."
+        ],
+        "Basic flow": [
+            "Activate the feature for the insertion of the selected site from the bookmarks.",
+            "Prompt the inclusion",
+            "Confirm the input.",
+            "Inserts the selected site in the list of bookmarks."
+        ],
+        "Postcondition": [
+            "The notification about the insertion site to favorites",
+            "Interruption of connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 51,
+        "dataset": "eTour",
+        "Name": "DeleteSiteFromPreferences",
+        "Brief Description": "Tourism delete a site from the list of bookmarks.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "The tourist card is in a particular site."
+        ],
+        "Basic flow": [
+            "Choose to remove your site from the list of bookmarks by specific features.",
+            "Prompt removal",
+            "Confirm the removal.",
+            "Removes the selected site from the list of bookmarks."
+        ],
+        "Postcondition": [
+            "The notification system has been removed from the site bookmarks.",
+            "The Tourist cancel the operation",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 52,
+        "dataset": "eTour",
+        "Name": "InsertFeedback",
+        "Brief Description": "Inserts a feedback for the selected site.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "The tourist card is in a particular site."
+        ],
+        "Basic flow": [
+            "Activate the feature on the issue of feedback.",
+            "Verify that the visitor has not already issued a feedback for the site and displays a form for entering the feedback for the selected site.",
+            "In case the visitor has already issued a feedback for the site selected, activates the use case FeedbackAlreadyReleased.",
+            "Fill out the form, selecting one vote and inserting a comment, then submit.",
+            "Verify the data entered and confirm the cheide.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirming the issue of feedback.",
+            "Remember feedback and inserts the selected site in the list of sites visited."
+        ],
+        "Postcondition": [
+            "The system shall notify the successful combination of feedback to the site",
+            "The Tourist cancel the operation",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 53,
+        "dataset": "eTour",
+        "Name": "ModifyComment",
+        "Brief Description": "Edit the comment previously issued.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "Tourist conditions is in the details of a particular site."
+        ],
+        "Basic flow": [
+            "Choose to change the comment on the feedback for the site issued by the appropriate functionality.",
+            "Verify the data entered and asks for confirmation of the change.",
+            "Where the data is invalid or insufficient, the system activates the use case Errored.",
+            "Confirm the change of the comment.",
+            "Edit commentary on selected feedback"
+        ],
+        "Postcondition": [
+            "The system shall notify the alterations of the comment",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 54,
+        "dataset": "eTour",
+        "Name": "FeedbackAlreadyReleased",
+        "Brief Description": "He already been issued with a feedback for the selected site.",
+        "Actors": [
+            "initialization"
+        ],
+        "Precondition": [
+            "He already been issued with a feedback for the selected site."
+        ],
+        "Basic flow": [
+            "Notification that the user has already issued a feedback for the site and cancel the operation to insert a new feedback.",
+            "Confirmation of the reading of the notification.",
+            "Recovers the previous state."
+        ],
+        "Postcondition": [
+            "The system returns control to the user interaction."
+        ],
+        "Quality requirements": []
+    },
+    {
+        "id": 55,
+        "dataset": "eTour",
+        "Name": "Localization",
+        "Brief Description": "Returns the current position of the tourist.",
+        "Actors": [
+            "System initialization"
+        ],
+        "Precondition": [
+            "He began a search or an advanced search."
+        ],
+        "Basic flow": [
+            "The system requires the data for the position.",
+            "The GPS calculates the position of the tourist.",
+            "The system is on hold until the data of the position."
+        ],
+        "Postcondition": [
+            "The system receives the position of the tourist.",
+            "The position of the tourist is not detectable by GPS."
+        ],
+        "Quality requirements": [
+            "The GPS requirements into the transaction in more than 5 seconds."
+        ]
+    },
+    {
+        "id": 56,
+        "dataset": "eTour",
+        "Name": "AdvancedSearch",
+        "Brief Description": "The tourist searching for a site using the potential offered by the Advanced Search.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "The Tourist has successfully authenticated to the system."
+        ],
+        "Basic flow": [
+            "Enable the advanced search feature from your personal area.",
+            "View the advanced search form.",
+            "Fill in the form of advanced search and submit.",
+            "Gets the position of relying on the tourist event of the use location and process the request."
+        ],
+        "Postcondition": [
+            "The system displays a list of results.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": [
+            "The system requirements into the transaction in more than 15 seconds."
+        ]
+    },
+    {
+        "id": 57,
+        "dataset": "eTour",
+        "Name": "ViewSiteCard",
+        "Brief Description": "View the details of a particular site.",
+        "Actors": [
+            "initialized by Tourist"
+        ],
+        "Precondition": [
+            "The Tourist has successfully authenticated to the system and is located in one of the following areas: Research Results, List of Sites Visited Sites and List of Favorites"
+        ],
+        "Basic flow": [
+            "Select the function for displaying the card on a site chosen.",
+            "Upload data from the database."
+        ],
+        "Postcondition": [
+            "The system displays the details of the selected site.",
+            "Interruption of the connection to the server ETOUR."
+        ],
+        "Quality requirements": []
+    }
+]

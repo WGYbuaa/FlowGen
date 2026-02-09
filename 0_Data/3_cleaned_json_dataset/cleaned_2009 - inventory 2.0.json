@@ -1,0 +1,709 @@
+[
+    {
+        "id": 0,
+        "dataset": "inventory 2.0",
+        "Name": "View Inventory",
+        "Brief Description": "The system should provide a categorized view of the entire inventory to the Construction Junction staff. Starting at the department level, users can navigate into the inventory item categories and subcategories, all the way down to an individual inventory item.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "The screen displays all inventory departments",
+            "User clicks a department  cell",
+            "The screen displays all inventory categories for the selected department",
+            "User clicks a category cell that contains sub-categories",
+            "The screen displays all inventory sub-categories for the selected category",
+            "User clicks a sub-category cell (leaf category)",
+            "For a Unique Item category:",
+            "The screen displays a list of all inventory items for that selected category.",
+            "User clicks an item in the items list.",
+            "The screen displays the details for the item",
+            "For a Stock Item category:",
+            "The screen displays the details for th at Stock Item category",
+            "For a Under $5 category:",
+            "Nothing happens – The category cell is not clickable."
+        ],
+        "Alt. Flow": [
+            "At any point, the user may click on a department on the inventory department shortcuts list, which takes the user to the inventory view for that particular department.",
+            "The user may click the View All Items button at any level in the inventory to view a list of all items in that department or category",
+            "The user may click the View All Items button on the main inventory screen to view the complete list of all items in the inventory",
+            "Once in the view items list screen, th e user may filter the results by searching for:",
+            "A particular item by item number",
+            "All items with Donor, Department, Category or Description matching the provided keyword",
+            "All items with certain attributes, features and/or details"
+        ],
+        "Postcondition": [
+            "None"
+        ],
+        "Actors": [
+            "Administrator",
+            "Director",
+            "Manager",
+            "Customer Service Representative",
+            "Receiving Associate",
+            "Pick Up Associate",
+            "Decon Associate"
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Departments and Add Department",
+        "Brief Description": "The system should allow inventory administrators to customize the inventory structure by defining the invent ory departments (not to be con fused actual retail floor departments known later in this document as stocking locations).",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "System displays the Add Department button",
+            "User clicks the Add Department button",
+            "User enters the Department data",
+            "System validates the Department data",
+            "System adds the new Department to the inventory",
+            "User is taken back to the main inventory screen"
+        ],
+        "Alt. Flow": [
+            "User cancels the Department add and is taken back to the main inventory screen",
+            "During data validation, data is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "The new Depar tment is added"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Departments and Edit Department",
+        "Brief Description": "The system should allow inventory administrators to customize the inventory structure by defining the invent ory departments (not to be con fused actual retail floor departments known later in this document as stocking locations).",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User navigates to a Department  (see View Inventory)",
+            "System displays the Edit Department button",
+            "User clicks the Edit Department button",
+            "System displays the Department data",
+            "User edits Department data",
+            "System validates the Department data",
+            "System updates the Department information",
+            "User is taken back to the Department screen"
+        ],
+        "Alt. Flow": [
+            "User cancels the Department edit and is taken back to the main inventory screen",
+            "During data validation, data is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "The Department is updated"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Departments and Delete Department",
+        "Brief Description": "The system should allow inventory administrators to customize the inventory structure by defining the invent ory departments (not to be con fused actual retail floor departments known later in this document as stocking locations).",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User navigates to a Department (see View Inventory)",
+            "System displays the Edit Department button",
+            "User clicks the Edit Department button",
+            "System displays the Department data",
+            "User clicks the Delete Department button",
+            "System validates the Department deletion",
+            "System removes  the Depart ment  from the inventory",
+            "User is taken back to the main inventory screen"
+        ],
+        "Alt. Flow": [
+            "User cancels the Department deletion and is taken back to the Department screen",
+            "During deletion validation, deletion is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "The Department is deleted"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Categories and Add Category",
+        "Brief Description": "The system should allow inventory administrators to customize the inventory structure by defining the inventory departments and categories.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User navigates to a Department or Category (see View Inventory )",
+            "System displays the Add Category buttons:",
+            "Unique Item;",
+            "Stock Item.",
+            "User clicks the desired Add Category button",
+            "System displays the appropriate screen for the Category type:",
+            "Unique Item;",
+            "Stock Item.",
+            "User enters Category data",
+            "System validates the Category data",
+            "System adds the new Category to the inventory",
+            "User is taken back to the parent Department or Category of the added Category"
+        ],
+        "Alt. Flow": [
+            "User cancels the Category add and is taken back to parent Department or Category",
+            "During data validation, data is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "The new Cate gory is added"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 5,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Categories and Edit Category",
+        "Brief Description": "The system should allow inventory administrators to customize the inventory structure by defining the inventory departments and categories.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User navigates to a Category (see View Inventory )",
+            "System displays the Edit Category button",
+            "User clicks the Edit Category button",
+            "System displays the appropriate screen for the Category type:",
+            "Unique Item;",
+            "Stock Item",
+            "User edits Category data",
+            "System validates the Category data",
+            "System updates the Category information",
+            "User is taken back to the Category screen"
+        ],
+        "Alt. Flow": [
+            "User cancels the Category edit and is taken back to Category screen",
+            "During data validation, data is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "The Category is updated"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 6,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Categories and Delete Category",
+        "Brief Description": "The system should allow inventory administrators to customize the inventory structure by defining the inventory departments and categories.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User navigates to a Category (see View Inventory)",
+            "System displays the Edit Category button",
+            "User clicks the Edit Category button",
+            "System displays the appropriate screen for the Category type:",
+            "Unique Item;",
+            "Stock Item",
+            "User clicks the Delete Category button",
+            "System validates the Category deletion",
+            "System removes the Category from the inventory",
+            "User is taken back to the parent Department or Category of the deleted Category"
+        ],
+        "Alt. Flow": [
+            "User cancels the Category deletion and is taken back to the Category screen",
+            "During deletion validation, deletion is dee med invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "The Category is deleted"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 7,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Categories and Move Categories",
+        "Brief Description": "The system should allow inventory administrators to customize the inventory structure by defining the inventory departments and categories.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User navigates to a Department or Category (see View Inventory)",
+            "System displays the Move Categories button",
+            "User clicks the Move Categories button",
+            "System displays the Move Categories screen",
+            "User selects Categories to move",
+            "User selects target location on categorized inventory for the moved Categories",
+            "User may select an existing Department or Category",
+            "User may choose to create a new Category to hold the moved Categories.",
+            "In this case, user selects the parent Department or Category of the new Category to be created",
+            "User enters the new Category data",
+            "User selects the type of move to be performed",
+            "Move selected categories as -is and make them children of the target Department or Category",
+            "Merge the contents (items) of the selected categories and add them to the target Department or Category",
+            "System validates the entered data",
+            "System moves the selected Categories",
+            "User is taken back to the parent Department or Category of the moved Categories"
+        ],
+        "Alt. Flow": [
+            "User cancels the Category move and is taken back to the parent Department or Category screen",
+            "During move validation, move is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "If the 'move to a new Category' option is selected, a new Category is created",
+            "If the 'move categories and make them children' option is selected, the selected Categories are moved to the selected target location",
+            "If the 'merge contents of selected categories' option is selected, the contents of the selected Categories are moved to the selected target location"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 8,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Attributes and Details and View Item Attributes",
+        "Brief Description": "The system should allow inventory administrators to customize the attributes and det ails available for each inventory item. Attributes can be defined for each department, and details can be defined for each department and/or category.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "System displays the Edit Attributes button",
+            "User clicks the Edit Attributes button",
+            "System displays the Edit Attributes screen which displays all existing item attributes and their attribute x department assignments",
+            "Optionally, user filters view by attribute status (active, inactive, all)",
+            "User clicks the Done button",
+            "User is taken back to the main inventory screen"
+        ],
+        "Alt. Flow": [
+            "None"
+        ],
+        "Postcondition": [
+            "None"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 9,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Attributes and Details and View Item Details",
+        "Brief Description": "The system should allow inventory administrators to customize the attributes and det ails available for each inventory item. Attributes can be defined for each department, and details can be defined for each department and/or category.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "System displays the Edit Details button",
+            "User clicks the Edit Details button",
+            "System displays the Edit Details screen which displays all existing item details and their detail x department and category assignments",
+            "Optionally, user filters view by detail status (active, inactive, all)",
+            "User clicks the Done button",
+            "User is taken back to the main inventory screen"
+        ],
+        "Alt. Flow": [
+            "None"
+        ],
+        "Postcondition": [
+            "None"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 10,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Attributes and Details and Edit Item Attributes",
+        "Brief Description": "The system should allow inventory administrators to customize the attributes and det ails available for each inventory item. Attributes can be defined for each department, and details can be defined for each department and/or category.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "System displays the Edit Attributes button",
+            "User clicks the Edit Attributes button",
+            "System displays the Edit Attributes screen which displays all existing item attributes and their attribute x department assignments",
+            "Optionally, user filters view by attribute status (active, inactive, all)",
+            "User edits attributes",
+            "User changes attribute x department assignments",
+            "User changes attribute data",
+            "User changes attribute active x inactive status",
+            "User creates new attribute",
+            "System validates the attribute data",
+            "System updates the Item Attribute information",
+            "User clicks the Done button",
+            "User is taken back to the main inventory screen"
+        ],
+        "Alt. Flow": [
+            "User cancels the Item Attribute edit and is taken back to the main inventory screen",
+            "During data validation, data is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "The Item Attributes are updated"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 11,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Attributes and Details and Edit Item Details",
+        "Brief Description": "The system should allow inventory administrators to customize the attributes and det ails available for each inventory item. Attributes can be defined for each department, and details can be defined for each department and/or category.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "System displays the Edit Details button",
+            "User clicks the Edit Details button",
+            "System displays the Edit Details screen which displays al l existing item details and their detail x department and category assignments",
+            "Optionally, user filters view by detail status (active, inactive, all)",
+            "User edits details",
+            "User changes detail x department or category assignments",
+            "User changes detail data",
+            "User changes detail active x inactive status",
+            "User creates new detail",
+            "System validates the detail data",
+            "System updates the Item detail information",
+            "User clicks the Done button",
+            "User is taken back to the main inventory screen"
+        ],
+        "Alt. Flow": [
+            "User cancels the Item Detail edit and is taken back to the main inventory screen",
+            "During data validation, data is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "The Item Details are updated"
+        ],
+        "Actors": [
+            "Administrator"
+        ]
+    },
+    {
+        "id": 12,
+        "dataset": "inventory 2.0",
+        "Name": "Add Item to Inventory",
+        "Brief Description": "Items are typically added to the inventory as part of the donation processes. This is called adding an item in donation processing. Alternatively, items can be added during routine inventory maintenance. This is called adding an item in inventory management mode.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "The screen displays all inventory departments in matrix format  (see View Inventory)",
+            "User drills down to the appropriate category for the i tem",
+            "If in donation processing mode, the item entry screen is presented automatically",
+            "If in inventory management mode, the list of existing inventory items in that category is displayed",
+            "User clicks the Add Item button",
+            "The appropriate item entry screen is presented",
+            "User fills in item information",
+            "User confirms the addition of the new item",
+            "Inventory is updated",
+            "System gives the option of printing an item tag",
+            "User prints item tag(s)s for unique or stock item(s)",
+            "User attaches tag(s) to the item (s)"
+        ],
+        "Alt. Flow": [
+            "At any point, the user may click on a department on the inventory department shortcuts list, which takes the user to the inventory view for that particular department.",
+            "At any point while in the item add screen , the user may cancel the operation."
+        ],
+        "Postcondition": [
+            "Item is present in the Inventory  Management System",
+            "Unique and stock items have item tags",
+            "In the case of a unique item, item is added to QuickBooks POS",
+            "In the case of a stock item, item quantity is updated in QuickBooks POS"
+        ],
+        "Actors": [
+            "Administrator",
+            "Director",
+            "Manager",
+            "Receiving Associate",
+            "Pickup Associate",
+            "Decon Associate",
+            "Customer Service Representative"
+        ]
+    },
+    {
+        "id": 13,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Inventory Items and Modify Inventory Item",
+        "Brief Description": "The system should allow various management actions to be performed on items existing in the inventory. These include modifying, deleting and splitting an item, and viewing the item's details and item history. These actions are only available for Unique and Stock items.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "The screen displays all inventory departments in matrix format with option to select and/or edit items to move them to a new department/category",
+            "User drills down to the desired existing inventory item (see View Inventory)",
+            "The item detail screen is presented",
+            "User modifies item information",
+            "The system validates item information",
+            "Item information is updated in the inventory",
+            "System gives the option of re-printing then item tag",
+            "User optionally re-prints the item tag and  attaches it to the item"
+        ],
+        "Alt. Flow": [
+            "User cancels the operation and is taken back to the item selection screen",
+            "During data validation, data is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "Item is updated in the inventory",
+            "Item is updated in QuickBooks POS"
+        ],
+        "Actors": [
+            "Administrator",
+            "Director",
+            "Manager"
+        ]
+    },
+    {
+        "id": 14,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Inventory Items and Adjust Item Quantity",
+        "Brief Description": "The system should allow various management actions to be performed on items existing in the inventory. These include modifying, deleting and splitting an item, and viewing the item's details and item history. These actions are only available for Unique and Stock items.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "The screen displays all inventory departments in matrix format",
+            "User drills down to the desired existing inventory item (see View Inve ntory)",
+            "The item detail screen is presented",
+            "User changes the item quantity",
+            "The system displays a confirmation screen where a  reason for the adjustment must  be specified by the user",
+            "The system validates the item change",
+            "Item information is updated in the inventory"
+        ],
+        "Alt. Flow": [
+            "User cancels the operation and is taken back to the item selection screen",
+            "During data validation, data is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "Item is updated in the inventory",
+            "Item is updated in QuickBooks POS"
+        ],
+        "Actors": [
+            "Administrator",
+            "Director",
+            "Manager"
+        ]
+    },
+    {
+        "id": 15,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Inventory Items and Split Inventory Item",
+        "Brief Description": "The system should allow various management actions to be performed on items existing in the inventory. These include modifying, deleting and splitting an item, and viewing the item's details and item history. These actions are only available for Unique and Stock items.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "The screen displays all inventory departments in matrix format",
+            "User drills down to the desired existing inventory item (see View Inventory)",
+            "The item d etail screen is presented",
+            "User clicks the Split Item button",
+            "The system displays the Item Split screen",
+            "User builds  the list of items that the original item will be split into",
+            "User can clone the original item to add new item(s) to the list that have similar attributes as the original item",
+            "User can add new items to the list by selecting Unique and Stock categories in the same way as adding a new item to the inventory (see Add Item to Inventory)",
+            "Once the list is complete, user confirms the split",
+            "The system validates the split",
+            "Item information is updated in the inventory",
+            "The original (split) item is updated in the inventory",
+            "Any new items that were added to the split list are added to the inventory maintaining parental history"
+        ],
+        "Alt. Flow": [
+            "User cancels the operation and is taken back to the item selection screen",
+            "During data validation, data is deemed invalid and an error message is presented to the user"
+        ],
+        "Postcondition": [
+            "Original item is updated in the inventory",
+            "Original item is updated in QuickBooks POS",
+            "New items are updated in the inventory",
+            "New items are updated in QuickBooks POS"
+        ],
+        "Actors": [
+            "Administrator",
+            "Director",
+            "Manager"
+        ]
+    },
+    {
+        "id": 16,
+        "dataset": "inventory 2.0",
+        "Name": "Manage Inventory Items and View Inventory Item History",
+        "Brief Description": "The system should allow various management actions to be performed on items existing in the inventory. These include modifying, deleting and splitting an item, and viewing the item's details and item history. These actions are only available for Unique and Stock items.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the main inventory screen",
+            "The screen displays all inventory departments in matrix format",
+            "User drills down to the desired existing inventory item (see View Inventory)",
+            "The item det ail screen is presented",
+            "User clicks the Item History button",
+            "The system displays the Item History screen containing current and historical information about the inventory item"
+        ],
+        "Alt. Flow": [
+            "None"
+        ],
+        "Postcondition": [
+            "None"
+        ],
+        "Actors": [
+            "Administrator",
+            "Director",
+            "Manager"
+        ]
+    },
+    {
+        "id": 17,
+        "dataset": "inventory 2.0",
+        "Name": "Suggest Item Price",
+        "Brief Description": "The system should assist in the task of pricing a new inventory item by making pricing suggestions to the user when adding to or modifying an item in the inventory. The suggested price s should be calculated based on the original and sale prices of similar items that currently exist or existed in the inventory in the past.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the inventory entry screen (see Add Item to Inventory , Manage Inventory Items )",
+            "System shows  price recommendations based on current item data and default price suggestion configuration options",
+            "User modifies item data",
+            "System makes new price suggestions based on new item data"
+        ],
+        "Alt. Flow": [
+            "User changes price suggestion configuration options",
+            "System shows new price recommendations based on current it em data and new configuration options"
+        ],
+        "Postcondition": [
+            "Price suggestion information is displayed on the screen"
+        ],
+        "Actors": [
+            "Administrator",
+            "Director",
+            "Manager",
+            "Customer Service Representative",
+            "Receiving Associate",
+            "Pickup Associate",
+            "Decon Associate"
+        ]
+    },
+    {
+        "id": 18,
+        "dataset": "inventory 2.0",
+        "Name": "View Acquisitions",
+        "Brief Description": "Acquisition records for Drop-Off, Pickup and Decon donations are created in the CRM system. Inventory Management users should be able to view all past and current acquisitions . Receiving Associates use this function to locate an expected acquisition when receiving a donation at the loading dock. Pickup and Decon crews may also use this function to initiate the process of receiving items while in the truck, on their way to the receiving dock.  Drop Off acquisitions are not typically pre-scheduled as Pick Up and Decon acquisitions except for those submitted through the organizational website. As such, when a donor arrives with an unexpected drop off donation, a new acquisition needs to be able to be created in the CRM system first, at either the customer service desk or at the dock, before it can be viewed in the acquisitions screen.",
+        "Precondition": [
+            "User is logged into the system"
+        ],
+        "Basic Flow": [
+            "User accesses the acquisitions screen",
+            "The screen displays a list of all acquisitions , latest ones at the top of the list",
+            "User may optionally filter the acquisitions displayed on the screen by changing filtering options",
+            "User clicks on an acquisition record",
+            "System display the details for that acquisition, including expected items"
+        ],
+        "Alt. Flow": [
+            "Drop Off acquisitions",
+            "User may alternatively click the New Drop Off button on the acquisition list screen which redirects the user to the CRM acquisition creation screen",
+            "User creates new Drop Off acquisition in the CRM system",
+            "User returns to the acquisitions screen and sees the newly created Drop Off acquisition",
+            "User can use a bar code scanner to scan the acquisition ticket generated at customer service"
+        ],
+        "Postcondition": [
+            "None"
+        ],
+        "Actors": [
+            "Administrator",
+            "Director",
+            "Manager",
+            "Customer Service Representative",
+            "Receiving Associate",
+            "Pick Up Associate",
+            "Decon Associate"
+        ]
+    },
+    {
+        "id": 19,
+        "dataset": "inventory 2.0",
+        "Name": "Receive Acquisition",
+        "Brief Description": "A donor in possession of a valid acquisition number can proceed to the receiving dock where the items to be donated will be received and processed, and a donation receipt will be generated. Alternatively, a donor may go directly to the receiving dock, in which case a new acquisition is created by the Receiving Associate before items can be received and processed. The screens used for the acquisition process should simplify and expedite the data entry process, allowing the Receiving Associate to enter only the information needed to generate the donation receipt. Additional attributes needed to complete the item information and effectively add the item to the inventory can be added at a second step, after the receipt has been printed and the donor has been served. The Receiving Associate can print temporary acquisition labels for items that require further processing.  Pick Up and Decon crews may also initiate the receiving process, entering as much detailed information about the donated items as desired, and generating a donation receipt. They cannot, however, add items to the inventory or complete the acquisition process. A Receiving Associate is required to review all the acquisition information before those actions can take place.",
+        "Precondition": [
+            "An acquisition has been created for this donation in CRM and exists in the system in the Expected state."
+        ],
+        "Basic Flow": [
+            "Donor or Primary Contact arrives at receiving dock with a valid donation number",
+            "Receiving Associate locates donation request in the system (see View Acquisitions)",
+            "System displays donation request information",
+            "Receiving Associate enters information about each donated item into the donation request  (see Add Item to Inventory )",
+            "A new item can be added to the list by cloning an existing item",
+            "A new item can be added by clicking the Add Item button",
+            "An item can be removed by setting the received quantity to zero",
+            "Receiving Associate  prints a donation receipt",
+            "Receiving Associate optionally writes information to the receipt by hand such as condition",
+            "Donation receipt is given to the Donor or Primary Contact",
+            "Receiving Associate prints item tags for unique and stock items (see Add It em to Inventory)",
+            "Receiving Associate attaches printed tags to corresponding items",
+            "Receiving Associate closes donation request"
+        ],
+        "Alt. Flow": [
+            "Items can be set aside for further processing",
+            "In this case, the Receiving Associate can alternatively tags displaying the donation number and donor information.",
+            "The acquisition is left in the Partially Received state until processing is completed at a later time"
+        ],
+        "Postcondition": [
+            "Donated items are present in the Inventory Management System",
+            "Unique and stock items have item tags",
+            "Unique items are added to POS",
+            "Quantities for stock items are updated in POS",
+            "Donor has dona tion receipt",
+            "Donation request in the system has a status of Processed"
+        ],
+        "Actors": [
+            "Donor / Primary Contact",
+            "Administrator",
+            "Director",
+            "Manager",
+            "Customer Service Representative",
+            "Receiving Associate",
+            "Pick Up Associate",
+            "Decon Associate"
+        ]
+    },
+    {
+        "id": 20,
+        "dataset": "inventory 2.0",
+        "Name": "Sell Item",
+        "Brief Description": "Any item in the inventory may be purchased by a Construction Junction customer. The sale of the item is processed by QuickBooks POS and the inventory must be updated accordingly.",
+        "Precondition": [
+            "The item being purchased has been previously added to the inventory."
+        ],
+        "Basic Flow": [
+            "Buyer arrives at the cashier or checkout desk with the items to be purchased",
+            "Sales associate scans the item tags",
+            "Sales associate processes the sale of the items in QuickBooks POS",
+            "The system updates the inventory to reflect the sale"
+        ],
+        "Alt. Flow": [
+            "Certain items sold in QuickBooks POS may not exist in the inventory (under $5 items, for instance).",
+            "The system must be able to recognize that situation and bypass the inventory update."
+        ],
+        "Postcondition": [
+            "Inventory is updated to reflect the sale"
+        ],
+        "Actors": [
+            "Buyer",
+            "Sales Associate",
+            "Customer Service Representative"
+        ]
+    }
+]

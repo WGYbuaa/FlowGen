@@ -1,0 +1,197 @@
+[
+    {
+        "id": 0,
+        "dataset": "g02-uc-cm-req",
+        "Name": "Use Case 1",
+        "Brief Description": "A doctor has an appointment, and will make a change to the global database.",
+        "Actors": [
+            "Doctor",
+            "patient"
+        ],
+        "Precondition": [
+            "Patient has scheduled an appointment with the doctor"
+        ],
+        "Basic flow": [
+            "Doctor opens the patient’s EMR and views his medical history.",
+            "Patient comes into the doctor’s office at the appointed time.",
+            "Patient explains his problem to the doctor.",
+            "Doctor writes a summary and diagnosis on his tablet.",
+            "After the patient leaves, the doctor uploads this text to the EMR of the patient, so the global database is updated."
+        ],
+        "Alt. Flow": [
+            "The doctor edits an existing entry in the patient’s EMR."
+        ],
+        "Postcondition": [
+            "The database is updated with new information about the patient."
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "g02-uc-cm-req",
+        "Name": "Use Case 2",
+        "Brief Description": "A patient schedules an appointment",
+        "Actors": [
+            "Patient",
+            "appointment scheduling system",
+            "receptionist"
+        ],
+        "Precondition": [
+            "Patient is a user in the hospital system"
+        ],
+        "Basic flow": [
+            "Patient opens the hospital app on his phone.",
+            "Patient logs in on the app with his personal account.",
+            "Patient navigates to the part of the app for scheduling appointments.",
+            "Patient selects a time slot to schedule his appointment.",
+            "The appointment scheduling system sends the request to a receptionist.",
+            "A receptionist approves the request.",
+            "The appointment scheduling system sends the appointment to the doctor.",
+            "The appointment is created in the global database."
+        ],
+        "Alt. Flow": [
+            "Time slot is already reserved.",
+            "Raised when another patient reserves a time slot while this patient is in the process.",
+            "Can be prevented by not allowing two patients to select the same time slot."
+        ],
+        "Exc. Flow": [
+            "Time slot is already reserved.",
+            "Raised when another patient reserves a time slot while this patient is in the process. ",
+            "Can be prevented by not allowing two patients to select the same time slot."
+        ],
+        "Postcondition": [
+            "There is an appointment scheduled"
+        ],
+	"Excep. Flow":[
+	    "this time slot is already reserved"
+	]
+    },
+    {
+        "id": 2,
+        "dataset": "g02-uc-cm-req",
+        "Name": "Use Case 3",
+        "Brief Description": "A nurse uses a mobile device, the recorded data is uploaded to the database.",
+        "Actors": [
+            "Nurse",
+            "mobile device"
+        ],
+        "Precondition": [
+            "Patient is checked in to the hospital and has to have his blood pressure measured."
+        ],
+        "Basic flow": [
+            "The nurse brings the mobile device to the patient",
+            "The nurse indicates on the mobile device which patient will be measured.",
+            "The nurse measures the blood pressure of the patient with the mobile device.",
+            "The mobile device automatically uploads this information to the global database, where it is included in the correct patient’s EMR."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": [
+            "The patient’s blood pressure is measured and the values are added to his EMR."
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "g02-uc-cm-req",
+        "Name": "Use Case 4",
+        "Brief Description": "An analyst reviews the data collected by the system",
+        "Actors": [
+            "Analyst",
+            "central database"
+        ],
+        "Precondition": [
+            "Analyst has access to the system, there has been data collected"
+        ],
+        "Basic flow": [
+            "Analyst logs in to the system with his personal account.",
+            "Analyst requests data from the central database.",
+            "Central database sends data to analyst.",
+            "Analyst performs his analysis on this data."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": [
+            "Data has been collected and analyzed."
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "g02-uc-cm-req",
+        "Name": "Use Case 5",
+        "Brief Description": "A patient orders medicine at his pharmacy through the website.",
+        "Actors": [
+            "Patient",
+            "pharmacist",
+            "prescription management system",
+            "doctor"
+        ],
+        "Precondition": [
+            "Patient is registered in the system"
+        ],
+        "Basic flow": [
+            "Patient navigates to the website on his computer.",
+            "Patient logs in using his personal account.",
+            "Patient goes to the pharmacy’s part of the website.",
+            "Patient finds the medicine he wants to order.",
+            "Patient orders the medicine at the pharmacy.",
+            "The order is uploaded to the prescription management system",
+            "The prescription management system notifies the pharmacist.",
+            "Pharmacist reviews the order.",
+            "Pharmacist readies the medicine for the patient and updates the status in the prescription management system.",
+            "Patient receives a notification that his order is ready.",
+            "Patient picks up his order at the pharmacy."
+        ],
+        "Alt. Flow": [
+            "A doctor places an order for medicine for his/her patient."
+        ],
+        "Postcondition": [
+            "Patient has his medicine."
+        ]
+    },
+    {
+        "id": 5,
+        "dataset": "g02-uc-cm-req",
+        "Name": "Use Case 6",
+        "Brief Description": "Admin adds a new doctor to the system.",
+        "Actors": [
+            "Admin",
+            "doctor"
+        ],
+        "Precondition": [
+            "The hospital has employed a new doctor."
+        ],
+        "Basic flow": [
+            "The hospital sends the information of the new doctor to the admin.",
+            "The admin creates a new account for this doctor.",
+            "The admin sets the privileges of the newly created account.",
+            "The account credentials are sent to the new doctor.",
+            "The doctor uses the received credentials to log in to the system."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": [
+            "The doctor can log in the system, and only access the information that is relevant to him."
+        ]
+    },
+    {
+        "id": 6,
+        "dataset": "g02-uc-cm-req",
+        "Name": "Use Case 7",
+        "Brief Description": "Patient changes his personal information in the central database.",
+        "Actors": [
+            "Patient"
+        ],
+        "Precondition": [
+            "Patient is registered in the system."
+        ],
+        "Basic flow": [
+            "Patient navigates to the website on his computer.",
+            "Patient logs in using his personal account.",
+            "Patient navigates to the personal information section.",
+            "Patient clicks the button to change his information.",
+            "Patient supplies new information and clicks save.",
+            "The new information is added to the central database by the system.",
+            "The central database applies the change to all relevant systems."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": [
+            "The patient’s personal information has been changed."
+        ]
+    }
+]

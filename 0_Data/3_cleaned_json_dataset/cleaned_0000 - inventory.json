@@ -1,0 +1,475 @@
+[
+    {
+        "id": 0,
+        "dataset": "inventory",
+        "Name": "Modify Use Case",
+        "Identifier": "MOD .UC",
+        "Description": "The use case describes the modification that the Inventory Admin can do.",
+        "Goal": "The Inventory Admin initiates the use case. The use case presents all the modification that can be done by the Inventory Admin .",
+        "Precondition": [
+            "The Inventory Admin is authenticated."
+        ],
+        "Assumptions": [
+            "We assume that use Knows the results of each operation there is no go back actions."
+        ],
+        "Basic Flow": [
+            "Use case begins when Inventory Admin start searching for an asset",
+            "Inventory Admin Edit the asset",
+            "Inventory Admin modify asset properties"
+        ],
+        "Alt. Flow": [
+            [
+                "Condition: administrator or authorised inventory user is working on waiting for approval list or waiting for execution list",
+                "Inventory user or Admin Edit the asset",
+                "Inventory user or Admin modify asset properties"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "Inventory Admin search for asset",
+                "Inventory Admin edit asset",
+                "Inventory Admin  asset out of inventory",
+                "Message error because asset cannot be modified"
+            ],
+            [
+                "Inventory Admin search for asset",
+                "Inventory Admin edit asset",
+                "Inventory Admin does not have sufficient privileges to edit asset",
+                "Message error is displayed"
+            ],
+            [
+                "Inventory Admin search for asset",
+                "no asset found",
+                "Message error is displayed"
+            ]
+        ],
+        "Postcondition": [
+            "The system state change according to modification"
+        ],
+        "Actors": [
+            "Inventory Admin",
+            "Inventory system",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "Search use case",
+            "Edit use case",
+            "Authentication use case"
+        ],
+        "Notes": "We suppose that Hosting system and servers support all the operations"
+    },
+    {
+        "id": 1,
+        "dataset": "inventory",
+        "Name": "Edit Use Case",
+        "Identifier": "EDT .UC",
+        "Description": "The use case describes the edit operation  that the Inventory Admin can do.",
+        "Goal": "The Inventory Admin initiates the use case. The use case presents the edit done by the Inventory Admin.",
+        "Precondition": [
+            "The Inventory Admin is authenticated."
+        ],
+        "Assumptions": [
+            "We assume that use Knows the result s of each operation there is no go back actions."
+        ],
+        "Basic Flow": [
+            "Use case begins when Inventory Admin start searching for an asset",
+            "Inventory Admin Edit the asset"
+        ],
+        "Alt. Flow": [
+            [
+                "Condition: administrator or authorised inventory user is working on waiting for approval list or waiting for execution list",
+                "Inventory user or Admin Edit the asset"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "Inventory Admin search for asset",
+                "Inventory Admin edit asset",
+                "Inventory Admin does not have sufficient privileges to edit asset",
+                "Message error is displayed"
+            ],
+            [
+                "Inventory Admin search for asset",
+                "no asset found",
+                "Message error is displayed"
+            ]
+        ],
+        "Postcondition": [
+            "The system state change according to modification"
+        ],
+        "Actors": [
+            "Inventory Admin",
+            "Inventory system",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "Search use case",
+            "Authentication use case"
+        ],
+        "Notes": "We suppose that Hosting system and servers support all the operations."
+    },
+    {
+        "id": 2,
+        "dataset": "inventory",
+        "Name": "Add New Asset  Use Case",
+        "Identifier": "ANI.UC",
+        "Description": "The use case describes the operation of adding a new asset to the inventory.",
+        "Goal": "The Inventory Admin  initiates the use case. The use case presents how Inventory Admin can add new inventory asset.",
+        "Precondition": [
+            "The Inventory Admin is authenticated."
+        ],
+        "Assumptions": [
+            "We assume that use Knows the results of each operation there is no go back actions."
+        ],
+        "Basic Flow": [
+            "Use case begins when Administrator start a new asset",
+            "Administrator select asset type",
+            "Administrator select asset location",
+            "Administrator select owner",
+            "Administrator fill all asset properties"
+        ],
+        "Alt. Flow": [
+            "None"
+        ],
+        "Exc. Flow": [
+            "Use case begins when Administrator  start a new asset",  
+            "Type does not exist in the list",  
+            "Administrator send exception request to IT to add the new type and the common properties" 
+        ],
+        "Postcondition": [
+            "Data base is updated"
+        ],
+        "Actors": [
+            "Inventory Admin",
+            "Inventory system",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "Authentication use case"
+        ],
+        "Notes": "We suppose that Hosting system and servers support all the operations"
+    },
+    {
+        "id": 3,
+        "dataset": "inventory",
+        "Name": "Create request Use Case",
+        "Identifier": "CRQ .UC",
+        "Description": "The use case describes the activity of creating a new request that the User can do.",
+        "Goal": "The User initiates the use case. The use case presents request process that can be done by User.",
+        "Precondition": [
+            "The User is authenticated"
+        ],
+        "Assumptions": [
+            "We assume that use Knows the results of each operation",
+            "Only basic request form is available for level 0",
+            "Requests forms provide search facilities to users levels 1, 2 and 3"
+        ],
+        "Basic Flow": [
+            "User select basic request form",
+            "User type a small request text specifying asset(s) location,..",
+            "User click on submit"
+        ],
+        "Alt. Flow": [
+            [
+                "User select advanced request form",
+                "User enter asset serial number and location",
+                "User enter small text describing operation to be done",
+                "User click on submit"
+            ],
+            [
+                "User select advanced request form",
+                "User enter asset serial number and location",
+                "User enter small text describing operation to be done",
+                "User can add as many assets as he wants to the list by clicking add another asset button",
+                "User click on submit"
+            ],
+            [
+                "User select exception request form",
+                "User enter a text message describing the exception that occurs",
+                "User click on submit"
+            ]
+        ],
+        "Exc. Flow": [
+            "User search for asset", 
+            "Asset not available to be borrowed",
+            "Error Message is displayed"
+        ],
+        "Postcondition": [
+            "A new request is pending waiting approval"
+        ],
+        "Actors": [
+            "Inventory Admin",
+            "Inventory system",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "Search use case",
+            "Authentication use case"
+        ],
+        "Notes": "We suppose that Hosting system and servers support all the operations."
+    },
+    {
+        "id": 4,
+        "dataset": "inventory",
+        "Name": "Returning Asset",
+        "Identifier": "RTI.UC",
+        "Description": "The use case describes the returning asset update  that the Inventory Admin can do.",
+        "Goal": "The Inventory Admin  initiates the use case. The use case presents all the updates to the inventory  that can be done by the Inventory Admin .",
+        "Precondition": [
+            "The Inventory Admin  is authenticated"
+        ],
+        "Assumptions": [
+            "We assume that use Knows the results of each operation there is no go back actions"
+        ],
+        "Basic Flow": [
+            "Use case begins when Inventory Admin start returning",
+            "Inventory Admin select asset state to available"
+        ],
+        "Alt. Flow": [
+            [
+                "Condition: ",
+                "Use case begins when Inventory Admin start returning",
+                "Inventory Admin select asset state to damaged"
+            ]
+        ],
+        "Exc. Flow": [
+            "None"
+        ],
+        "Postcondition": [
+            "The inventory system is updated"
+        ],
+        "Actors": [
+            "Inventory Admin",
+            "Inventory system",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "Authentication use case"
+        ],
+        "Notes": "We suppose that H osting system and servers support all the operations"
+    },
+    {
+        "id": 5,
+        "dataset": "inventory",
+        "Name": "Approving Request",
+        "Identifier": "APR .UC",
+        "Description": "The use case describes the approving of requests that an  Inventory Admin  can do.",
+        "Goal": "The Inventory Admin  initiates the use case. The use case presents all the approval or denial of a user request  that can be done by an Inventory Admin .",
+        "Precondition": [
+            "The Inventory Admin  is authenticated",
+            "Request list not empty"
+        ],
+        "Assumptions": [
+            "We assume that use Knows the results of each operation"
+        ],
+        "Basic Flow": [
+            "Use case begins when Inventory Admin display pending request list",
+            "System display only requests that he has privileges to approve",
+            "Inventory Admin select request that he want to approve",
+            "Approve is confirmed",
+            "System send Notes: to users"
+        ],
+        "Alt. Flow": [
+            [
+                "Condition: ",
+                "Use case begins when Inventory Admin display pending request list",
+                "System display only requests that he has privileges to approve",
+                "Inventory Admin select request that he want to reject",
+                "rejection  is confirmed",
+                "System send Notes: to users"
+            ]
+        ],
+        "Exc. Flow": [
+            "None"
+        ],
+        "Postcondition": [
+            "The Inventory system is updated"
+        ],
+        "Actors": [
+            "Inventory Admin",
+            "Inventory system",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "Search use case",
+            "Edit use case",
+            "Authentication use case"
+        ],
+        "Notes": "We suppose that Hosting system and servers support all the operations"
+    },
+    {
+        "id": 6,
+        "dataset": "inventory",
+        "Name": "change permissions  Use Case",
+        "Identifier": "CHP .UC",
+        "Description": "The use case describes the modification  that Department, Facutly or University Administrator can do to a user permissions .",
+        "Goal": "The administrator  initiates the use case. The use case presents all change that can be done by the Administrators .",
+        "Precondition": [
+            "The Administrator  is authenticated"
+        ],
+        "Assumptions": [
+            "We assume that use Knows the results of each operation",
+            "Administrator knows the role of each permission on the permission list",
+            "Administrator cannot assigne permissions more than he have"
+        ],
+        "Basic Flow": [
+            "Use case begins when Administrator  press change permission",
+            "Administrator select user",
+            "Administrator modify permissions"
+        ],
+        "Alt. Flow": [
+            [
+                "Condition: None"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "Administrator select user",
+                "Administrator modify permissions he give permissions more than he have",
+                "An error message is displayed"
+            ]
+        ],
+        "Postcondition": [
+            "The permissions of user are changed"
+        ],
+        "Actors": [
+            "Administrator",
+            "Inventory system",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "Authentication use case"
+        ],
+        "Notes": "We suppose that Hosting system and servers support all the operations"
+    },
+    {
+        "id": 7,
+        "dataset": "inventory",
+        "Name": "Authentication Use Case",
+        "Identifier": "ATH .UC",
+        "Description": "The use case describes the authentication .",
+        "Goal": "The User  initiates the use case. The use case presents authentication  operation",
+        "Precondition": [
+            "None"
+        ],
+        "Assumptions": [
+            "We assume that use Knows the results of each operation"
+        ],
+        "Basic Flow": [
+            "Use case begins user starts the application",
+            "User write user name and pas sword",
+            "User press login",
+            "User is authenticated",
+            "User log on to application main page"
+        ],
+        "Alt. Flow": [
+            [
+                "None"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "Use case begins user starts the application",
+                "User write user name and password",
+                "User press login",
+                "Authentication fails",
+                "An error message is displayed"
+            ]
+        ],
+        "Postcondition": [
+            "User is authenticated"
+        ],
+        "Actors": [
+            "User",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "None"
+        ],
+        "Notes": "We suppose that Hosting system and servers support all the operations"
+    },
+    {
+        "id": 8,
+        "dataset": "inventory",
+        "Name": "Search",
+        "Identifier": "SRCH .UC",
+        "Description": "The use case describes the search operation  that only authorised users can do.",
+        "Goal": "The User  initiates the use case. The use case presents search and advanced search that can be done  by the User .",
+        "Precondition": [
+            "The User  is authenticated",
+            "Search operation is authorised"
+        ],
+        "Assumptions": [
+            "We assume that use Knows the results of each operation"
+        ],
+        "Basic Flow": [
+            "Use case begins when User  start fill searching field",
+            "Press submit",
+            "Search results are displayed"
+        ],
+        "Alt. Flow": [
+            [
+                "Use case begins when User  press advanced search",
+                "Fills fields",
+                "Press submit",
+                "Search results are displayed"
+            ]
+        ],
+        "Exc. Flow": [
+            "Use case begins when User  start fill searching field",
+            "Press submit",
+            "No results are found  message is displayed"
+        ],
+        "Postcondition": [
+            "None"
+        ],
+        "Actors": [
+            "User",
+            "Inventory system",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "Authentication use case"
+        ],
+        "Notes": "We suppose that Hosting system and servers support all the operations"
+    },
+    {
+        "id": 9,
+        "dataset": "inventory",
+        "Name": "Create Reports  Use Case",
+        "Identifier": "REP.UC",
+        "Description": "The use case describes the creation of reports  that the User  can do.",
+        "Goal": "The User  initiates the use case. The use case presents reports  that can be created  by the \nUser . Three reports can be created Reports  \n1.User Permission Report  \n2.Request Report  \n3.Assets By Location Report",
+        "Precondition": [
+            "The User  is authenticated",
+            "User is authorised to create reports"
+        ],
+        "Assumptions": [
+            "We assume that use Knows the results of each operation"
+        ],
+        "Basic Flow": [
+            "Use case begins when User  click on a report type",
+            "General report is displayed",
+            "Report can be filtered",
+            "Fields can be sorted"
+        ],
+        "Alt. Flow": [
+            "None"
+        ],
+        "Exc. Flow": [
+            "None"
+        ],
+        "Postcondition": [
+            "Report is generated"
+        ],
+        "Actors": [
+            "User",
+            "Inventory system",
+            "Authentication system"
+        ],
+        "Included Use Cases": [
+            "Authentication use case"
+        ],
+        "Notes": "We suppose that Hosting system and servers support all the operations"
+    }
+]

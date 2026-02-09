@@ -1,0 +1,686 @@
+[
+    {
+        "id": 0,
+        "dataset": "gamma j",
+        "Name": "Register Customer",
+        "Brief Description": "Register a new customer account with the system.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer must be able to access the web order system via a web browser with HTTPS."
+        ],
+        "Trigger": "Customer clicks button or link to \"Register\"",
+        "Basic flow": [
+            "Customer first clicks on the button or link to initiate registration process.",
+            "System prompts the customer to fill out his/her first name, last name, billing address, shipping address, email address, and their password.",
+            "Customer enters fields.",
+            "System validates the customer's information.",
+            "System creates a new account for the Customer.",
+            "System creates a session cookie.",
+            "System displays an account home page to Customer."
+        ],
+        "Alt. Flow": [
+            [
+                "System recognizes Customer's cookie.",
+                "Go to Step 7 (Basic Scenario)."
+            ]
+        ],
+        "Postcondition": "The Customer registers and creates a new customer account with the system."
+    },
+    {
+        "id": 1,
+        "dataset": "gamma j",
+        "Name": "Login Customer",
+        "Brief Description": "Login to a customer account with the system.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer account must already be registered."
+        ],
+        "Trigger": "Customer clicks button or link to \"Login\"",
+        "Basic flow": [
+            "Customer clicks on the button or link to initiate the login process.",
+            "System prompts the customer for his/her email and password.",
+            "System verifies the information.",
+            "System creates session cookie.",
+            "System displays account home page to the Customer"
+        ],
+        "Alt. Flow": [
+            [
+                "System recognizes the Customer's cookie",
+                "Go to Step 5 (Basic Scenario)."
+            ],
+            [
+                "Customer enters incorrect login information.",
+                "System prompts the Customer to resend login details to the email account.",
+                "Customer confirms.",
+                "System sends an email to the registered email address.",
+                "Go to Step 1 (Basic Scenario)."
+            ]
+        ],
+        "Postcondition": "The Customer is logged into the system."
+    },
+    {
+        "id": 2,
+        "dataset": "gamma j",
+        "Name": "Edit Customer Details",
+        "Brief Description": "Edit the customer account details.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer must be logged-in on the system."
+        ],
+        "Trigger": "Customer clicks on the button or link to \"Edit Account\"",
+        "Basic flow": [
+            "Customer clicks the button or link to initiate the process to edit the account.",
+            "System displays the account home page to the Customer.",
+            "Customer clicks the button or link in order to edit the account details.",
+            "System verifies the changes.",
+            "System stores new account information."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "The Customer has changed the account details."
+    },
+    {
+        "id": 3,
+        "dataset": "gamma j",
+        "Name": "Logout Customer",
+        "Brief Description": "Logout the customer account on the system.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer must be logged-in on the system."
+        ],
+        "Trigger": "Customer clicks on the button or link to \"Logout\"",
+        "Basic flow": [
+            "Customer clicks the button or link in order to initiate logout process.",
+            "System terminates the session cookie.",
+            "System displays the home page."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "The Customer is logged out of the system."
+    },
+    {
+        "id": 4,
+        "dataset": "gamma j",
+        "Name": "Add Item To Cart",
+        "Brief Description": "Customer adds item(s) in the cart",
+        "Actors": [
+            "Customer",
+            "System"
+        ],
+        "Precondition": [
+            "The customer must be logged-in on the system."
+        ],
+        "Trigger": "Customer clicks the button or link to \"Add To Cart\".",
+        "Basic flow": [
+            "Customer clicks the button or link in order to add to the cart with specified quantity.",
+            "System adds the item(s) to the cart.",
+            "System prompts the Customer to edit the quantity or remove the item from cart.",
+            "Customer confirms the items in the cart.",
+            "System stores cookie with cart details.",
+            "Customer returns to product listings."
+        ],
+        "Alt. Flow": [
+            [
+                "Customer terminates the web browser window after adding item(s) to cart.",
+                "Customer returns to weborder interface.",
+                "System recognizes cookie and goes to step 6 (Basic Scenario) with existing items in cart."
+            ]
+        ],
+        "Postcondition": "The Customer has added item(s) to the shopping cart."
+    },
+    {
+        "id": 5,
+        "dataset": "gamma j",
+        "Name": "Checkout An Order",
+        "Brief Description": "Customer places and confirms an order for the checkout process.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer must be logged-in on the system.",
+            "Customer must have item(s) in the shopping cart."
+        ],
+        "Trigger": "Customer clicks button or link to \"Ckeckout\"",
+        "Basic flow": [
+            "Customer clicks the button or link to initiate the checkout process.",
+            "System calculates order of items in the shopping cart.",
+            "System appends cookie with flag for checkout process.",
+            "System presents the customer with the account details and payment methods.",
+            "Customer confirms account details and payment methods.",
+            "Customer confirms order.",
+            "System stores order confirmation and order details.",
+            "System sends email confirmation to the Customer.",
+            "System appends cookie with flag for completed checkout process."
+        ],
+        "Alt. Flow": [
+            [
+                "Customer terminates order web browser during order the checkout process.",
+                "Customer returns to weborder interface.",
+                "System recognizes cookie and goes to step 4 (Basic Scenario)."
+            ]
+        ],
+        "Postcondition": "The Customer has placed and confirmed an order."
+    },
+    {
+        "id": 6,
+        "dataset": "gamma j",
+        "Name": "Login Administrator",
+        "Brief Description": "Login to an Administrator account with the system.",
+        "Actors": [
+            "Administrator",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Administrator account must already be registered."
+        ],
+        "Trigger": "Administrator clicks button or link to \"Login\"",
+        "Basic flow": [
+            "Administrator clicks button or link to initiate login process.",
+            "System prompts the Administrator for email and password.",
+            "System verifies information.",
+            "System creates session cookie.",
+            "System displays account home page to Administrator"
+        ],
+        "Alt. Flow": [
+            [
+                "System recognizes Administrator's cookie",
+                "Go to Step 5 (Basic Scenario)."
+            ],
+            [
+                "Administrator enters incorrect login information.",
+                "System prompts Administrator to resend login details to email account.",
+                "Administrator confirms.",
+                "System sends email to registered email address.",
+                "Go to Step 1 (Basic Scenario)."
+            ]
+        ],
+        "Postcondition": "The Administrator is logged into the system."
+    },
+    {
+        "id": 7,
+        "dataset": "gamma j",
+        "Name": "Logout Administrator",
+        "Brief Description": "Logout the Administrator account on the system.",
+        "Actors": [
+            "Administrator",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Administrator must be logged-in on the system."
+        ],
+        "Trigger": "Administrator clicks button or link to \"Logout\"",
+        "Basic flow": [
+            "Administrator clicks button or link to initiate logout process.",
+            "System terminates the session cookie.",
+            "System displays home page."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "The Administrator is logged out of the system."
+    },
+    {
+        "id": 8,
+        "dataset": "gamma j",
+        "Name": "Add User",
+        "Brief Description": "Register a new customer, sales person, or administrator account with the system.",
+        "Actors": [
+            "Administrator",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Administrator must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Administrator clicks button or link to \"Add Users\"",
+        "Basic flow": [
+            "Administrator clicks the button or link to initiate Add user process.",
+            "System prompts the Administrator to fill out first name, last name, username, email address, password, and privileges of the user.",
+            "System validates new user information.",
+            "System creates a new account for the new user with desired privileges.",
+            "System displays account home page to Administrator."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "A new customer account is created within the system."
+    },
+    {
+        "id": 9,
+        "dataset": "gamma j",
+        "Name": "Remove User",
+        "Brief Description": "Remove a user from the system.",
+        "Actors": [
+            "Administrator",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Administrator must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Administrator clicks button or link to “Remove User\"",
+        "Basic flow": [
+            "Administrator clicks button or link to initiate the remove user process.",
+            "System prompts the Administrator to select a user by searching or viewing a list of users.",
+            "System displays user information.",
+            "System confirms deletion of selected user.",
+            "System displays account home page to Administrator."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "An account has been deleted within the system."
+    },
+    {
+        "id": 10,
+        "dataset": "gamma j",
+        "Name": "Change User Properties",
+        "Brief Description": "Alter properties such as passwords and privileges of the user.",
+        "Actors": [
+            "Administrator",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Administrator must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Administrator clicks button or link to “Change User Properties\"",
+        "Basic flow": [
+            "Administrator clicks the button or link to initiate change user properties process.",
+            "System prompts the Administrator to select a user by searching or viewing a list of users.",
+            "System displays the user information.",
+            "System alters the user properties.",
+            "System displays the account home page to Administrator."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "An account has been altered within the system."
+    },
+    {
+        "id": 11,
+        "dataset": "gamma j",
+        "Name": "Install Plug-ins",
+        "Brief Description": "Install a new plug-in to the application.",
+        "Actors": [
+            "Administrator",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Administrator must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Administrator clicks the button or link to \"Install Plug-ins \"",
+        "Basic flow": [
+            "Administrator clicks the button or link to initiate Plug-in installation process.",
+            "System prompts the Administrator to upload the Plug-in module.",
+            "System installs plug-in and validates changes.",
+            "System displays plug-in options to the Administrator."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "A new plug-in is installed in the application."
+    },
+    {
+        "id": 12,
+        "dataset": "gamma j",
+        "Name": "Remove Plug-ins",
+        "Brief Description": "Remove a plug-in from the application.",
+        "Actors": [
+            "Administrator",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Administrator must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Administrator clicks the button or link to \"Install Plug-ins\"",
+        "Basic flow": [
+            "Administrator clicks the button or link to initiate Plug-in deletion process.",
+            "System prompts the Administrator to select the desired Plug-in module.",
+            "System removes the plug-in and validates changes."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "A plug-in is removed from the application."
+    },
+    {
+        "id": 13,
+        "dataset": "gamma j",
+        "Name": "Manage Plug-in Options",
+        "Brief Description": "Make changes to an installed plug-in.",
+        "Actors": [
+            "Administrator",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Administrator must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Administrator clicks button or link to \"Manage Plug-ins\"",
+        "Basic flow": [
+            "Administrator clicks the button or link to initiate Plug-in Options process.",
+            "System prompts the Administrator to select the desired Plug-in module.",
+            "System displays all plug-in options to the Administrator.",
+            "System confirms changes with the Administrator."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "A plug-in’s options have successfully been changed."
+    },
+    {
+        "id": 14,
+        "dataset": "gamma j",
+        "Name": "Install patch process",
+        "Brief Description": "Install patches or software updates to the web store.",
+        "Actors": [
+            "Administrator",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Administrator must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Administrator clicks the button or link to \"Install Patch\"",
+        "Basic flow": [
+            "Administrator clicks the button or link to initiate Patching process.",
+            "System prompts the Administrator to upload the patch.",
+            "System automatically installs patches and reinitializes software.",
+            "System confirms that patch has been successfully installed."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "The web store was successfully updated."
+    },
+    {
+        "id": 15,
+        "dataset": "gamma j",
+        "Name": "Login Sales Person",
+        "Brief Description": "Login to an account with the system.",
+        "Actors": [
+            "Sales Person",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Sales Person account must already be registered."
+        ],
+        "Trigger": "Sales Person clicks button or link to \"Login\"",
+        "Basic flow": [
+            "Sales Person clicks the button or link to initiate login process.",
+            "System prompts the Sales Person for email and password.",
+            "System verifies the information.",
+            "System creates session cookie.",
+            "System displays the account home page to Sales Person"
+        ],
+        "Alt. Flow": [
+            [
+                "System recognizes Sales Person's cookie",
+                "Go to Step 5 (Basic Scenario)."
+            ],
+            [
+                "Sales Person enters incorrect login information.",
+                "System prompts the Sales Person to resend login details to email account.",
+                "Sales Person confirms.",
+                "System sends email to registered email address.",
+                "Go to Step 1 (Basic Scenario)."
+            ]
+        ],
+        "Postcondition": "The Sales Person is logged into the system."
+    },
+    {
+        "id": 16,
+        "dataset": "gamma j",
+        "Name": "Logout Sales Person",
+        "Brief Description": "Logout the Sales Person account on the system.",
+        "Actors": [
+            "Sales Person",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Sales Person must be logged-in on the system."
+        ],
+        "Trigger": "Sales Person clicks the button or link to \"Logout\"",
+        "Basic flow": [
+            "Sales Person clicks the button or link to initiate logout process.",
+            "System terminates the session cookie.",
+            "System displays home page."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "The Sales Person is logged out of the system."
+    },
+    {
+        "id": 17,
+        "dataset": "gamma j",
+        "Name": "Add Product",
+        "Brief Description": "Add a product to the system.",
+        "Actors": [
+            "Sales Person",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Sales Person must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Sales Person clicks the button or link to \"Add Product\"",
+        "Basic flow": [
+            "Sales Person clicks the button or link to initiate Add Product process.",
+            "System prompts the Sales Person to fill out product name, product id, product description, product price, upload a product image, number of items in inventory, and availability of product.",
+            "System validates the new product information.",
+            "System creates a new product page for the new product.",
+            "System displays the newly created product page."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "A new product is created within the system."
+    },
+    {
+        "id": 18,
+        "dataset": "gamma j",
+        "Name": "Remove Product",
+        "Brief Description": "Remove a product from the system.",
+        "Actors": [
+            "Sales Person",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Sales Person must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Sales Person clicks the button or link to \"Remove Product\"",
+        "Basic flow": [
+            "Sales Person clicks the button or link to initiate Remove Product process.",
+            "System prompts the Sales Person to select a product by searching or viewing a list of products.",
+            "System validates the product information.",
+            "System removes the product page and product information from the system.",
+            "System displays the newly created product page."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "A product is deleted from the system."
+    },
+    {
+        "id": 19,
+        "dataset": "gamma j",
+        "Name": "Update Product Attributes",
+        "Brief Description": "Update Product attributes within the system.",
+        "Actors": [
+            "Sales Person",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Sales Person must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Sales Person clicks the button or link to \"Update Product Attributes\"",
+        "Basic flow": [
+            "Sales Person clicks the button or link to initiate Update Product Attributes process.",
+            "System prompts the Sales Person to select a product by searching or viewing a list of products.",
+            "System displays all of the product attributes and allows Sales Person to update the product name, product id, product description, product price, update the product image, product availability, and/or the number of items in the inventory.",
+            "System validates the product information.",
+            "System updates the product page and product information within the system.",
+            "System displays the newly updated product page."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "The product attributes have been changed."
+    },
+    {
+        "id": 20,
+        "dataset": "gamma j",
+        "Name": "Register Customer",
+        "Brief Description": "Register a new customer account with the system.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer must be able to access the weborder system via a web browser with HTTPS."
+        ],
+        "Trigger": "Customer clicks the button or link to \"Register\"",
+        "Basic flow": [
+            "Customer clicks the button or link to initiate registration process.",
+            "System prompts the customer to fill out first name, last name, billing address, shipping address, email address, and password.",
+            "Customer enters fields.",
+            "System validates customer's information.",
+            "System creates a new account for the Customer.",
+            "System creates session cookie.",
+            "System displays account home page to Customer."
+        ],
+        "Alt. Flow": [
+            [
+                "System recognizes Customer's cookie.",
+                "Go to Step 7 (Basic Scenario)."
+            ]
+        ],
+        "Postcondition": "The Customer registers and creates a new customer account with the system."
+    },
+    {
+        "id": 21,
+        "dataset": "gamma j",
+        "Name": "Login Customer",
+        "Brief Description": "Login to a customer account with the system.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer account must already be registered."
+        ],
+        "Trigger": "Customer clicks the button or link to \"Login\"",
+        "Basic flow": [
+            "Customer clicks the button or link to initiate login process.",
+            "System prompts the customer for email and password.",
+            "System verifies the information.",
+            "System creates session cookie.",
+            "System displays account home page to Customer"
+        ],
+        "Alt. Flow": [
+            [
+                "System recognizes Customer's cookie",
+                "Go to Step 5 (Basic Scenario)."
+            ],
+            [
+                "Customer enters incorrect login information.",
+                "System prompts Customer to resend login details to email account.",
+                "Customer confirms.",
+                "System sends email to registered email address.",
+                "Go to Step 1 (Basic Scenario)."
+            ]
+        ],
+        "Postcondition": "The Customer is logged into the system."
+    },
+    {
+        "id": 22,
+        "dataset": "gamma j",
+        "Name": "Edit Customer Details",
+        "Brief Description": "Edit the customer account details.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer must be logged-in on the system."
+        ],
+        "Trigger": "Customer clicks button or link to \"Edit Account\"",
+        "Basic flow": [
+            "Customer clicks button or link to initiate the process to edit the account.",
+            "System displays account home page to Customer.",
+            "Customer clicks button or link to edit the account details.",
+            "System verifies the changes.",
+            "System stores new account information."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "The Customer has changed the account details."
+    },
+    {
+        "id": 23,
+        "dataset": "gamma j",
+        "Name": "Logout Customer",
+        "Brief Description": "Logout the customer account on the system.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer must be logged-in on the system."
+        ],
+        "Trigger": "Customer clicks button or link to \"Logout\"",
+        "Basic flow": [
+            "Customer clicks button or link to initiate logout process.",
+            "System terminates the session cookie.",
+            "System displays home page."
+        ],
+        "Alt. Flow": [],
+        "Postcondition": "The Customer is logged out of the system."
+    },
+    {
+        "id": 24,
+        "dataset": "gamma j",
+        "Name": "Add Item To Cart",
+        "Brief Description": "Customer adds item(s) in the cart",
+        "Actors": [
+            "Customer",
+            "System"
+        ],
+        "Precondition": [
+            "The customer must be logged-in on the system."
+        ],
+        "Trigger": "Customer clicks button or link to \"Add To Cart\".",
+        "Basic flow": [
+            "Customer clicks the button or link to add  to the cart with specified quantity.",
+            "System adds the item(s) to the cart.",
+            "System prompt Customer to edit quantity or remove item from cart.",
+            "Customer confirms items in cart.",
+            "System stores cookie with cart details.",
+            "Customer returns to product listings."
+        ],
+        "Alt. Flow": [
+            [
+                "Customer terminates the web browser window after adding item(s) to cart.",
+                "Customer returns to weborder interface.",
+                "System recognizes cookie and goes to step 6 (Basic Scenario) with existing items in cart."
+            ]
+        ],
+        "Postcondition": "The Customer has added item(s) to the shopping cart."
+    },
+    {
+        "id": 25,
+        "dataset": "gamma j",
+        "Name": "Checkout An Order",
+        "Brief Description": "Customer places and confirms an order for the checkout process.",
+        "Actors": [
+            "Customer",
+            "Weborder System"
+        ],
+        "Precondition": [
+            "Customer must be logged-in on the system.",
+            "Customer must have item(s) in the shopping cart."
+        ],
+        "Trigger": "Customer clicks button or link to \"Ckeckout\"",
+        "Basic flow": [
+            "Customer clicks the button or link to initiate the checkout process.",
+            "System calculates order of items in the shopping cart.",
+            "System appends cookie with flag for checkout process.",
+            "System presents customer with account details and payment methods.",
+            "Customer confirms account details and payment methods.",
+            "Customer confirms order.",
+            "System stores order confirmation and order details.",
+            "System sends email confirmation to the Customer.",
+            "System appends cookie with flag for completed checkout process."
+        ],
+        "Alt. Flow": [
+            [
+                "Customer terminates order web browser during order the checkout process.",
+                "Customer returns to weborder interface.",
+                "System recognizes cookie and goes to step 4 (Basic Scenario)."
+            ]
+        ],
+        "Postcondition": "The Customer has placed and confirmed an order."
+    }
+]

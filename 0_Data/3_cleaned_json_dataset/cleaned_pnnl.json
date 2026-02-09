@@ -1,0 +1,180 @@
+[
+    {
+        "id": 0,
+        "dataset": "pnnl",
+        "Name": "Start and Stop Diagnostics Use Case",
+        "Brief Description": "This use case provides the actor the means to start and stop diagnostic processing.  The actor in this case is the administrator user (see 2.5.1 ).",
+        "Precondition": [
+            "There are no preconditions for this use case."
+        ],
+        "Basic Flow": [
+            "The user launches the tool by double -clicking the icon associate d with the tool or typing the application’s name.",
+            "The tool momentarily displays a splash screen identifying the tool, identifying developing and sponsoring organizations as appropriate, and listing copyright information.",
+            "The tool displays the main window o f the tool.",
+            "The user starts the diagnostic processing by selecting a menu item named “Start Diagnostics” from a drop down menu named “Status”.",
+            "Include (Authenticate User).",
+            "If the user has the appropriate privilege (i.e., the user is the administrator user) the tool requests a confirmatory response from the user to start the diagnostic processing.",
+            "If the user confirms the desire to start diagnostic processing, the tool starts the processing and displays an animated indication that diagnostic processing is active.",
+            "If the user responds negatively to the confirmation, the tool does not start the diagnostic processing but the user remains authenticated.",
+            "If the user does not have the appropriate privilege, the tool does not start the diagnostic processing.",
+            "The user secures the tool by selecting a menu item named “Logout” from the drop down menu named “File”.",
+            "The tool returns the current user’s privileges to those of the general user.",
+            "If a period of 15 minutes elapses whereby the user does not secure the tool, the  users privileges will automatically revert to those of a general user."
+        ],
+        "Alt. Flow": [
+            "Stopping Diagnostic Processing",
+            "The user can stop diagnostic processing at any time after the diagnostic processing has started by selecting the “Stop Diagnostics” me nu item from the main menu entitled “Status”.",
+            "If the user is not authenticated as the administrator user, include (Authenticate User) to validate privileges for stopping diagnostic processing.",
+            "If the user has the appropriate privilege, the tool requests co nfirmation to stop diagnostic processing.",
+            "If the user responds positively to the confirmation, the tool stops diagnostic processing and indicates the stopped condition.",
+            "Otherwise the software performs no function but the user remains authenticated.",
+            "If the user selects the “Exit” menu item from the main menu entitled “File” and the diagnostic processing is not active, the tool exits.",
+            "If the user selects “Exit” and the diagnostic processing is active, include (Authenticate User), if the user is not already  validated, to verify the user’s privilege to stop diagnostic processing.",
+            "If the user is permitted to stop diagnostic processing, the tool stops the processing and exits.",
+            "Otherwise, the software performs no function."
+        ],
+        "Postcondition": [
+            "There are no postconditions for this use case."
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "pnnl",
+        "Name": "Browse Current Diagnostics Use Case",
+        "Brief Description": "This use case provides the actor the means to view current diagnostic results.  The actor in this case is the user (see 2.5.1 ).",
+        "Precondition": [
+            "There are no preconditions for this use case."
+        ],
+        "Basic Flow": [
+            "The tool displays the main (initial) window, listing buildings under diagnosis.",
+            "The user selects a building of interest.",
+            "The tool displays the su bsystems window, tiled on top the main (initial) window.",
+            "The user selects a subsystem of interest.",
+            "The tool displays the condition window, tiled on top the subsystems window.",
+            "The user selects a diagnostic of interest.",
+            "The tool displays the diagnostic infor mation window for that diagnostic."
+        ],
+        "Alt. Flow": [
+            "At any window except the initial window, the user may click the “Back” button to dismiss the current window and re-establish the previous window as the current window.",
+            "The user may then make a new selection.",
+            "The user may click a button labeled “Print” on the diagnostic information window to print an image of the window.",
+            "The tool displays a window listing possible items to print including the diagnostic information window.",
+            "The user selects the diagnostic i nformation window and clicks the “OK” button to print the window."
+        ],
+        "Postcondition": [
+            "The diagnostic processing will not cease or be negatively impacted during the activities of this use case."
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "pnnl",
+        "Name": "Browse Historical Diagnostics Use Case",
+        "Brief Description": "This use case provides the actor the means to view historical  diagnostic results.  The actor in this case is the user (see 2.5.1 ).",
+        "Precondition": [
+            "The diagnostic processing need not be active for this use case.",
+            "A diagnostic information window must be displayed for this use case to begin."
+        ],
+        "Basic Flow": [
+            "The user clicks the “History” button.",
+            "The tool displays the diagnostic history window depicting the historical results of the selected condition of interest over the default viewing period in the form  of a color map.",
+            "The window provides a scroll bar for scrolling through historical results if data are available prior to the default viewing period.",
+            "The default viewing period extends backward one week prior to the current date.",
+            "Sliding the scroll bar does not change the viewing period displayed.",
+            "The default time resolution for the window is one hour.",
+            "The user slides the scroll bar backward or forward to view previous results up to the current time.",
+            "The tool displays the results within a viewing period  of one week, adding results to the beginning or ending of the period while dropping results of the opposite end.",
+            "The tool does not change the viewing period.",
+            "The user may close the diagnostic history window by clicking the “Close” button.",
+            "The tool dismis ses the diagnostic history window and the diagnostic information window and makes the condition window the current window."
+        ],
+        "Alt. Flow": [
+            [
+                "Changing the Viewing Period",
+                "The user selects a new viewing period from a list of periods provided by the tool.",
+                "The tool redisplays the historically data over the new viewing period."
+            ],
+            [
+                "Zooming",
+                "The user selects a period of time within the displayed viewing period over which to expand or contract in time.",
+                "The tool expands or contracts the selected period.  If expanding, t he selected period becomes the new viewing period.  If contracting, the new viewing period becomes twice as long as the selected period and encloses it."
+            ],
+            [
+                "Displaying Historical Diagnostic Information",
+                "The user double -clicks a cell in the history window.",
+                "The tool dismisses the current diagnostic information window if displayed.  After a noticeable delay of approximately one second, the tool displays the diagnostic information window associated with the cell selected."
+            ],
+            [   "Browsing Arbitrary History Intervals",
+                "The user specifies a start time and end time for an historical interval of interest using calendar controls.",
+                "The tool displays historical results beginning with the first result on or after the specified start time up to the end time.  The view is confined to t he previously selected viewing period."
+            ],
+            [
+                "General Alternative Flows",
+                "At the diagnostic information window, the user may click the “Close” button to dismiss the window and make the condition window the current window if the diagnostic history window is not dis played.",
+                "If the user attempts to close the diagnostic information window and the diagnostic history window is still displayed, the diagnostic information window is dismissed but the diagnostic history window remains.",
+                "If the condition window is closed, then  both the diagnostic information and diagnostic history windows are closed if open.",
+                "If the user does not specify an end time for the history interval in 3.1.3.2.4.1  Browsing Arbitrary History Intervals(1), it defaults to the current time."
+            ]
+        ],
+        "Postcondition": [
+            "The diagnostic processing will not cease or be negatively impacted during the activities of this use case."
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "pnnl",
+        "Name": "Configure Diagnostics Use Case",
+        "Brief Description": "This use case provides the actor the means to configure the diagnostic tool.  This includes defining the buildings containing systems to be diagnosed, defining the systems themselves, specifying equipment setpoints, selecting diagnostic sensitivity, and modif ying fixed data.  The actor in this case is the administrator user (see 2.5.1 ).",
+        "Precondition": [
+            "The main window of the tool must be the only window active for the tool prior to execution of this use case."
+        ],
+        "Basic Flow": [
+            "When presented with the main window, the user may select the “Configure Diagnostics” menu item from the menu entitled “File”.",
+            "If the user has not already been authenticated as the administrator user, include (Authenticate User).",
+            "If the user has the appropriate privilege, the tool displays the configuration window.",
+            "The user may click the “Recall” button to read previously saved changes from a disk file or database.",
+            "The tool populates the window with the data from t he disk file.",
+            "The user makes the desired changes to the configuration and can click the button labeled “Save” to save the changes.",
+            "Otherwise, the user can click the button labeled “Close”.",
+            "If the user clicks the button labeled “Save”, the tool will request confirmation to save the changes.",
+            "If the user confirms, the tool will request a name for the disk file in which to save the modified data to permanent storage.",
+            "The user will enter a name for the file or cancel the operation.",
+            "If the user enters a name for  the file, the tool will save the changes.",
+            "If the user cancels the operation, the tool will perform no function.",
+            "If the tool completes the save operation, the tool will ask the user if the changes are to be relayed to the diagnostic processing for immediate use.",
+            "If the user confirms the changes are to be relayed to the diagnostic processing, the tool relays the changes if the processing is currently active.",
+            "Otherwise, the tool does not relay the changes.",
+            "If the user clicks the button labeled “Close”, the tool will request confirmation for the close and the potential loss of any changes.",
+            "If the user confirms, the tool will dismiss the configuration window, ignoring any changes and returns the user to the main window.",
+            "If the user rejects the initial desire to close, the tool will perform no function."
+        ],
+        "Alt. Flow": [
+            "There are no alternative flows for this use case."
+        ],
+        "Postcondition": [
+            "Any changes made by the administrator user to the diagnostic tool will take affect immediately if requested by the user."
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "pnnl",
+        "Name": "Authenticate User",
+        "Brief Description": "This use case establishes the privileges of the user for certain functions of the tool.",
+        "Precondition": [
+            "There are no preconditions for this use case."
+        ],
+        "Basic Flow": [
+            "The tool displays a windo w for entry of authenticating information, i.e., user name and password, to validate and establish the privileges of the user.",
+            "The user enters their user name and password.",
+            "The tool attempts to authenticate the user and indicates whether authentication has  succeeded or not.",
+            "If authentication is unsuccessful, the user is returned to the authentication window to reenter the information.",
+            "The tool permits three attempts at authentication before dismissing the authentication window and returning the user to the previous window.",
+            "The user may cancel the authentication process at any time and return to the previous window."
+        ],
+        "Alt. Flow": [
+            "There are no alternative flows for this use case."
+        ],
+        "Postcondition": [
+            "There are no postconditions for this use case."
+        ]
+    }
+]

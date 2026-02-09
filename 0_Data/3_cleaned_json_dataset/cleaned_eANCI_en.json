@@ -1,0 +1,3578 @@
+[
+    {
+        "id": 0,
+        "dataset": "eANCI",
+        "Name": "AuthenticationAdministrator",
+        "Actors": [
+            "Started by administrator"
+        ],
+        "Basic flow": [
+            "The administrator logs in to the system.",
+            "The system shall display the login form for data entry (user name and password).",
+            "The 'administrator enters the data and submits the authentication request.",
+            "The system receives the form, verifies the data, and allows the administrator access to the system with the permissions specified."
+        ],
+        "Precondition": [
+            "The 'administrator was given access to the system."
+        ],
+        "Postcondition": [
+            "The system allows administrator access.",
+            "In case the administrator enters incorrect login and/or password, the system calls the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The username string is present in the system, is well-formed contains characters [a..zA..Z0..9 .-_]andhalength less than 30 characters and is not empty.",
+            "The password string is present in the system, is well-formed contains characters [a..zA..Z0..9.-_ * +!?,:; àèéìòù ] and has a length between 8 and 15characters."
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "eANCI",
+        "Name": "AuthenticationCitizen",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen logs in to the authentication session.",
+            "The system displays the login form for entering data (user name and password).",
+            "The citizen enters the data and submits the authentication request.",
+            "The system verifies the accuracy of the data and allows the citizen access."
+        ],
+        "Precondition": [
+            "The citizen was accessed in the system."
+        ],
+        "Postcondition": [
+            "Citizen successfully logged in.",
+            "In case the citizen enters incorrect login and/or password, the system calls the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The username string is present in the system, is well-formed contains characters [a..zA..Z0..9 .-_]andhalength less than 30 characters and is not empty.",
+            "The password string is present in the system, is well-formed contains characters [a..zA..Z0..9.-_ * +!?,:; àèéìòù ] and has a length between 8 and 15characters."
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "eANCI",
+        "Name": "AuthenticationEmployee",
+        "Actors": [
+            "Started by employee"
+        ],
+        "Basic flow": [
+            "The employee logs in to the authentication session.",
+            "The system displays the login form for entering data (user name and password).",
+            "The clerk enters the data and submits the authentication request.",
+            "The system verifies the accuracy of the data and allows the employee access."
+        ],
+        "Precondition": [
+            "The employee accessed the system"
+        ],
+        "Postcondition": [
+            "The employee has successfully logged in.",
+            "In the case where the employee enters incorrect login and/or password, the system calls the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The username string is present in the system, is well-formed contains characters [a..zA..Z0..9 .-_]andhalength less than 30 characters and is not empty.",
+            "The password string is present in the system, is well-formed contains characters [a..zA..Z0..9.-_ * +!?,:; àèéìòù ] and has a length between 8 and 15characters."
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "eANCI",
+        "Name": "CancellationCitizen",
+        "Actors": [
+            "Started by employee"
+        ],
+        "Basic flow": [
+            "The employee presses the citizen delete button.",
+            "The system asks the clerk for confirmation.",
+            "The clerk confirms the operation.",
+            "The system erases the citizen."
+        ],
+        "Precondition": [
+            "The clerk has authenticated into the system.",
+            "This use case includes SearchCitizen and occurs when the clerk wants to delete a citizen."
+        ],
+        "Postcondition": [
+            "The clerk does not confirm the transaction.",
+            "The system deletes the citizen,",
+	    "In the case where the service is not available the case is called up of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "eANCI",
+        "Name": "CancellationEmployee",
+        "Actors": [
+            "Started by administrator"
+        ],
+        "Basic flow": [
+            "The administrator presses the delete button employed.",
+            "The system asks the administrator for confirmation.",
+            "The administrator confirms the operation.",
+            "The system deletes the 'employee."
+        ],
+        "Precondition": [
+            "The administrator has authenticated into the system.",
+            "This use case includes SearchEmployee and occurs when the administrator wants to delete an employee."
+        ],
+        "Postcondition": [
+            "Administrator does not confirm the operation.",
+            "The system deletes the 'employee,",
+	    "In the case where the service is not available the case is called up of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "The freshman string is present in the system, consists only of numeric characters and has a length of 6 characters.",
+            "The name string must be present in the system and associated with the last name, can contain characters [ a..z A..Z ' àéèìòù ] and must have a maximum length of 30 characters.",
+            "The string last name must be present in the system and associated with the first name, may contain characters [ a..z A..Z ' àéèìòù ] and must have a maximum length of 30 characters."
+        ]
+    },
+    {
+        "id": 5,
+        "dataset": "eANCI",
+        "Name": "EntryCitizen",
+        "Actors": [
+            "Started by employee"
+        ],
+        "Basic flow": [
+            "The clerk logs into the system, and activates the citizen registration process.",
+            "The system displays the form for entering a new citizen.",
+            "The clerk enters the citizen's data and submits the registration request.",
+            "The system receives the form, checks that the citizen entered by the employee is not already in the system."
+        ],
+        "Precondition": [
+            "The employee has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The system registers the Employee,",
+	    "In the case where the employee enters a matriculation already in the system, the system calls the use case DataErrati,",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The name string can contain characters [ a..z A..Z ' àéèìòù ] and has length less than 30 characters and is not empty.",
+            "The surname string can contain characters [ a..z A..Z ' àéèìòù ] and is less than 30 characters long and not empty.",
+            "The Tax Code string must be current to regulations and has a length of 16 characters.",
+            "The date of birth string must be an existing date and must consist of dd/mm/yyyyy of numeric type (dd from 1 to 31, mm from 1 to 12, yyyy from 1900 to present).",
+            "The birthplace string can contain characters [ a..z A..Z ' àéèìòù ] and a length less than 30 characters and not empty.",
+            "The email string has the format x@x.x and is less than 30 characters long and not empty.",
+            "The Family Unit ID string must be present in the system must contain only numeric characters and must be greater than 0."
+        ]
+    },
+    {
+        "id": 6,
+        "dataset": "eANCI",
+        "Name": "EntryEmployee",
+        "Actors": [
+            "Started by administrator"
+        ],
+        "Basic flow": [
+            "The administrator logs into the system, via administrative terminal, and activates the Employee Registration procedure.",
+            "The system displays the form for entering a new employee.",
+            "The Administrator enters the Employee's data and submits the registration request.",
+            "The system receives the form, checks that the matriculation entered by the Administrator is not already in the system, and generates a password, saves the entered data, and displays a notification of successful registration with the password assigned to the employee."
+        ],
+        "Precondition": [
+            "The administrator has authenticated into the system."
+        ],
+        "Postcondition": [
+            "The system registers the Employee,",
+	    "In the case where the Administrator enters a matriculation already in the system, the system calls the use case DataErrati,",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The name string can contain characters such as [ a..z A..Z ' àéèìòù ] and must be less than 31 in length and not empty.",
+            "The surname string can contain characters such as [ a..z A..Z ' àéèìòù ] and must be less than 31 in length and not empty.",
+            "The e-mail string consists of x@x.x and is less than 3 characters long.",
+            "The freshman string contains only numeric characters is equal to 6 characters.",
+            "The username string is not already in the system, is well-formed contains characters [ a..z A..Z 0..9 .- _ ] and has length less than 31 characters and is not empty.",
+            "The password string is well formed contains characters [ a..z A..Z 0..9 . - _ * + ! ? , : ; àèéìòù]and has a length between 8 and 15 characters.",
+            "The password confirmation string must be consistent with the password entered."
+        ]
+    },
+    {
+        "id": 7,
+        "dataset": "eANCI",
+        "Name": "LogoutAdministrator",
+        "Actors": [
+            "Started by Administrator"
+        ],
+        "Basic flow": [
+            "The administrator wants to end the work session and clicks on the Logout button.",
+            "The system disconnects the administrator from the system and returns to the main screen."
+        ],
+        "Precondition": [
+            "The administrator has authenticated into the system."
+        ],
+        "Postcondition": [
+            "The system closes the administrator's session."
+        ],
+        "Quality Requirements": []
+    },
+    {
+        "id": 8,
+        "dataset": "eANCI",
+        "Name": "LogoutCitizen",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen wants to end the work session and clicks on the Logout button.",
+            "The system disconnects the citizen from the system and returns to the main screen."
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The system closes the citizen's session."
+        ],
+        "Quality Requirements": []
+    },
+    {
+        "id": 9,
+        "dataset": "eANCI",
+        "Name": "LogoutEmployee",
+        "Actors": [
+            "Started by employee"
+        ],
+        "Basic flow": [
+            "The employee wants to end the work session and clicks on the Logout button.",
+            "The system disconnects the employee from the system and returns to the main screen."
+        ],
+        "Precondition": [
+            "The employee has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The system closes the employee's session."
+        ],
+        "Quality Requirements": []
+    },
+    {
+        "id": 10,
+        "dataset": "eANCI",
+        "Name": "EditCitizen",
+        "Actors": [
+            "Started by employee"
+        ],
+        "Basic flow": [
+            "The employee presses the citizen edit button.",
+            "The system shows a form for editing the citizen.",
+            "The employee enters the data.",
+            "The system saves the changes made."
+        ],
+        "Precondition": [
+            "The clerk has authenticated into the system.",
+            "This use case includes SearchCitizen and occurs when the clerk wants to edit a citizen"
+        ],
+        "Postcondition": [
+            "The system changes the citizen.",
+            "In the case where the service is not available the case is called up of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 11,
+        "dataset": "eANCI",
+        "Name": "EditEMailAdministrator",
+        "Actors": [
+            "Started by administrator"
+        ],
+        "Basic flow": [
+            "The administrator accesses the email edit form.",
+            "The system shows the form the entry of the new e-mail.",
+            "The administrator enters the new email and presses the confirmation button.",
+            "The system updates the new e-mail."
+        ],
+        "Precondition": [
+            "The administrator has authenticated into the system."
+        ],
+        "Postcondition": [
+            "The system saves the new e-mail.",
+            "The system detects an error and retrieves the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 12,
+        "dataset": "eANCI",
+        "Name": "EditEMailCitizen",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen accesses the e- mail edit form.",
+            "The system shows the form the entry of the new email.",
+            "The citizen enters the new email and presses the confirmation button.",
+            "The system updates the new e-mail."
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The system saves the new e-mail.",
+            "The system detects an error and retrieves the DataErrati use case.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 13,
+        "dataset": "eANCI",
+        "Name": "EditEMailEmployee",
+        "Actors": [
+            "Started by employee"
+        ],
+        "Basic flow": [
+            "The 'employee accesses the e- mail edit form.",
+            "The system shows the form the entry of the new e-mail.",
+            "The employee enters the new email and presses the confirmation button.",
+            "The system updates the new e-mail."
+        ],
+        "Precondition": [
+            "The 'employee has authenticated into the system."
+        ],
+        "Postcondition": [
+            "The system saves the new e-mail .",
+            "The system detects an error and calls back the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 14,
+        "dataset": "eANCI",
+        "Name": "EditEmployee",
+        "Actors": [
+            "Started by administrator"
+        ],
+        "Basic flow": [
+            "The administrator presses the employee edit button.",
+            "The system displays a form for editing the employee.",
+            "The administrator enters the data.",
+            "The system saves the changes made."
+        ],
+        "Precondition": [
+            "The administrator has authenticated into the system.",
+            "This use case includes SearchEmployee and occurs when the administrator wants to edit an employee"
+        ],
+        "Postcondition": [
+            "The system modifies the 'employee.",
+            "In the case where the service is not available the case is invoked of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 15,
+        "dataset": "eANCI",
+        "Name": "EditPasswordAdministrator",
+        "Actors": [
+            "Started by administrator"
+        ],
+        "Basic flow": [
+            "The administrator wants to change the password and presses the change password button.",
+            "The system displays the form for entering the old password.",
+            "The administrator enters the old password, the new password and presses the confirmation key.",
+            "The system notifies that the password has been changed."
+        ],
+        "Precondition": [
+            "The 'administrator has authenticated into the system."
+        ],
+        "Postcondition": [
+            "The password is changed.",
+	    "In case the administrator enters a password of less than 8 characters or the old password is incorrect, the system calls the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": []
+    },
+    {
+        "id": 16,
+        "dataset": "eANCI",
+        "Name": "EditPasswordCitizen",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen wants to change the password and presses the change password button.",
+            "The system displays the form for entering the old password and the new one.",
+            "The citizen enters the old password, the new password and presses the confirmation button.",
+            "The system notifies that the password has been changed."
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The password is changed.",
+	    "In case the citizen enters a password less than 8 characters or the old password is incorrect, the system calls the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The password string consists of [a..zA..Z0..9.-_ * +!?,:; àèéòù ] and is between 8 and 15 characters long.",
+            "The string is not consistent with the password entered."
+        ]
+    },
+    {
+        "id": 17,
+        "dataset": "eANCI",
+        "Name": "EditPasswordEmployee",
+        "Actors": [
+            "Started by employee"
+        ],
+        "Basic flow": [
+            "The employee wants to change the password and presses the change password button.",
+            "The system displays the form for entering the old password and the new one.",
+            "The employee enters the old password, the new password and presses the confirmation key.",
+            "The system notifies that the password has been changed."
+        ],
+        "Precondition": [
+            "The 'employee has authenticated into the system."
+        ],
+        "Postcondition": [
+            "The password is changed.",
+	    "In case the employee enters a password less than 8 characters or the old password is incorrect, the system calls the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": []
+    },
+    {
+        "id": 18,
+        "dataset": "eANCI",
+        "Name": "RecoverPasswordCitizen",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen has forgotten the password and presses on the Recover Password button.",
+            "The system displays the password recovery screen that requires the user name and ID card code to be entered.",
+            "The citizen enters his data and presses the confirmation button.",
+            "The system verifies the correctness of the data and sends the password to the citizen's email address."
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The system has sent the password.",
+            "In the case where the administrator enters a freshman not in the system, the system calls the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The username string in the system and associated with the ID card holder, is well formed contains characters[a..zA..Z0..9 .-_]and is less than 30 characters long and is not empty.",
+            "The ID Card string is in the system, consists of XXnnnnnnn (X= letter n= number) and has a length equal to 9 characters."
+        ]
+    },
+    {
+        "id": 19,
+        "dataset": "eANCI",
+        "Name": "RecoverPasswordAdministrator",
+        "Actors": [
+            "Started by administrator"
+        ],
+        "Basic flow": [
+            "The administrator has forgotten the password and presses the password recovery button.",
+            "The system shows the form for entering the matriculation.",
+            "The administrator enters his or her matriculation number and presses the confirmation key.",
+            "The system verifies the data and sends the password to the administrator's email address."
+        ],
+        "Precondition": [
+            "The administrator has access to the system"
+        ],
+        "Postcondition": [
+            "The system sends the password.",
+            "In the event that the administrator enters a freshman not in the system, the system calls the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": []
+    },
+    {
+        "id": 20,
+        "dataset": "eANCI",
+        "Name": "RecoverPasswordEmployed",
+        "Actors": [
+            "Started by employee"
+        ],
+        "Basic flow": [
+            "The employee has forgotten the password and presses the password recovery button.",
+            "The system shows the form for entering the matriculation.",
+            "The employee enters his or her number and presses the confirmation key.",
+            "The system verifies the data and sends the password to the employee's email address."
+        ],
+        "Precondition": [
+            "The employee has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The system sends the password.",
+            "In the case where the employee enters a matriculation that is not in the system, the system calls the use case DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": []
+    },
+    {
+        "id": 21,
+        "dataset": "eANCI",
+        "Name": "RegistrationCitizen",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen accesses the registration form.",
+            "The system displays the form for the registration.",
+            "The citizen enters his data and presses the confirmation key.",
+            "The system shall verify the correctness of the data, saves them and sends an e-mail of successful registration to the citizen."
+        ],
+        "Precondition": [
+            "The citizen accessed the system."
+        ],
+        "Postcondition": [
+            "The system registers the citizen.",
+            "In case the citizen enters incorrect data, the system calls the case of use DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The name string corresponding to the name of the ID card holder, is well formed contains characters [ a..z A..Z ' àéèìòù ] and is less than 30 characters long and is not empty.",
+            "The string of the surname corresponding to the first name of the ID card holder, is well-formed contains characters [ a..z A..Z ' àéèìòù ] and is less than 30 characters long and is not empty.",
+            "The string of the Tax Code corresponding to the actual tax identification number of the holder, complies with regulations and is 16 characters long.",
+            "The ID Card string is in the system, consists of XXnnnnnnn (X= letter n= number) and has a length of 9 characters.",
+            "The email string consists of x@x.x and has a length of less than 31 characters and is not empty.",
+            "The username string is not already in the system, is well-formed contains characters [ a..z A..Z 0..9 . - _ ] and has length less than 30 characters and is not empty.",
+            "The password string is well formed contains characters [ a..z A..Z 0..9 . - _ * + ! ? , : ; àèéìòù]edhauna length between 8 and 15 characters."
+        ]
+    },
+    {
+        "id": 22,
+        "dataset": "eANCI",
+        "Name": "RegistrationCitizen",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen accesses the registration form.",
+            "The system displays the form for the registration.",
+            "The citizen enters his data and presses the confirmation key.",
+            "The system shall verify the correctness of the data, saves them and sends an e-mail of successful registration to the citizen."
+        ],
+        "Precondition": [
+            "The citizen accessed the system."
+        ],
+        "Postcondition": [
+            "The system registers the citizen.",
+            "In case the citizen enters incorrect data, the system calls the case of use DataErrati.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The name string corresponding to the name of the ID card holder, is well formed contains characters [ a..z A..Z ' àéèìòù ] and is less than 30 characters long and is not empty.",
+            "The string of the surname corresponding to the first name of the ID card holder, is well-formed contains characters [ a..z A..Z ' àéèìòù ] and is less than 30 characters long and is not empty.",
+            "The string of the Tax Code corresponding to the actual tax identification number of the holder, complies with regulations and is 16 characters long.",
+            "The ID Card string is in the system, consists of XXnnnnnnn (X= letter n= number) and has a length of 9 characters.",
+            "The email string consists of x@x.x and has a length of less than 31 characters and is not empty.",
+            "The username string is not already in the system, is well-formed contains characters [ a..z A..Z 0..9 . - _ ] and has length less than 30 characters and is not empty.",
+            "The password string is well formed contains characters [ a..z A..Z 0..9 . - _ * + ! ? , : ; àèéìòù]edhauna length between 8 and 15 characters."
+        ]
+    },
+    {
+        "id": 23,
+        "dataset": "eANCI",
+        "Name": "ResearchEmployee",
+        "Actors": [
+            "Started by administrator"
+        ],
+        "Basic flow": [
+            "The administrator presses on the Search Employee button.",
+            "The system displays the form to search for an employee.",
+            "The administrator performs a search using the employee's data.",
+            "The system returns the data of the employee sought."
+        ],
+        "Precondition": [
+            "The administrator has authenticated into the system."
+        ],
+        "Postcondition": [
+            "The system displays the employee screen.",
+            "In the case where the employee is not found, the system invokes the use case DataErrati.",
+            "In case the administrator wants to delete an employee , the system calls the use case DeleteEmployee.",
+            "In case the administrator wants to edit an employee , the system calls the use case EditEmployee.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The freshman string is present in the system, contains only numeric characters, and has a length of 6 characters."
+        ]
+    },
+    {
+        "id": 24,
+        "dataset": "eANCI",
+        "Name": "ChangeOfResidence",
+        "Actors": [
+            "Started as citizen",
+            "continued as employee"
+        ],
+        "Basic flow": [
+            "The Citizen presses on the Change of Residence button.",
+            "The system shows the citizen the form to fill out.",
+            "The citizen enters the data of his new home.",
+            "The system notifies the citizen that the request has been sent correctly and is stored in the system.",
+            "The clerk logs into the system and views the received request.",
+            "The clerk verifies the data, fills in the document with the rest of the data to be entered, and confirms the operation.",
+            "The system saves the form and updates the data."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The System creates the document to be delivered to the relevant office.",
+            "In case the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The string common name new residence can contain characters [ a..z A..Z ' àéèìòù . ]",
+            "and the string must be non-empty.",
+            "The address string can contain characters [ a..z A..Z ' àéèìòù , . ]",
+            "and the string must be non-empty.",
+            "The house number string can contain characters [ 0..9 A..Z ]and the string must be less than 5 characters long.",
+            "The telephone prefix string can only contain numeric characters and must be between 2 and 5 digits.",
+            "The phone number string can only contain numeric characters and must be between 5 and 8 digits.",
+            "The family member surname string can include characters [ a..z A..Z ' àéèìòù ] and have a maximum length of 30 carat and non-empty.",
+            "The family member name string can include characters [ a..z A..Z ' àéèìòù ] and have a maximum length of 30 carat and non-empty.",
+            "The family comp birthplace string can contain characters [ a..z A..Z ' àéèìòù . ] and must be at least as long as 1 character.",
+            "The string birthdate comp familiar must be an existing date and must have a dd/mm/yyyy format of numeric type (dd from 1 to 31, mm from 1 to 12, yyyy from 1900 to present) .",
+            "The string card code applicant outside the municipality must consist of XXnnnnnnn (X= letter n= number) and must be 9 characters long."
+        ]
+    },
+    {
+        "id": 25,
+        "dataset": "eANCI",
+        "Name": "ChangeOfResidenceOtherCommunity",
+        "Actors": [
+            "Started by Citizen",
+            "continued by Employee"
+        ],
+        "Basic flow": [
+            "The Citizen presses on the Change of Residence button.",
+            "The system shows the citizen the form to fill out.",
+            "The citizen enters the data of his new home.",
+            "The system notifies the citizen that the request has been successfully sent, and the request is stored.",
+            "The clerk logs into the system and views the request received.",
+            "The clerk verifies the data, fills in the document with the rest of the data to be entered, and confirms the operation.",
+            "The system saves the form and updates the data.",
+            "The clerk sends a document with the request made by the citizen to the clerk of the other municipality.",
+            "The clerk of the other municipality verifies the document and sends a positive notification to the other clerk and a notification to the citizen."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The System creates the document to be delivered to the appropriate office.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The string common name new residence can contain characters [ a..z A..Z ' àéèìòù . ]",
+            "and the string must be non-empty.",
+            "The address string can contain characters [ a..z A..Z ' àéèìòù , . ]",
+            "and the string must be non-empty.",
+            "The house number string can contain characters [ 0..9 A..Z ]and the string must be less than 5 characters long.",
+            "The telephone prefix string can only contain numeric characters and must be between 2 and 5 digits.",
+            "The phone number string can only contain numeric characters and must be between 5 and 8 digits.",
+            "The family member surname string can include characters [ a..z A..Z ' àéèìòù ] and have a maximum length of 30 carat and not blank.",
+            "The family member name string can include characters [ a..z A..Z ' àéèìòù ] and have a maximum length of 30 carat and non-empty.",
+            "The family comp birthplace string can contain characters [ a..z A..Z ' àéèìòù . ]",
+            "and must be at least one character long.",
+            "The family comp birth date string must be an existing date and must have a dd/mm/yyyy format of numeric type (dd from 1 to 31, mm from 1 to 12, yyyy from 1900 to present) .",
+            "The string card code applicant outside the municipality must consist of XXnnnnnnn (X= letter n= number) and must be 9 characters long."
+        ]
+    },
+    {
+        "id": 26,
+        "dataset": "eANCI",
+        "Name": "ChangeStateOfFamily",
+        "Actors": [
+            "Started by Citizen",
+            "continued by Employee"
+        ],
+        "Basic flow": [
+            "The Citizen presses on the Change Family Status button.",
+            "The system shows the citizen the form to fill out.",
+            "The citizen enters the data of the new household and submits the request.",
+            "The system sends the request to the appropriate employee."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The System creates the document to be delivered to the appropriate office.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 27,
+        "dataset": "eANCI",
+        "Name": "ClearPractice",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen presses the cancel file button (ID Card, Change of Residence) if the file has not been initialized .",
+            "The system asks the citizen for confirmation.",
+            "The citizen confirms the operation.",
+            "The system deletes the file."
+        ],
+        "Precondition": [
+            "The citizen has authenticated in the system.",
+            "This use case extends ViewPractice and occurs when the citizen wants to cancel the practice."
+        ],
+        "Postcondition": [
+            "Citizen does not confirm the transaction.",
+            "The system deletes the case.",
+            "In the case where the service is not available the case is called up of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 28,
+        "dataset": "eANCI",
+        "Name": "EditPractice",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen presses the file edit button (ID Card, Change of Residence) if the file has not been initialized.",
+            "The system displays a form for editing the file.",
+            "The citizen enters the data.",
+            "The system saves the changes made."
+        ],
+        "Precondition": [
+            "The citizen has authenticated in the system.",
+            "This use case extends ViewPractice and occurs when the citizen wants to change the practice."
+        ],
+        "Postcondition": [
+            "The system modifies the case.",
+            "In the case where the service is not available the case is called up of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 29,
+        "dataset": "eANCI",
+        "Name": "IdentityCardRequest",
+        "Actors": [
+            "Started by Citizen",
+            "continued employee"
+        ],
+        "Basic flow": [
+            "The Citizen views the family status and selects a family member.",
+            "The system shows a form for entering personal data(Height, special marks, etc..).",
+            "The citizen enters the data, selects the payment method and presses the confirm button.",
+            "The system shows the screen with the documentation to be shown at the counter during the days and hours the office is open.",
+            "The citizen confirms the operation.",
+            "The system notifies the employee of the request."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated himself in the system.",
+            "The citizen exercises parental authority On the person concerned."
+        ],
+        "Postcondition": [
+            "The clerk receives the file and chooses whether to accept it or not, by calling the use case RequestCardOfIdentityRejected or RequestCardOfIdentityAccepted, respectively.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": []
+    },
+    {
+        "id": 30,
+        "dataset": "eANCI",
+        "Name": "IDCardApplicationAccepted",
+        "Actors": [
+            "Started by Employee",
+            "continued citizen"
+        ],
+        "Basic flow": [
+            "The clerk displays the notification received.",
+            "The system shows the clerk the request to create the ID card from part of the citizen.",
+            "The clerk certifies the validity of the request by checking the accuracy of the data and enables the procedure for creating the ID card.",
+            "The system sends a confirmation e-mail to the citizen who requested the creation of the ID card.",
+            "The citizen goes to the counter."
+        ],
+        "Precondition": [
+            "The employee has authenticated in the system This use case extends RequestCardOfIdentity and occurs when the employee confirms the request Of the citizen."
+        ],
+        "Postcondition": [
+            "The system alerts the citizen."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 31,
+        "dataset": "eANCI",
+        "Name": "RequiredIdentityCardRefused",
+        "Actors": [
+            "Started by Employee",
+            "continued citizen"
+        ],
+        "Basic flow": [
+            "The clerk displays the notification received.",
+            "The system shows the clerk the request to create the ID card from part of the citizen.",
+            "The clerk detects an error in the data and rejects the ID card creation procedure.",
+            "The system sends an e-mail notification to the citizen who requested the creation of the ID card."
+        ],
+        "Precondition": [
+            "The employee has authenticated into the system.",
+            "This use case extends RequestCardOfIdentity and occurs when the employee does not confirm the citizen's request."
+        ],
+        "Postcondition": [
+            "The system alerts the citizen."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 32,
+        "dataset": "eANCI",
+        "Name": "RequestCertificates",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen selects a specific certificate(birth certificates, marital status certificates).",
+            "The system displays the form for entering the data of the person concerned.",
+            "The citizen enters the data of the person concerned.",
+            "The system shows a screen with the requested certificate.",
+            "The citizen selects the mode of payment and shipping.",
+            "The system sends the certificate."
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The system sends the certificate.",
+            "In case the relevant person was not found, the system calls the DataErrati use case.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "The surname string can contain characters such as [ a..z A..Z ' àéèìòù ] and a length between 1 and 30 characters.",
+            "The name string can contain characters such as [ a..z A..Z ' àéèìòù ] and a length between 1 and 30 characters.",
+            "The birthplace string can contain characters such as [ a..z A..Z ' àéèìòù ] and a length of at least one character.",
+            "The string province of birth can contain characters such as [ a..z A..Z ' àéèìòù ] and a length of at least one character.",
+            "The date of birth string must actually exist and consist of dd/mm/ yyyyy of numeric type (dd from 1 to 31, mm from 1 to 12, yyyy from 1900 to present).",
+            "The residence string can contain characters [ a..z A..Z ' àéèìòù . ] and must have the length of at least one character.",
+            "The province of residence string can contain characters such as [ a..z A..Z ' àéèìòù ] and a length of at least one character.",
+            "The address string can contain characters such as [ a..z A..Z ' àéèìòù ] and a length of at least one character"
+        ]
+    },
+    {
+        "id": 33,
+        "dataset": "eANCI",
+        "Name": "RequestCertificatesTerti",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen selects a specific certificate(birth certificates, marital status certificates).",
+            "The system displays the form for entering the data of the person concerned.",
+            "The citizen enters the data of the person concerned (see note).",
+            "The system stores the data of the citizen and the person concerned in a special form.",
+            "The system shows a screen with the requested certificate.",
+            "The citizen selects the mode of payment and shipping.",
+            "The system sends the certificate."
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The system sends the certificate.",
+            "In the case where the service is not available the case is invoked of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not Provided.",
+            "Note: In case the citizen is not a close relative of the person concerned in the data to be entered, he/she must specify a valid reason for requesting the certificate."
+        ]
+    },
+    {
+        "id": 34,
+        "dataset": "eANCI",
+        "Name": "RequestToWedding",
+        "Actors": [
+            "Started by Citizen",
+            "continued by Employee"
+        ],
+        "Basic flow": [
+            "The Citizen presses on the Marriage Request button.",
+            "The system shows the citizen the form to fill out.",
+            "The citizen enters all his or her data, the partner's data and presses the confirmation button.",
+            "The system automatically creates the form to be submitted with self-certification and family status of the applicant citizen and sends the form to the clerk.",
+            "The clerk receives the notification and publishes the marriage request."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The System creates the document to be delivered to the appropriate office.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 35,
+        "dataset": "eANCI",
+        "Name": "RequestStatusOfFamily",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen presses on the Family Status button.",
+            "The system displays the family status to the citizen.",
+            "The citizen chooses whether to print or send the family status to his/her e-mail.",
+            "The system executes the choice made by the citizen."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The system performs an operation chosen by the citizen.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 36,
+        "dataset": "eANCI",
+        "Name": "ID CardRenewal",
+        "Actors": [
+            "Started by Citizen",
+            "continued employee"
+        ],
+        "Basic flow": [
+            "The Citizen presses on the Renew ID Card button.",
+            "The system directly sends a renewal request from the citizen to the appropriate clerk.",
+            "The citizen goes to the counter to renew his or her ID card."
+        ],
+        "Precondition": [
+            "The Citizen must be authenticated in the system."
+        ],
+        "Postcondition": [
+            "The System creates the document to be delivered to the appropriate office.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 37,
+        "dataset": "eANCI",
+        "Name": "LossIdentity card",
+        "Actors": [
+            "Started by Citizen",
+            "continued by employee"
+        ],
+        "Basic flow": [
+            "The Citizen presses on the Lost ID Card button.",
+            "The system directly sends a lost card notification to the appropriate employee.",
+            "The citizen goes to the clerk's office with a copy of the loss report."
+        ],
+        "Precondition": [
+            "The Citizen must be authenticated in the system."
+        ],
+        "Postcondition": [
+            "The System creates the document to be delivered to the appropriate office.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 38,
+        "dataset": "eANCI",
+        "Name": "LostElectralCard",
+        "Actors": [
+            "Started by Citizen",
+            "continued by employee"
+        ],
+        "Basic flow": [
+            "The Citizen presses on the Lost Voter Card button.",
+            "The system directly sends a lost card notification to the appropriate employee.",
+            "The citizen goes to the clerk's office with a copy of the loss report."
+        ],
+        "Precondition": [
+            "The Citizen must be authenticated in the system."
+        ],
+        "Postcondition": [
+            "The System creates the document to be delivered to the appropriate office.",
+            "In the case where the service is not available the use case ServiceNotAvailable is invoked."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 39,
+        "dataset": "eANCI",
+        "Name": "RequestElectralCard",
+        "Actors": [
+            "Started by Citizen",
+            "continued by employee"
+        ],
+        "Basic flow": [
+            "The Citizen presses on the Election Card button.",
+            "The system shows the form to request the card.",
+            "The citizen confirms the operation.",
+            "The system sends a notification To the employee.",
+            "The citizen will receive the voter card that Will be delivered to one's home."
+        ],
+        "Precondition": [
+            "The Citizen must be authenticated in the system.",
+            "The voter card was not sent."
+        ],
+        "Postcondition": [
+            "The System alerts the employee.",
+            "In the case where the service is not available the case is called up of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not Provided."
+        ]
+    },
+    {
+        "id": 40,
+        "dataset": "eANCI",
+        "Name": "VisualizationPractice",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen clicks on the button view paperwork(ID Card, Change of Residence).",
+            "The system displays a screen with the files that concern the citizen."
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "The citizen displays the screen.",
+            "In case the citizen wants to delete a file, the system calls the DeletePractice use case.",
+            "In case when the citizen wants to change a practice, the system calls the use case EditPractice.",
+            "In the case where the service is not available the case is called of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not Provided"
+        ]
+    },
+    {
+        "id": 41,
+        "dataset": "eANCI",
+        "Name": "PracticeAccepted",
+        "Actors": [
+            "Started by Employee Communicates with Citizen"
+        ],
+        "Basic flow": [
+            "The Clerk accepts the file.",
+            "The system sets the file as accepted.",
+            "It then sends a notification to the Citizen."
+        ],
+        "Precondition": [
+            "The Employee is logged into the system, has selected a pending file."
+        ],
+        "Postcondition": [
+            "Notification was sent to the Citizen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "This use case includes the use cases AssistanceEconomic, AssistanceDomestic, ServiceMobilityDisabled, ReceptionNight, AssistanceGirlsMothersMinors, AssistanceHousing, ReleaseParkingDisabled."
+        ]
+    },
+    {
+        "id": 42,
+        "dataset": "eANCI",
+        "Name": "PracticeResponse",
+        "Actors": [
+            "Started by Employee Communicates with Citizen"
+        ],
+        "Basic flow": [
+            "The Clerk rejects the file.",
+            "The system sets the file as rejected.",
+            "It then sends a notification to the Citizen."
+        ],
+        "Precondition": [
+            "The Employee is logged into the system, has selected a pending file."
+        ],
+        "Postcondition": [
+            "Notification was sent to the Citizen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "This use case includes the use cases AssistanceEconomic, AssistanceDomestic, ServiceMobilityDisabled, ReceptionNight, AssistanceGirlsMothersMinors, AssistanceHousing, ReleaseParkingDisabled."
+        ]
+    },
+    {
+        "id": 43,
+        "dataset": "eANCI",
+        "Name": "ViewPracticesAttendedEmployee",
+        "Actors": [
+            "Started by Employee"
+        ],
+        "Basic flow": [
+            "Employee selects 'View Pending Requests'",
+	    "The System shows the list of pending practices."
+        ],
+        "Precondition": [
+            "The Employee has logged in correctly."
+        ],
+        "Postcondition": [
+            "The Employee selects a pending request and the use case \"ShowPracticeAwaitingEmployee\" is invoked.",
+            "The Employee returns to the previous screen.",
+            "The System encountered an unexpected error so it calls the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 44,
+        "dataset": "eANCI",
+        "Name": "ReceptionNighttime",
+        "Actors": [
+            "Started by User Communicates with Office of Social Services"
+        ],
+        "Basic flow": [
+            "The user selects the Social Assistance feature by selecting \"Night Reception Request\".",
+            "The system displays the form for entering applicant and recipient data.",
+            "The user enters his/her own data and if necessary enters the data of a third person specifying the relationship with that person.",
+            "He also specifies an alternative home or address and a possible date of appointment with social workers.",
+            "He then submits the form.",
+            "The system retrieves the master data of the requesting citizen and the receiving citizen (if different from the requestor), and data regarding the receiving Citizen's household.",
+            "The request is sent to the Social Services office, and the user is notified that it has been sent."
+        ],
+        "Precondition": [
+            "The user has successfully logged in and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The system encountered an error when filling out the form so it calls the use case DataErrati.",
+            "The user returns to the previous screen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 45,
+        "dataset": "eANCI",
+        "Name": "CheckSickness",
+        "Actors": [
+            "Started by User"
+        ],
+        "Basic flow": [
+            "The user selects \"Sickness check request.\"",
+            "The system shows the page with the information for applying to the INPS office for the sickness check, and also allows you to print it out."
+        ],
+        "Precondition": [
+            "The user has accessed the system and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The user viewed the page.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 46,
+        "dataset": "eANCI",
+        "Name": "AssistanceHousing",
+        "Actors": [
+            "Started by User Communicates with Office of Social Services"
+        ],
+        "Basic flow": [
+            "The user selects the Social Assistance feature by selecting \"Request housing assistance (evictions)\".",
+            "The system shows the form for entering the data of the applicant and the recipient (if different).",
+            "The user enters his/her own data and those of the recipient (if the recipient is a third person)if necessary specifying the relationship with that person, also specifies the new domicile.",
+            "The user selects the attached documentation (minutes of enforceable eviction, the new registered lease and the ISEE model).",
+            "He then submits the form.",
+            "The system retrieves the master data of the recipient citizen, and data regarding the recipient Citizen's household.",
+            "The request is sent to the Social Services office, and the user is notified that it has been sent."
+        ],
+        "Precondition": [
+            "The user has successfully logged in and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The system encountered an error when filling out the form so it calls the use case DataErrati.",
+            "The user returns to the previous screen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 47,
+        "dataset": "eANCI",
+        "Name": "Domestic AssistanceDomestic Assistance",
+        "Actors": [
+            "Started by User Communicates with Office of Social Services"
+        ],
+        "Basic flow": [
+            "The user selects \"Request home care for elderly, minors, handicapped.\"",
+            "The system displays the form for entering applicant and recipient data.",
+            "The user enters the master data of the applicant and if necessary enters the data of a third person specifying the relationship to that person.",
+            "The system picks up the data of the requesting citizen , the master data of the receiving citizen (in case the requestor and the receiving citizen were not the same person), and data regarding the household of the receiving Citizen.",
+            "The user specifies the psycho-physical conditions of the recipient specifying the attached documents (disability certificate issued by the ASL commission and/or health card of the attending physician and/or certificate of the pension provider,ISEE model) finally specifying a possible appointment date with social workers.",
+            "Then submit the form.",
+            "The system retrieves data regarding any social welfare services the recipient already uses.",
+            "It then forwards the request to the Social Services office and notifies the Citizen of the successful application."
+        ],
+        "Precondition": [
+            "The user has successfully logged in and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The system encountered an error when filling out the form so it calls the use case DataErrati.",
+            "The user returns to the previous screen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 48,
+        "dataset": "eANCI",
+        "Name": "Economic Assistance",
+        "Actors": [
+            "Started by User Communicates with Office of Social Services"
+        ],
+        "Basic flow": [
+            "The user selects \"Request for financial assistance for the elderly, minor orphans, AIDS patients, prisoners, adults in need.\"",
+            "The system displays the form for entering applicant and recipient data.",
+            "The user enters his/her own data and if necessary enters the data of a third person specifying the relationship with that person.",
+            "The system picks up the data of the requesting citizen , the master data of the receiving citizen (in case the requestor and the receiving citizen were not the same person), and data regarding the household of the receiving Citizen.",
+            "The user specifies the psycho-physical conditions of the recipient specifying the attached documents (disability certificate issued by the ASL commission and/or health card of the attending physician and/or certificate of the pension provider,ISEE model) finally specifying a possible appointment date with social workers.",
+            "Then submit the form.",
+            "The system retrieves data regarding any social welfare services the recipient already uses.",
+            "It then forwards the request to the Social Services office and notifies the user that the request has been made."
+        ],
+        "Precondition": [
+            "The user has successfully logged in and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The system encountered an error when filling out the form so it calls the use case DataErrati.",
+            "The user returns to the previous screen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 49,
+        "dataset": "eANCI",
+        "Name": "AssistanceGirlsMothersMinors",
+        "Actors": [
+            "Started by User Communicates with Office of Social Services"
+        ],
+        "Basic flow": [
+            "The user selects the Social Assistance feature by selecting \"Request for assistance to single mothers and minors in need\".",
+            "The system displays the form for entering applicant and recipient data.",
+            "The user enters his/her own data and those of the recipient of the request (himself/herself, other person) if necessary specifying the relationship with that person.",
+            "He also specifies a possible date of appointment with the Social Workers.",
+            "He then submits the form.",
+            "The system retrieves from the system the master data of the recipient citizen, and data regarding the household of the recipient Citizen.",
+            "The request is sent to the Social Services office, and the user is notified that it has been sent."
+        ],
+        "Precondition": [
+            "The user has successfully logged in and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The system encountered an error when filling out the form so it calls the use case DataErrati.",
+            "The user returns to the previous screen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 50,
+        "dataset": "eANCI",
+        "Name": "AssistanceResidential Assistance",
+        "Actors": [
+            "Started by User Communicates with ASL"
+        ],
+        "Basic flow": [
+            "The user selects \"Request residential and semi-residential care.\"",
+            "The system displays the form for entering applicant and recipient data.",
+            "The user enters his/her own data and if necessary enters the data of a third person specifying the relationship with that person.",
+            "The system retrieves the master data of the applicant, the recipient citizen (if the recipient is a third person), and data regarding the household of the recipient Citizen.",
+            "The user specifies the recipient's psycho-physical condition, the reason for the request, the type of service requested, and the hours required.",
+            "He then submits the form.",
+            "The system forwards the request to the appropriate ASL and notifies the user that the request has been made."
+        ],
+        "Precondition": [
+            "The user has successfully logged in and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The system encountered an error when filling out the form so it calls the use case DataErrati.",
+            "The user returns to the previous screen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 51,
+        "dataset": "eANCI",
+        "Name": "FundsVictimsUsura",
+        "Actors": [
+            "Started by User"
+        ],
+        "Basic flow": [
+            "The user selects the \"Application for Solidarity Fund Allocation for Victims of Usury and Extortion\" feature.",
+            "The system shows the information and related forms to be downloaded and sent to the prefecture, and in addition offers the option of printing it out."
+        ],
+        "Precondition": [
+            "The user has accessed the system and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The user viewed the page.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 52,
+        "dataset": "eANCI",
+        "Name": "IndemnityAccompaniment",
+        "Actors": [
+            "Started by User"
+        ],
+        "Basic flow": [
+            "The user selects \"Application for accompaniment allowance.\"",
+            "The system displays the disability pension information and shows the link to download the relevant form to send to INPS, providing the option to print it out.",
+            "It also shows direct links to the application for family status and marital status."
+        ],
+        "Precondition": [
+            "The user has accessed the system and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The user has viewed the page.",
+            "The user has selected one of the direct links then the use case RequestStateOfFamily is invoked or RequestCertificate.",
+            "The system encountered an error not expected then calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 53,
+        "dataset": "eANCI",
+        "Name": "ShowPracticeAttendedEmployee",
+        "Actors": [
+            "Started by Employee"
+        ],
+        "Basic flow": [
+            "The system displays the information regarding the selected practice with its practice acceptance or rejection options.",
+            "The Clerk can Accept or Reject the file if it is already complete with all documentation, necessary signatures, and after verification.",
+            "He/she can also print the file data if necessary."
+        ],
+        "Precondition": [
+            "This use case includes the use case ViewPracticesAttendedEmployed."
+        ],
+        "Postcondition": [
+            "The Clerk Accepts the practice, the use case \"Practice Accepted\" is invoked.",
+            "The Clerk Rejects the practice, the use case \"PracticeRejected\" is invoked.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 54,
+        "dataset": "eANCI",
+        "Name": "PlanZoneAssistance",
+        "Actors": [
+            "Started by User"
+        ],
+        "Basic flow": [
+            "The user remotely selects the Social Assistance feature by selecting \"Area Plan: support services\".",
+            "The system shows the area plan regarding welfare services."
+        ],
+        "Precondition": [
+            "The user accessed the system."
+        ],
+        "Postcondition": [
+            "The user returns to the previous screen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 55,
+        "dataset": "eANCI",
+        "Name": "QualificationReduceWar",
+        "Actors": [
+            "Started by User"
+        ],
+        "Basic flow": [
+            "The user selects the \"Request for recognition of veteran or orphan status\" feature.",
+            "The system shows the information and related forms to download and send to the Prefecture,offering the option to print it out.",
+            "It also shows a direct link to the page for requesting the Birth Certificate, Residence Certificate and Death Certificate."
+        ],
+        "Precondition": [
+            "The user has accessed the system and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The user has viewed the page.",
+            "The user has selected one of the direct links to the various certificates (birth certificate, residence certificate, death certificate) thereby invoking the use case RequestCertificates.",
+            "The system encountered an error that did not expected then calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 56,
+        "dataset": "eANCI",
+        "Name": "ReleaseParkingDisabled",
+        "Actors": [
+            "Started by User Communicates with Traffic Police Command."
+        ],
+        "Basic flow": [
+            "The user selects the Social Assistance feature by selecting \"Disabled Parking Release.\"",
+            "The system shows the form for entering the data of the applicant and the recipient (if different).",
+            "The user enters the master data of the applicant and those of the recipient (if different) if necessary specifying the relationship to that person.",
+            "Also specified is the type of documentation attached to the traffic police command (medical-legal certificate issued by the ASL commission).",
+            "It then submits the form.",
+            "The system retrieves the master data of the recipient citizen.",
+            "The request is sent to the traffic police command, and the user is notified that it has been sent."
+        ],
+        "Precondition": [
+            "The user has successfully logged in and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The system encountered an error when filling out the form so it calls the use case DataErrati.",
+            "The user returns to the previous screen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 57,
+        "dataset": "eANCI",
+        "Name": "ServiceMobilityDisabled",
+        "Actors": [
+            "Started by User Communicates with Office of Social Services"
+        ],
+        "Basic flow": [
+            "The user selects \"Mobility and transportation service for the disabled.\"",
+            "The system displays the form for entering applicant and recipient data.",
+            "The user enters his/her own data and if necessary enters the data of a third person specifying the relationship with that person.",
+            "The system picks up the data of the requesting citizen , the master data of the receiving citizen (in case the requestor and the receiving citizen were not the same person), and data regarding the household of the receiving Citizen.",
+            "The user specifies the psycho-physical conditions of the recipient specifying the attached documents (disability certificate issued by the ASL commission and/or health card of the attending physician and/or certificate of the pension provider,ISEE model) finally specifying a possible appointment date with social workers.",
+            "Then submit the form.",
+            "The system retrieves data regarding any social welfare services the recipient already uses.",
+            "It then forwards the request to the Social Services office and notifies the user that the request has been made."
+        ],
+        "Precondition": [
+            "The user has successfully logged in and selected the Social Assistance feature."
+        ],
+        "Postcondition": [
+            "The system encountered an error when filling out the form so it calls the use case DataErrati.",
+            "The user returns to the previous screen.",
+            "The system encountered an unexpected error so it calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": []
+    },
+    {
+        "id": 58,
+        "dataset": "eANCI",
+        "Name": "UnsubscribeNewsInformagiovani",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "Citizen requests deletion from advertisement service related to informagiovani news.",
+            "The system displays a form to confirm the request.",
+            "The citizen confirms the unsubscribe operation.",
+            "The system removes the citizen from the advertisement service."
+        ],
+        "Precondition": [
+            "This case requires that the citizen has gone through the authentication procedure."
+        ],
+        "Postcondition": [
+            "The system executed the citizen's request.",
+            "If an error occurs when deleting news from the service, the system calls the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 59,
+        "dataset": "eANCI",
+        "Name": "CancellationCardYouth",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen requests the cancellation of CardGiovani.",
+            "The system displays a form for entering the Card number.",
+            "The citizen enters the number.",
+            "The system verifies the existence of the card and Citizen membership.",
+            "The system displays a form for the confirmation of the request.",
+            "The citizen confirms the elimination of the card.",
+            "The system deletes the youth card from the repository."
+        ],
+        "Precondition": [
+            "This case requires that the citizen has gone through the authentication process and has a CardGiovani."
+        ],
+        "Postcondition": [
+            "The system has performed card erasure.",
+            "In cases where the citizen has entered the number of a card that does not exist or is not owned by the citizen, the system calls the use case DatiErrati.",
+            "Should there be a failure in the request, the system calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 60,
+        "dataset": "eANCI",
+        "Name": "CardAnnulled",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "Citizen decides he or she wants to cancel the youth card and then enters in the form that he or she wants to cancel it.",
+            "The system receives the form notifies that the card has been cancelled and resubmits the form."
+        ],
+        "Precondition": [
+            "This use case extends EnrollmentCardYouth and checks when a citizen decides to cancel the youth card."
+        ],
+        "Postcondition": [
+            "The system resubmits the form."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 61,
+        "dataset": "eANCI",
+        "Name": "EliminationReservationInterview",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen requests cancellation of the interview reservation in the counseling center.",
+            "The system displays a form to confirm the request.",
+            "The citizen confirms the elimination of the reservation.",
+            "Ilsistemaeliminalapreservation."
+        ],
+        "Precondition": [
+            "This extends the ViewPreservationConsultor io use case by considering the case where the citizen wants to delete the chosen reservation."
+        ],
+        "Postcondition": [
+            "The system has made a cancellation of the reservation."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 62,
+        "dataset": "eANCI",
+        "Name": "InformationConsultancyYouth",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen requests to view the list of counseling centers.",
+            "The system allows you to view the list of counseling centers.",
+            "The citizen chooses the consulting room.",
+            "The system returns the information concerning the chosen counseling center by displaying data such as: the location; the opening dates and times, the interview list, if any booked(invoking the use case VisualizationReservationConsu ltory)."
+        ],
+        "Precondition": [
+            "The citizen has logged into the system."
+        ],
+        "Postcondition": [
+            "Citizen viewed information on counseling.",
+            "In case the citizen wants to book an interview the system calls the use case, BookingInterview."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 63,
+        "dataset": "eANCI",
+        "Name": "InfoInformagiovani",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen requests to view the informagiovani news list.",
+            "The system allows you to view the list of information regarding: - special official labor gazette; - local competition announcements information; - study trips.",
+            "The citizen chooses the desired information.",
+            "The system returns the information concerning the notice specifying: - date of publication of the notice; - date of expiration of the notice; - description"
+        ],
+        "Precondition": [
+            "The citizen has logged into the system."
+        ],
+        "Postcondition": [
+            "Citizen viewed information on initiatives.",
+            "In case of failure, the system calls ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 64,
+        "dataset": "eANCI",
+        "Name": "EnrollmentCardYouth",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen applies for the youth card.",
+            "The system displays a form for submitting the request.",
+            "The citizen enters the card application data into a form.",
+            "The system receives the form, verifies the data, and submits the request.",
+            "The system notifies that the card has been entered and displays the card number and a summary of the data entered in a form."
+        ],
+        "Precondition": [
+            "This case requires that the citizen has gone through the authentication procedure."
+        ],
+        "Postcondition": [
+            "The system displayed the summary form.",
+            "If an error occurs in the card request phase, the system calls the use case ServiceNotAvailable.",
+            "In case the citizen enters incorrect data, the system calls the use case DataErrati.",
+            "Should the citizen decide to cancel the card request, the system calls the use case CardCanceled."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 65,
+        "dataset": "eANCI",
+        "Name": "EnrollmentNewsInformagiovani",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "Citizen requests subscription to informagiovani news to receive service-related advertisements.",
+            "The system displays a form for submitting the request.",
+            "The citizen enters the news request data into a form.",
+            "The system receives the form, verifies the data, and submits the request."
+        ],
+        "Precondition": [
+            "This case requires that the citizen has gone through the authentication procedure."
+        ],
+        "Postcondition": [
+            "The system submitted the requester's request.",
+            "If an error occurs in the news request phase, the system calls the use case ServiceNotAvailable.",
+            "Should the citizen decide to cancel the news request, the system calls the use case NewsAnnulled."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 66,
+        "dataset": "eANCI",
+        "Name": "EditReservationInterview",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen requests a change in the booking of the interview in the counseling center.",
+            "The system displays a form for editing reservation fields.",
+            "The citizen makes the changes in the form confirms the reservation.",
+            "Ilsistemamodificalapreservation."
+        ],
+        "Precondition": [
+            "This extends the ViewPreservationConsultor io use case by considering the case where the citizen wants to change the reservation chosen."
+        ],
+        "Postcondition": [
+            "The system has made the reservation change."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 67,
+        "dataset": "eANCI",
+        "Name": "NewsCanceled",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "Citizen decides she wants to cancel informagiovani news and then enters in the form that she wants to cancel it.",
+            "The system receives the form notifies the news cancellation and resubmits the form."
+        ],
+        "Precondition": [
+            "This use case extends SubscribeNewsInformagiovani and occurs when a citizen decides to unsubscribe from informagiovani news."
+        ],
+        "Postcondition": [
+            "The system resubmits the form."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 68,
+        "dataset": "eANCI",
+        "Name": "ReservationInterview",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen requests an interview in the preselected counseling center.",
+            "The system displays a form for submitting the request.",
+            "The citizen enters interview request data into a form.",
+            "The system receives the form, verifies the reservation data, and submits the request.",
+            "Citizen requests print out receipt of interview booking.",
+            "The system prints the booking."
+        ],
+        "Precondition": [
+            "This use case extends InformationCounselingYouth and intervenes when a citizen decides to make an interview reservation.",
+            "This case requires that the citizen has gone through the authentication procedure."
+        ],
+        "Postcondition": [
+            "The system has booked the applicant's interview.",
+            "If an error occurs in the interview booking phase, the system calls the use case ServiceNotAvailable.",
+            "Should the citizen decide to cancel the interview reservation, the system calls the use case ReservationInterviewCanceled"
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 69,
+        "dataset": "eANCI",
+        "Name": "ReservationInterviewCanceled",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "Citizen decides he or she wants to cancel the interview reservation and then enters in the form that he or she wants to cancel it.",
+            "The system receives the form notifies the cancellation of the interview booking and resubmits the form."
+        ],
+        "Precondition": [
+            "This use case extends ReservationInterview and checks when a citizen decides to cancel an interview reservation."
+        ],
+        "Postcondition": [
+            "The system resubmits the form."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 70,
+        "dataset": "eANCI",
+        "Name": "ViewReservationConsultation",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen requests viewing of the reservation made in a counseling center.",
+            "The system returns information regarding the chosen reservation by displaying data such as: - Date and time; - Consultation."
+        ],
+        "Precondition": [
+            "This case requires that the citizen has gone through the authentication procedure."
+        ],
+        "Postcondition": [
+            "The Citizen has viewed the reservation information.",
+            "In case the citizen wants to edit/delete a reservation, the system calls the use case, EditPreservationInterview/EliminateNationalPreservationInterview ."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 71,
+        "dataset": "eANCI",
+        "Name": "DeleteInformation",
+        "Actors": [
+            "Started by Employee"
+        ],
+        "Basic flow": [
+            "The employee requests the deletion of a news item.",
+            "The system displays the list of existing news.",
+            "The employee chooses a news item.",
+            "The system displays a form the confirmation of the operation.",
+            "The clerk confirms the operation Through the form.",
+            "The system receives the form, and clears the data Of the news from the system"
+        ],
+        "Precondition": [
+            "This case requires that the employee has gone through the authentication procedure."
+        ],
+        "Postcondition": [
+            "The system performed the news deletion.",
+            "Should an error occur in the cancellation request, the system calls the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 72,
+        "dataset": "eANCI",
+        "Name": "InformationLibraries",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen requests to view the list of libraries.",
+            "The system allows you to view the list of libraries.",
+            "The citizen chooses the library.",
+            "The system returns the information concerning the chosen library by displaying data such as: - - - location; opening dates and times; link to the library website."
+        ],
+        "Precondition": [
+            "The citizen has logged into the system."
+        ],
+        "Postcondition": [
+            "Citizen viewed library information.",
+            "In case the citizen wants to view a book will be referred to the library website."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 73,
+        "dataset": "eANCI",
+        "Name": "AboutEventsInTheTerritory",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen requests to view the list of events.",
+            "The system allows you to view the list of events.",
+            "The citizen chooses the event.",
+            "The system returns the information concerning the chosen event by displaying data such as: - - - the location; date and time of the event; site running the event (Pro-loco)."
+        ],
+        "Precondition": [
+            "The citizen has logged into the system."
+        ],
+        "Postcondition": [
+            "Citizen viewed information about the event.",
+            "In case the citizen wants to book the event will be referred to the event site."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 74,
+        "dataset": "eANCI",
+        "Name": "InformationMuseums",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen requests to view the list of museums.",
+            "The system allows you to view the list of museums.",
+            "The citizen chooses the museum.",
+            "The system returns the information concerning the chosen museum by displaying data such as: - - - location; opening dates and times; link to the museum website."
+        ],
+        "Precondition": [
+            "The citizen has logged into the system."
+        ],
+        "Postcondition": [
+            "Citizen viewed information about the museum.",
+            "In case the citizen wants to book the visit will be referred to the museum website."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 75,
+        "dataset": "eANCI",
+        "Name": "InformationPromotionTerritorial",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen requests to view the list of territorial promotions.",
+            "The system allows you to view the list of promotions.",
+            "The citizen chooses promotion.",
+            "The system returns the information concerning the chosen promotion."
+        ],
+        "Precondition": [
+            "The citizen has logged into the system."
+        ],
+        "Postcondition": [
+            "Citizen viewed the information on territorial promotion.",
+            "In case the citizen wants to view a territorial promotion will be referred to the website of the tourism board."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 76,
+        "dataset": "eANCI",
+        "Name": "EntryInformation",
+        "Actors": [
+            "Started by Employee"
+        ],
+        "Basic flow": [
+            "The employee requests a new news entry.",
+            "The system displays a form for submitting the request.",
+            "The employee enters data about the new news item into a form.",
+            "The system receives the form, and enters the news into the system"
+        ],
+        "Precondition": [
+            "This case requires that the employee has gone through the authentication procedure."
+        ],
+        "Postcondition": [
+            "The system performed the news entry.",
+            "Should an error occur in the entry request, the system calls the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 77,
+        "dataset": "eANCI",
+        "Name": "EditInformation",
+        "Actors": [
+            "Started by Employee"
+        ],
+        "Basic flow": [
+            "The employee requests a news change.",
+            "The system displays the list of existing news.",
+            "The employee chooses a news item.",
+            "The system displays a form for the modification of the news.",
+            "The clerk enters the data related to the news In a form.",
+            "The system receives the form, and updates the news data in the system"
+        ],
+        "Precondition": [
+            "This case requires that the employee has gone through the authentication procedure."
+        ],
+        "Postcondition": [
+            "The system performed the news modification.",
+            "Should an error occur in the change request, the system calls the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 78,
+        "dataset": "eANCI",
+        "Name": "ViewInformation",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen requests the visualization of information in the territory.",
+            "The system returns information regarding the territory by displaying data such as: - libraries; - events; - museums; - promotions in the area."
+        ],
+        "Precondition": [
+            "This case requires that the citizen has logged into the system."
+        ],
+        "Postcondition": [
+            "The Citizen has viewed the information.",
+            "In case where the system is unavailable invokes the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 79,
+        "dataset": "eANCI",
+        "Name": "Communications",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen accesses the communications area through the appropriate link.",
+	    "The system displays the form for entering the necessary data for the communication (e.g., communication of the start of work,D.I.A., communication of the end of work...).",
+	    "The citizen enters the required data.",
+	    "The system verifies the correctness and completeness of the data then displays a summary screen or activates the use case DatiErrati.",
+            "Citizen confirms the operation.",
+	    "The system displays the form for printing.",
+	    "The system sends the appropriate employee a message notifying them of the request.",
+	    "The citizen makes the printout to be delivered to the municipal office with a revenue stamp"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays the form for printing.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "In case the data entered is incorrect, the system invokes the use case DataErrati.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 80,
+        "dataset": "eANCI",
+        "Name": "DefinitionBuilding Offenses",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen accesses the required area definition of construction offenses using the appropriate link.",
+            "The system displays the form for entering the necessary data for the request.",
+            "The citizen enters the required data.",
+            "The system verifies the correctness and completeness of the data then displays a summary screen or activates the use case DatiErrati.",
+            "Citizen confirms the operation.",
+            "The system displays a message notifying the request.",
+            "The system sends the appropriate employee a message notifying them of the request"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays a message notifying the request.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "In case the data entered is incorrect, the system invokes the use case DataErrati.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 81,
+        "dataset": "eANCI",
+        "Name": "DeclarationSubstituteActNotoriety",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen accesses the Declaration in Lieu of Affidavit area through the appropriate link.",
+            "The system displays the form for entering the necessary data for the request.",
+            "The citizen enters the required data.",
+            "The system verifies the correctness and completeness of the data then displays a summary screen or activates the use case DatiErrati.",
+            "Citizen confirms the operation.",
+            "The system displays a notification message.",
+            "The system sends the appropriate employee a message notifying them of the request"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays a message notifying the request.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "In case the data entered is incorrect, the system invokes the use case DataErrati.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 82,
+        "dataset": "eANCI",
+        "Name": "VisionPlanRegulator",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen accesses the Master Plan area through the appropriate link the system displays the document"
+        ],
+        "Precondition": [
+            "The citizen accessed the system"
+        ],
+        "Postcondition": [
+            "The system shows the master plan.",
+            "in the case of technical failures the system calls up the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 83,
+        "dataset": "eANCI",
+        "Name": "SubmitBuildingProject",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen accesses the construction project submission area via the appropriate link.",
+            "The system displays the form for entering the necessary data.",
+            "The citizen enters the required data.",
+            "The system verifies the correctness and completeness of the data then displays a summary screen or activates the use case DatiErrati.",
+            "Citizen confirms the operation.",
+            "The system displays the form for printing.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "The citizen makes the printout to be delivered to the municipal office with the required documents and a revenue stamp attached"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays a message of successful notification of the request.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "In case the data entered is incorrect, the system invokes the use case DataErrati.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 84,
+        "dataset": "eANCI",
+        "Name": "SearchFileBuilding",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen accesses the search area",
+            "The system displays the form for Entering the search key.",
+            "The citizen enters the search key System shows search results Citizen selects file Thesystemdisplaysthefile"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays the file.",
+            "In case the citizen is not found the system calls up the use case DataErrati.",
+            "In the case of technical failures, the system recalls the use case ServiceNotAvailable.",
+            "If the citizen wants a copy of the Found file, call use case RequestCopyFascicoloEdile"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 85,
+        "dataset": "eANCI",
+        "Name": "RequestAuthorization",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen accesses the certificate and authorization issuance area through the appropriate link.",
+            "The system displays the form for entering the necessary data to apply for the authorization (e.g.",
+            "authorization connection to the water network, authorization connection to the sewer network ...).",
+            "The citizen enters the required data.",
+            "The system verifies the correctness and completeness of the data then displays a summary screen or activates the use case DatiErrati.",
+            "Citizen confirms the operation.",
+            "The system displays the form for printing.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "The citizen makes the printout to be delivered to the municipal office with the stamp and attachments"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays the form for printing.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "In case the data entered is incorrect, the system invokes the use case DataErrati.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 86,
+        "dataset": "eANCI",
+        "Name": "RequestCopyFascicoloEdile",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen requests a copy of the file using the appropriate button.",
+            "The system sends the request to clerk.",
+            "The system notifies the citizen that the request has been submitted and the copy to him/her will be sent shortly"
+        ],
+        "Precondition": [
+            "Includes SearchFileBuilding."
+        ],
+        "Postcondition": [
+            "The system proceeds to send the request to the employee.",
+            "The system notifies the citizen that the request has been submitted and the copy will be sent to them shortly.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 87,
+        "dataset": "eANCI",
+        "Name": "RequestDefinitionConduct",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen accesses the remission definition request area using the appropriate link.",
+            "The system displays the form for entering the data necessary for the request.",
+            "The citizen enters the required data.",
+            "The system verifies correctness and completeness of the data then displays a summary screen or activates the use case DataErrati.",
+            "The citizen confirms the operation.",
+            "The system displays a message of notification of the request.",
+            "The system sends to the appropriate employee a message notifying the request"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays a message notifying the request.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "In case the data entered is incorrect, the system invokes the use case DataErrati.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 88,
+        "dataset": "eANCI",
+        "Name": "RequestNumberCivic",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen accesses the house number request area via the appropriate link.",
+            "The system displays the form for entering the necessary data for the request.",
+            "The citizen enters the required data.",
+            "The system verifies the correctness and completeness of the data then displays a summary screen or activates the use case DataErrati.",
+	    "Citizen confirms the transaction.",
+            "The system displays a message notifying the request.",
+            "The system sends the appropriate employee a message notifying them of the request"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays a message notifying the request.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "In case the data entered is incorrect, the system invokes the use case DataErrati.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 89,
+        "dataset": "eANCI",
+        "Name": "RequestCatasticalService",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen accesses the municipal land registry service area through the appropriate link.",
+            "The system displays the form for entering the necessary data for the request.",
+            "The citizen enters the required data.",
+            "The system verifies the correctness and completeness of the data then displays a summary screen or activates the use case DatiErrati.",
+            "Citizen confirms the operation.",
+            "The system displays the payment methods.",
+            "The citizen makes the choice.",
+            "The system sends to the appropriate employee A request notification message.",
+            "The system notifies the citizen that the request has been submitted and the copy to him/her will be sent shortly"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays a message that the citizen has been notified of the request.",
+            "The system displays a message notifying the employee of the request.",
+            "In case the data entered is incorrect, the system invokes the use case DataErrati.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 90,
+        "dataset": "eANCI",
+        "Name": "IssueCertificates",
+        "Actors": [
+            "Started by citizen",
+            "communicates with employee"
+        ],
+        "Basic flow": [
+            "The citizen accesses the certificate and authorization issuance area through the appropriate link.",
+            "The system displays the form for entering the data necessary for issuing the certificate (e.g. certificate of fitness, certificate of habitability, ...).",
+            "The citizen enters the required data.",
+            "The system verifies the correctness and completeness of the data then displays a summary screen or activates the use case DatiErrati.",
+            "Citizen confirms the operation.",
+            "The system displays the form for printing.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "The citizen makes the printout to be handed in at the municipal office with the revenue stamp"
+        ],
+        "Precondition": [
+            "The citizen has authenticated himself in the system"
+        ],
+        "Postcondition": [
+            "The system displays the form for printing.",
+            "The system sends the appropriate employee a message notifying them of the request.",
+            "In case the data entered is incorrect, the system invokes the use case DataErrati.",
+            "in the case of technical failures, the system invokes the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 91,
+        "dataset": "eANCI",
+        "Name": "VisionCirculars",
+        "Actors": [
+            "Started by citizen"
+        ],
+        "Basic flow": [
+            "The citizen accesses the circulars area through the appropriate link.",
+            "The system displays the numbered list of circulars.",
+            "The citizen chooses the circular by link.",
+            "Thesystem displays the chosen circular"
+        ],
+        "Precondition": [
+            "The citizen accessed the system"
+        ],
+        "Postcondition": [
+            "The system shows the circular.",
+            "in the case of technical failures the system calls up the use case ServiceNotAvailable"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 92,
+        "dataset": "eANCI",
+        "Name": "UpdateEnvironmentalAnalysis",
+        "Actors": [
+            "Started by Employee"
+        ],
+        "Basic flow": [
+            "The municipal employee after authenticating in the system updates the form that simply provides for the copy of the report of the analysis carried out on the environment by the Civil Defense.",
+            "The system responds by providing the employee with a form in which to report the information compiled by the chemical experts.",
+            "The employee completes the form field presented by the system and submits it.",
+            "The system updates its form and allows it to be viewed by the Citizen."
+        ],
+        "Precondition": [
+            "The employee has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "Submission was successful.",
+            "The employee did not update it and called back ServiceNotAvailable.",
+            "can complete therefore comes use case"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 93,
+        "dataset": "eANCI",
+        "Name": "UpdateBandsECompetitions",
+        "Actors": [
+            "Started by Employee"
+        ],
+        "Basic flow": [
+            "The city clerk after authenticating in the system updates the list of associations that have published a new notice of competition.",
+            "The system responds by providing the employee with a form to complete to update the fields: association_logo, description, association_name, and notice.",
+            "The employee completes the fields of the form presented by the system and submits it.",
+            "The system updates its form and allows it to be viewed by the Citizen."
+        ],
+        "Precondition": [
+            "The employee has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "Submission was successful.",
+            "The employee did not update it and called back ServiceNotAvailable.",
+            "can complete therefore comes use case"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 94,
+        "dataset": "eANCI",
+        "Name": "UpdateAtmospheric Conditions",
+        "Actors": [
+            "Started by Employee"
+        ],
+        "Basic flow": [
+            "The municipal employee after authenticating in the system updates the weather conditions of the municipality and regional provinces.",
+            "The system responds by providing the employee with a form to complete to update the fields: tempMin, tempMax, stateAtmospheric, nameCity, date.",
+            "The employee completes the fields of the form presented by the system and submits it.",
+            "The system updates its form and allows it to be viewed by the Citizen."
+        ],
+        "Precondition": [
+            "The employee has authenticated himself in the system."
+        ],
+        "Postcondition": [
+            "Submission was successful.",
+            "The employee did not update it and called back ServiceNotAvailable.",
+            "can complete therefore comes use case"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 95,
+        "dataset": "eANCI",
+        "Name": "ActivitiesUseful",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "By selecting this use case, the Citizen accesses a screen for choosing two use cases: Woods, Waste.",
+            "The system provides a simple and intuitive screen that allows the user to choose which of the two services to visit, to indirectly help maintain acceptable, municipal environmental conditions.",
+            "The Citizen chooses one of two use cases Woods, or Waste.",
+            "The system responds to the Citizen's need by displaying the desired page he or she had requested."
+        ],
+        "Precondition": [
+            "The Citizen authenticated in the municipal system.",
+            "The Citizen accessed the system."
+        ],
+        "Postcondition": [
+            "The Citizen has correctly viewed the introductory screen and decides to access one of the proposed screens by calling up the Woods use case, or the Waste use case.",
+            "The Citizen is unable to view the introductory page to the two use cases, Forests, Waste and therefore extends the ServiceNotAvailable use case that handles technical failure cases."
+        ],
+        "Quality Requirements": [
+            "System response times are found to be on the order of hundredths of a second if the Citizen correctly views the choice page on which use case to project.",
+            "Response times are slowed due to external problems and range in the order of seconds, from 3 to 7."
+        ]
+    },
+    {
+        "id": 96,
+        "dataset": "eANCI",
+        "Name": "BandiECompetitions",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses the initial screen in order to view the possibility of viewing the associations that support the Civil Defense.",
+            "The system responds to the need by allowing the Citizen to view all the associations under Civil Defense that employ staff, with a small image of the association, with next to it the possibility of receiving a download of the notice made available by the association in question.",
+            "The Citizen takes note of what the card provides, and chooses from which, among the associations made available, to receive news for possible recruitment or participation in the competition, about the modalities of the same.",
+            "The system responds to this need by allowing it to display the corresponding competition notice."
+        ],
+        "Precondition": [
+            "The Citizen authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen has completed downloading the notice that is uniquely associated with the association for which it has chosen to participate.",
+            "The Citizen is unable to view the introductory screen with all associations and therefore, the ServiceNotAvailable use case that handles technical failure cases will be extended."
+        ],
+        "Quality Requirements": [
+            "The Citizen is able to view the page correctly, which means that the system's response time is in the hundredths of a second range.",
+            "The Citizen fails to display the introductory screen correctly and therefore the system would take seconds to respond, ranging from a minimum of 3 to a maximum of 7."
+        ]
+    },
+    {
+        "id": 97,
+        "dataset": "eANCI",
+        "Name": "Woods",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this screen to be able to learn about the advice that Civil Defense makes available to anyone in order to avoid and have people avoid forest fires.",
+            "The system provides a screen with a set of rules that the Citizen should follow and have followed if he or she is with third parties, to prevent the occurrence of arson, and in case of this, which authority to call."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated within the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information and advice received.",
+            "The Citizen is unable to view the descriptive screen, so the use case ServiceNotAvailable that handles technical failure cases is extended."
+        ],
+        "Quality Requirements": [
+            "The system takes time in the range of hundredths of a second for the requestor to display the screen.",
+            "Instead, the system would take time in the range of 3-5 seconds if the screen is not displayed correctly."
+        ]
+    },
+    {
+        "id": 98,
+        "dataset": "eANCI",
+        "Name": "WhatTempoFa",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this screen to view the weather situation in the municipality where he or she resides.",
+            "The system responds to the Citizen's need by allowing him to view, in addition to the weather situation, of his municipality,also that of the provinces of the region to which he belongs, with update date, minimum and maximum temperatures, and of course, weather conditions expressed with a small descriptive image."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information received.",
+            "The Citizen is unable to view the municipality's weather page, therefore, the ServiceNotAvailable use case that handles exceptional cases of technical failure is extended."
+        ],
+        "Quality Requirements": [
+            "The system responds in a time varying in the range of hundredths of a second if the user correctly displays the weather conditions screen.",
+            "The time, on the other hand, varies in the order of seconds, from a minimum of 2 to a maximum of 6, at the time when the user Citizen, is unable to know the municipal weather conditions."
+        ]
+    },
+    {
+        "id": 99,
+        "dataset": "eANCI",
+        "Name": "HowToBecomeAVolunteer",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this descriptive screen.",
+            "The system meets the need by allowing them to know how to become a Civil Defense volunteer, and of the requirements that the Citizen will necessarily have to meet.",
+            "The Citizen acknowledges what is written and therefore wishes to access the associated form, and therefore, the DownloadModule use case will be called."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated within the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen satisfied with what he viewed from the description page and therefore invokes the use case DownloadModule.",
+            "The Citizen is unable to view the requested in-depth page, while the system extends the ServiceNotAvailable use case that handles technical failure cases."
+        ],
+        "Quality Requirements": [
+            "System response times are to be found in a range in the hundredths-of-a-second unit if the Citizen displays the in-depth form correctly.",
+            "Response time increases when the Citizen does not use the in-depth service, whose time varies from a minimum of 3 to a maximum of 6 seconds."
+        ]
+    },
+    {
+        "id": 100,
+        "dataset": "eANCI",
+        "Name": "Committee",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this service in order to take note of the hierarchical composition of the Civil Defense.",
+            "The system responds to the Citizen's curiosity with a screen where there is an organizational chart of the components of the Municipal Civil Defense in accordance with the other governmental institutions in the area according to the law of the Municipal Council approved by all."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated within the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen becomes acquainted with the components of the municipal body.",
+            "If it fails to display the page, it extends the use case, ServiceNotAvailable that handles technical failure cases."
+        ],
+        "Quality Requirements": [
+            "Response times to Citizen's curiosity are in the hundredths of a second range if the screen describing the use case Committee , is displayed correctly.",
+            "If the screen cannot be provided, the system will respond in times ranging in the range of 3-8 seconds."
+        ]
+    },
+    {
+        "id": 101,
+        "dataset": "eANCI",
+        "Name": "DownloadSubscription",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this screen because he or she wants to register for Civil Service.",
+            "The system responds with a page where the requesting Citizen can download the form to fill out and submit to the Civil Defense office."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen has completed downloading the form, which he or she must complete and deliver in person as it requires accompanying external forms, and the use case ServizioCivile is invoked.",
+            "The Citizen is unable to view the download of the form, and therefore the ServiceNotAvailable use case is extended, which handles cases of technical failure."
+        ],
+        "Quality Requirements": [
+            "The system response time to load the module download ranges from 2 to 4 seconds.",
+            "The system response time varies from 5 to 7 seconds if the module download fails."
+        ]
+    },
+    {
+        "id": 102,
+        "dataset": "eANCI",
+        "Name": "DownloadModule",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses the download of the forms as he/she wants to join the Volunteerism.",
+            "The system responds to this need with the ability to view the form.",
+            "The Citizen takes note of the form, and decides to start downloading the file.",
+            "The system responds to the Citizen's need by saving the form to participate in the volunteer action."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen has successfully downloaded the form with the concession from the system, and therefore the HowToBecomeAVolunteer use case will be invoked.",
+            "The Citizen is unable to view the page related to downloading the form and the use case ServiceNotAvailable, which handles Technical Failure cases, will be extended."
+        ],
+        "Quality Requirements": [
+            "The system response time varies from 2 to 4 seconds to load the form if the Citizen can view it correctly.",
+            "Response times increase, on the order of seconds, if the Citizen does not correctly display what he or she has requested."
+        ]
+    },
+    {
+        "id": 103,
+        "dataset": "eANCI",
+        "Name": "ManagementModifications",
+        "Actors": [
+            "Started by Employee"
+        ],
+        "Basic flow": [
+            "The employee after authenticating in the system accesses the Civil Defense feature to edit the relevant forms.",
+            "The system responds to this need with the ability to display a screen with use cases UpdateAtmosphericConditions, UpdateEnvironmentalAnalysis, and UpdateCompetitionsBands.",
+            "The 'employee selects the feature to be changed.",
+            "The system responds to the employee's need with the required change form."
+        ],
+        "Precondition": [
+            "The employee authenticated himself in the municipal system."
+        ],
+        "Postcondition": [
+            "The employee submitted the form correctly.",
+            "The employee is unable to view the page related to the requested change form,",
+	    "therefore the use case ServiceNotAvailable, which handles technical failure cases, will be extended."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 104,
+        "dataset": "eANCI",
+        "Name": "Fires",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen can access this section if he or she has chosen to view the Risks use case, and decides to learn more about the possible causes that trigger fires.",
+            "The system meets the Citizen's need with a detailed description of how to prevent fires, and who deals with them."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information provided to him.",
+            "The Citizen is unable to view the descriptive sheet of the Fire feature , while the use case ServiceNotAvailable, which handles cases of technical failure, will be extended."
+        ],
+        "Quality Requirements": [
+            "Response time is in the hundredths of a second range if the page is correctly displayed by the service requester.",
+            "In case the Citizen could not see the descriptive tab for this feature, the system would take a few seconds to call up the use case that handles the exception."
+        ]
+    },
+    {
+        "id": 105,
+        "dataset": "eANCI",
+        "Name": "Hydro-pluviometric monitoring",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this screen as he wants to satisfy his curiosity in knowing the situation monitored by the Civil Defense of municipal waters.",
+            "The system responds with a screen where it allows you to view information about how the municipal water is being monitored, the bacteriological situation, and an update of the latest analysis performed on the samples taken."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information received from the form that was proposed to him.",
+            "The Citizen is unable to view the page he or she requested, and the use case ServiceNotAvailable, which handles cases of technical failure, is extended."
+        ],
+        "Quality Requirements": [
+            "The system response time is in the hundredths of a second range if it displays the card correctly.",
+            "The response time increases, and falls within the terms of seconds, from a minimum of 3 to a maximum of 7."
+        ]
+    },
+    {
+        "id": 106,
+        "dataset": "eANCI",
+        "Name": "MonitoringVulcanic",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this screen because he or she wants to know more about the actual operation of how Civil Defense conducts monitoring of volcanoes in the municipal and national territory, with a detailed description of the information technologies adopted.",
+            "The system responds to the request by displaying an information sheet describing everything that Civil Defense does to keep track of volcanic activity"
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information provided to him.",
+            "The Citizen cannot properly display the information sheet about the monitoring of volcanoes in the municipal and national territory, so the use case ServiceNotAvailable, which handles cases of technical failure, is extended."
+        ],
+        "Quality Requirements": [
+            "The response time varies in the range of hundredths of a second.",
+            "But if the Citizen does not display the information sheet correctly, then times may vary in the order of seconds, from a minimum of 3 to a maximum of 7"
+        ]
+    },
+    {
+        "id": 107,
+        "dataset": "eANCI",
+        "Name": "UsefulNumbers",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this page to take advantage of the telephone numbers to contact in case of danger of any kind.",
+            "The system responds by allowing the display of a descriptive card with the phone numbers of the agencies involved in the safety of the Citizen himself.",
+            "The Citizen by accessing this screen can, in addition, view tips, and standard procedures, broken down by categories, about the proper communication between him and the Call Center contact person of a particular municipal body.",
+            "The system responds with an emergency support screen corresponding to the service the Citizen decides to contact."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the service provided to him and views the screen of useful numbers and advice given to him.",
+            "In case the system fails to have the information sheet displayed about numbers to call in case of emergency, the use case ServiceNotAvailable, which handles cases of technical failure, is extended."
+        ],
+        "Quality Requirements": [
+            "The system responds to the service requested by the Citizen in a few hundredths of a second if the description of the useful numbers, is displayed correctly.",
+            "If this, however, is not the case, the system handles the exception in the range of 5-8 seconds to let the user know that there is some problem with the service request."
+        ]
+    },
+    {
+        "id": 108,
+        "dataset": "eANCI",
+        "Name": "CivilProtection",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The citizen accesses the descriptive sheet about general information about the municipal body in question.",
+            "The system responds to the information functionality, allowing the display of a description about the active roles played by the Civil Defense."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The system makes the descriptive sheet available to the Citizen and he/she acknowledges it.",
+            "In the event that the system cannot get the card to display, the ServiceNotAvailable use case is extended, which handles Technical Failure cases."
+        ],
+        "Quality Requirements": [
+            "The response time to the Citizen's need is in the hundredths of a second range if the Citizen views the screen correctly.",
+            "Response times range in the order of seconds, from a minimum of 3 to a maximum of 7, if the Citizen does not display the descriptive screen correctly."
+        ]
+    },
+    {
+        "id": 109,
+        "dataset": "eANCI",
+        "Name": "Waste",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses the fact sheet because he wants to know the actual waste situation in his municipality, and whether of course, the environment is protected by the Civil Defense with the help of municipal agencies.",
+            "The system responds to this need with a large, descriptive screen where the goals of the City Council are pointed out, as well as informative notes on the dangers of waste fires, and what kind of waste collection is in your municipality.",
+            "In addition, you can view the use case ViewToxicologicalAmbiental Results."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information he received from the descriptive sheet.",
+            "The Citizen is unable to view the screen and therefore the use case ServiceNotAvailable, which handles technical failure cases, is extended."
+        ],
+        "Quality Requirements": [
+            "Response times are to be found on the order of hundredths of a second if correct page display occurs.",
+            "In the range of seconds, 3 to 6, if it fails to view such a screen."
+        ]
+    },
+    {
+        "id": 110,
+        "dataset": "eANCI",
+        "Name": "Risks",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses the screen about the meanings of the hazards Civil Defense deals with, with specific images for each hazard category, and videos of how it operates during rescue operations.",
+            "The system responds to the Citizen's request, with a screen where there are causes, meanings, about landslides, floods, and coastal erosion phenomena, and videos of interventions.",
+            "The Citizen, after viewing the descriptive sheet may want to know the causes of other hazards that the body deals with and therefore decides to view them by activating, the use cases Fire, Volcanic, Seismic, SanitaryAntropic,Hydrological and Pluviometric Monitoring.",
+            "The system also provides additional fact sheets on other hazards that Civil Defense deals with."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information sheet and decides to recall the sheets about the other hazards that Civil Defense deals with.",
+            "The Citizen has no opportunity to view the home screen, so the use case ServiceNotAvailable, which handles Technical Failure cases, will be extended."
+        ],
+        "Quality Requirements": [
+            "The Citizen correctly displays the initial risk section, therefore, the system takes time on the order of hundredths of a second to satisfy the requirement.",
+            "If, the section display does not occur, the system takes seconds in a range from 3-7."
+        ]
+    },
+    {
+        "id": 111,
+        "dataset": "eANCI",
+        "Name": "SanitaryAntropic",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses the desired screen from the list of environmental hazards that is next to each environmental hazard description.",
+            "The system responds to the Citizen's request by providing a detailed explanation of what this use case means in practical terms, and distributing advice and standard procedures in case of danger."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information provided to him.",
+            "The Citizen cannot see the descriptive screen, so the use case ServiceNotAvailable, which handles technical failure cases, will be extended."
+        ],
+        "Quality Requirements": [
+            "The system will respond to the Citizen's need by responding with the descriptive page in the order of hundredths of a second.",
+            "If the Citizen cannot view the screen, the response from the system increases, in the order of seconds."
+        ]
+    },
+    {
+        "id": 112,
+        "dataset": "eANCI",
+        "Name": "CivilService",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this section to get information about its usefulness for the benefit of others.",
+            "The system responds with a screen display where it clarifies the goals of community service, general information, and the ability to call the DownloadIscrizione use case."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen acknowledges the information received.",
+            "The Citizen is unable to view the information page, and therefore the use case ServiceNotAvailable, which handles technical failure cases, is extended."
+        ],
+        "Quality Requirements": [
+            "Response time is in the hundredths of a second range if the user is able to view the information page with its link to the form download.",
+            "The system's response time to the Citizen's need increases in the order of seconds if they are unable to view the card."
+        ]
+    },
+    {
+        "id": 113,
+        "dataset": "eANCI",
+        "Name": "Seismic",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses the descriptive screen of how the seismic monitoring of the territory takes place and the possibility of acquiring information about the causes of an earthquake, and the measurement and prevention technologies used by the specialists of the operational core.",
+            "The system responds by providing the Citizen with the ability to view in an always descriptive manner, the characteristics of the instruments, the work done by the specialists, and the national bodies with which they collaborate."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information retrieved, put a available from the Civil Defense.",
+            "The Citizen cannot get the descriptive screen, and therefore the use case ServiceNotAvailable is extended, That handles cases of technical failure."
+        ],
+        "Quality Requirements": [
+            "The reaction time of the system to the Citizen's request is in the hundredths of a second range, if the display is successful.",
+            "If the Citizen is unable to display the information card correctly, the system will respond in between 4 to 6 seconds."
+        ]
+    },
+    {
+        "id": 114,
+        "dataset": "eANCI",
+        "Name": "ViewResultsToxicologicalEnvironmental",
+        "Actors": [
+            "Citizen",
+            "UserRegistered"
+        ],
+        "Basic flow": [
+            "The Citizen accesses such a sheet in order to be personally aware of the environmental situation in the municipality where he or she resides, whether it is being kept under control, and what values are at risk and why this is so.",
+            "The system responds with a descriptive screen about the toxicological values received from the chemical and toxicological analyses carried out by the Civil Defense on the environment and municipal soil."
+        ],
+        "Precondition": [
+            "The Citizen, is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen is satisfied with the information collected.",
+            "The Citizen is unable to view the card and therefore extends the use case ServiceNotAvailable, which handles technical failure cases."
+        ],
+        "Quality Requirements": [
+            "System response times are acceptable and on the order of hundredths of a second if the card is correctly displayed by the person who requested it Whereas, if there was any hiccup in the use case display, system response times increase, in the order of seconds, from a minimum of 3 to a maximum of 6."
+        ]
+    },
+    {
+        "id": 115,
+        "dataset": "eANCI",
+        "Name": "Volunteering",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses the introductory screen.",
+            "The system responds by displaying the descriptive sheet about general information about this aspect of Civil Defense, and the possibility of knowing the prerequisites for participation.",
+            "The Citizen becomes aware of what is written, and therefore selects the link where the ComeBecomeVolunteer use case is called.",
+            "The system responds by allowing it to display this description."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "The Citizen acknowledges the information received and if he/she agrees to call the case HowToBecomeAVolunteer , redirected to that card.",
+            "The Citizen notes of use is of the information provided to him, but he exits the display of the current screen.",
+            "The Citizen is unable to view the Volunteer use case description sheet, and therefore extends the ServiceNotAvailable use case that handles Technical Failure cases."
+        ],
+        "Quality Requirements": [
+            "System response times are in the hundredths of a second range if the Citizen can view the page correctly.",
+            "The response time of the system to the Citizen's request, increase in the order of seconds, varying from a minimum of 3 to a maximum of 6."
+        ]
+    },
+    {
+        "id": 116,
+        "dataset": "eANCI",
+        "Name": "Volcanic",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen accesses this tab, from the Risks use case if they want to know more, about the volcanic situation in their municipality, and the ability to view the Civil Defense's monitoring methods.",
+            "The system responds by correctly displaying a descriptive screen about the different types of eruptions of a volcano, making available, the ability to view the current volcanic situation in the municipality.",
+            "The Citizen wants to know how the present volcanoes are monitored, and therefore, will invoke the use case MonitoringVulcanic.",
+            "The system provides the Citizen with a link to the MonitorVulcan use case, so that he or she can know the real situation."
+        ],
+        "Precondition": [
+            "The Citizen is authenticated in the municipal system.",
+            "The Citizen accessed the municipal system."
+        ],
+        "Postcondition": [
+            "l Citizen is satisfied with the information provided to him.",
+            "The Citizen is unable to view the descriptive tab for the Volcanic feature, so the use case ServiceNotAvailable, which handles technical failure cases, is extended."
+        ],
+        "Quality Requirements": [
+            "The system response time is in the hundredths of a second range if the Citizen correctly displays the card with the inherent components.",
+            "The response time to the requested service changes if the Citizen fails to properly view the descriptive page."
+        ]
+    },
+    {
+        "id": 117,
+        "dataset": "eANCI",
+        "Name": "CalculateAmount",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen presses the button related to the tax calculation function.",
+            "The System presents the list of fees and taxes for which the amount can be calculated.",
+            "The Citizen selects the tax of interest.",
+            "The System displays a form to be completed For calculation.",
+            "The Citizen enters the necessary data.",
+            "The System verifies the correctness of the data,computes the amount and shows it to the Citizen."
+        ],
+        "Precondition": [
+            "The Citizen must be connected to the system."
+        ],
+        "Postcondition": [
+            "The Citizen receives the information of interest.",
+            "In case there is an error in data entry or the amount cannot be calculated, the System calls the use case CalculateImportUnsuccessful.",
+            "In case there are errors in the data entered by the citizen, the system calls the use case DataErrati.",
+            "In case there are generic errors, the system calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "None"
+        ]
+    },
+    {
+        "id": 118,
+        "dataset": "eANCI",
+        "Name": "CalculateUnsuccessful Amount",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen presses the button related to the tax calculation function.",
+            "The System presents the list of fees and taxes for which the amount can be calculated.",
+            "The Citizen selects the tax of interest.",
+            "The System displays a form to be completed For calculation.",
+            "The Citizen enters the necessary data.",
+            "The System verifies the correctness of the data but fails to perform the calculation, notifying the user of the reason for failure."
+        ],
+        "Precondition": [
+            "This use case extends CalculateImport and is invoked when the Citizen enters incorrect data.",
+            "an error has occurred in calculating the amount."
+        ],
+        "Postcondition": [
+            "The System notifies the error and resubmits the form to the Citizen."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 119,
+        "dataset": "eANCI",
+        "Name": "ContestaMulta",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen clicks on the button to access the online fine management feature.",
+            "The System redirects the citizen to the desired section.",
+            "The Citizen clicks on the online fine payment button.",
+            "The System searches for fines against the Citizen in the database for which payment has not yet been received.",
+            "The Citizen selects the fine for which they wish to make a challenge.",
+            "The System shows all available information related to the fine, as well as the form to be filled out for dispute.",
+            "The Citizen enters the necessary information.",
+            "The System verifies the correctness of the information, forwards the dispute request to the appropriate party, and notifies the Citizen."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "This use case extends PaymentMulte and is invoked when the citizen clicks on the button related to fine dispute.",
+            "In case there are generic errors, the system calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 120,
+        "dataset": "eANCI",
+        "Name": "ICI",
+        "Actors": [
+            "Started by Citizen."
+        ],
+        "Basic flow": [
+            "II Citizen clicks on the button to access the Online Tax Payment area.",
+            "The System displays the list of fees that can be paid online.",
+            "The Citizen selects the section on Municipal Property Tax and its payment.",
+            "The System redirects the Citizen to the necessary section, showing the form of the relevant fee and the relevant amount to be paid.",
+            "The Citizen confirms that the information is correct and initiates the transaction, selecting the preferred payment method.",
+            "The System performs the transaction and displays a successful payment message."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The payment has been made.",
+            "In the case where there is insufficient funds to cover the payment or an error occurs in the transaction the System calls the case use case PaymentNotFailed.",
+            "In the case of other generic System-related errors, the use case is invoked ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 121,
+        "dataset": "eANCI",
+        "Name": "IPPA",
+        "Actors": [
+            "Started by Citizen."
+        ],
+        "Basic flow": [
+            "II Citizen clicks on the button to access the Online Tax Payment area.",
+            "The System displays the list of fees that can be paid online.",
+            "The Citizen selects the section on Advertising and Publicity Tax and its payment and enters the file code.",
+            "The System redirects the Citizen to the necessary section, showing the form of the relevant fee and the relevant amount to be paid.",
+            "The Citizen confirms that the information is correct, selects the preferred payment method, and initiates the transaction.",
+            "The System performs the transaction and displays a successful payment message."
+        ],
+        "Precondition": [
+            "The Citizen logged in.",
+            "The Citizen has made the request for the specific service.",
+            "The service request was accepted."
+        ],
+        "Postcondition": [
+            "The payment has been made.",
+            "In the case where there is insufficient funds to cover the payment or an error occurs in the transaction the System calls the case use case PaymentNotFailed.",
+            "In case there are general errors, the system calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 122,
+        "dataset": "eANCI",
+        "Name": "IRPEF",
+        "Actors": [
+            "Started by Citizen."
+        ],
+        "Basic flow": [
+            "II Citizen clicks on the button to access the Online Tax Payment area.",
+            "The System displays the list of fees that can be paid online.",
+            "The Citizen selects the section on Income Tax for Individuals and its payment.",
+            "The System redirects the Citizen to the necessary section, showing the form of the relevant fee and the relevant amount to be paid.",
+            "The Citizen confirms that the information is correct, selects the preferred payment method, and initiates the transaction.",
+            "The System performs the transaction and displays a successful payment message."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The payment has been made.",
+            "In the case where there is insufficient funds to cover the payment or an error occurs in the transaction the System calls the case of use PaymentNotFailed.",
+            "In case further generic problems arise, the System calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 123,
+        "dataset": "eANCI",
+        "Name": "Forms",
+        "Actors": [
+            "Started by Citizen."
+        ],
+        "Basic flow": [
+            "II Citizen clicks on the button to access dedicated section on forms.",
+            "The System redirects the Citizen to the required section and displays the various forms available for download.",
+            "The Citizen selects the desired form.",
+            "The System starts the download."
+        ],
+        "Precondition": [
+            "The Citizen is logged in."
+        ],
+        "Postcondition": [
+            "The download has been initialized.",
+            "In case there are general errors, the system calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 124,
+        "dataset": "eANCI",
+        "Name": "PaymentFees",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen clicks on the button to access the online fine management feature.",
+            "The System redirects the citizen to the desired section.",
+            "The Citizen clicks on the online fine payment button.",
+            "The System searches for fines against the Citizen in the database for which payment has not yet been received.",
+            "The Citizen selects the fine for which they wish to make payment.",
+            "The System shows the fine form and the amount to be paid.",
+            "The Citizen verifies that the information is correct and initiates the transaction, selecting the preferred payment method.",
+            "The System performs the transaction and displays a successful payment message."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "Payment has been made.",
+            "In case where there is an error in data entry or there is insufficient funds to cover the payment the System calls the use case PaymentNotFailed.",
+            "The Citizen clicks on the relevant button to the dispute of a given fine,in which case the System calls the use case ContestaMulta.",
+            "In case there are errors in the data entered by the citizen, the system calls the use case DataErrati.",
+            "In case there are generic errors, the system calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "None"
+        ]
+    },
+    {
+        "id": 125,
+        "dataset": "eANCI",
+        "Name": "PaymentUnsuccessful",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen clicks on the button to access the Online Payment area for taxes or fines.",
+            "The System displays the list of fees/fines that can be paid online.",
+            "The Citizen selects the tax/fine of interest.",
+            "The System redirects the Citizen to the necessary section, showing the form to the Citizen.",
+            "The Citizen initiates the transaction.",
+            "The System does not allow the transaction because problems have occurred with the selected payment method."
+        ],
+        "Precondition": [
+            "This use case extends ICI,IRPEF,TIA,TOSAP,IPPA, and PaymentMulta and is invoked when errors occur due to the payment method."
+        ],
+        "Postcondition": [
+            "The System notifies you of the error and displays the form again for you to fill out."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 126,
+        "dataset": "eANCI",
+        "Name": "SearchVerbalsMultices",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen clicks on the button to access the online fine management feature.",
+            "The System redirects the Citizen to the desired section.",
+            "The Citizen clicks on the button to search for reports (only charged to him/her).",
+            "The System searches for citizen fines (paid and unpaid) in the database and displays them in a list that can be browsed to show all available information for a given fine."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The System has performed the search.",
+            "In case there are generic errors, the system calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 127,
+        "dataset": "eANCI",
+        "Name": "RequestIPPA",
+        "Actors": [
+            "Started with Citizen",
+            "communicates with Employee."
+        ],
+        "Basic flow": [
+            "II Citizen clicks on the button to access the municipality's service request area.",
+            "The System redirects the citizen to the necessary section.",
+            "The Citizen selects the section dedicated to the Advertising and Public Display Tax application.",
+            "The System shows the form of the relevant request,automatically deriving the necessary data.",
+            "The Citizen enters additional data necessary for the correct completion of the form,confirms that the information is correct and submits the request.",
+            "The System notifies the employee of the request."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The clerk receives the file and chooses whether to accept it or not,recalling the use case respectively RequestIPPAAccepted RequestIPPARified.",
+            "In case there are errors in the data.",
+            "o entered by the user, the system calls the use case DataErrati."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 128,
+        "dataset": "eANCI",
+        "Name": "RequestIPPAAccepted",
+        "Actors": [
+            "Started by Employee."
+        ],
+        "Basic flow": [
+            "The Clerk displays the notification received.",
+            "The System displays to the Employee the Request made by the citizen.",
+            "The Clerk certifies the validity of the request by checking the accuracy of the data and enables the bureaucratic procedure for requesting the service.",
+            "The System sends a confirmation e-mail to the citizen who requested the service."
+        ],
+        "Precondition": [
+            "The Employee has authenticated in the system.",
+            "RequestIPPAAccepted includes the case of use RequestIPPA"
+        ],
+        "Postcondition": [
+            "The system notifies the citizen of the outcome."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 129,
+        "dataset": "eANCI",
+        "Name": "RequestIPPARifiied",
+        "Actors": [
+            "Started by Employee."
+        ],
+        "Basic flow": [
+            "The Clerk displays the notification received.",
+            "The System displays to the Employee the Request made by the citizen.",
+            "The Clerk reveals an error in the request and rejects the procedure the request.",
+            "The System sends a notification to the citizen who requested the service."
+        ],
+        "Precondition": [
+            "The Employee has authenticated in the system.",
+            "RequestIPPARifiied includes the case of use RequestIPPA"
+        ],
+        "Postcondition": [
+            "The system notifies the citizen of the outcome."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 130,
+        "dataset": "eANCI",
+        "Name": "RequestTOSAP",
+        "Actors": [
+            "Started by Citizen",
+            "communicate with Employee"
+        ],
+        "Basic flow": [
+            "II Citizen clicks on the button to access the municipality's service request area.",
+            "The System redirects the citizen to the necessary section.",
+            "The Citizen selects the section dedicated to the application for Public Land and Area Charge.",
+            "The System shows the form of the relevant request,automatically deriving the necessary data.",
+            "The Citizen enters additional data necessary for the correct completion of the form,confirms that the information is correct and submits the request.",
+            "The System notifies the employee of the request."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The clerk receives the file and chooses whether to accept it or not,recalling the use case respectively RequestTOSAPAccepted RequestTOSAPRiﬁed.",
+            "In case there are general errors the o system calls the use case ServiceNotAvailable.",
+            "In case there are errors in the data.",
+            "entered by the user, the system calls the use case DataErrati."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 131,
+        "dataset": "eANCI",
+        "Name": "RequestTOSAPAccessed",
+        "Actors": [
+            "Started by Employee."
+        ],
+        "Basic flow": [
+            "The Clerk displays the notification received.",
+            "The System displays to the Employee the Request made by the citizen.",
+            "The Clerk certifies the validity of the request by checking the accuracy of the data and enables the bureaucratic procedure for requesting the service.",
+            "The System sends a confirmation e-mail to the citizen who requested the service."
+        ],
+        "Precondition": [
+            "The Employee has authenticated in the system.",
+            "RequestTOSAPAccessed includes the use case RequestTOSAP"
+        ],
+        "Postcondition": [
+            "The system notifies the citizen of the outcome"
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 132,
+        "dataset": "eANCI",
+        "Name": "RequestTOSAPRifiata",
+        "Actors": [
+            "Started by Employee."
+        ],
+        "Basic flow": [
+            "The Clerk displays the notification received.",
+            "The System displays to the Employee the Request made by the citizen.",
+            "The Clerk reveals an error in the request and rejects the procedure the request.",
+            "The System sends a notification to the citizen who requested the service."
+        ],
+        "Precondition": [
+            "The Employee has authenticated in the system.",
+            "RequestTOSAPRifiied includes the use case RequestTOSAP"
+        ],
+        "Postcondition": [
+            "The system notifies the citizen of the outcome"
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 133,
+        "dataset": "eANCI",
+        "Name": "TIA",
+        "Actors": [
+            "Started by Citizen."
+        ],
+        "Basic flow": [
+            "II Citizen clicks on the button to access the Online Tax Payment area.",
+            "The System displays the list of fees that can be paid online.",
+            "The Citizen selects the section on the Environmental Hygiene Fee and its payment.",
+            "The System redirects the Citizen to the necessary section, showing the form of the relevant fee and the relevant amount to be paid.",
+            "The Citizen confirms that the information is correct,selects the preferred payment method,and initiates the transaction.",
+            "The System performs the transaction and displays a successful payment message."
+        ],
+        "Precondition": [
+            "The Citizen has authenticated in the system."
+        ],
+        "Postcondition": [
+            "The payment has been made.",
+            "In the case where there is insufficient funds to cover the payment or an error occurs in the transaction the System calls the case of use PaymentNotFailed.",
+            "In case other general problems arise, the system calls the case of use ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "None"
+        ]
+    },
+    {
+        "id": 134,
+        "dataset": "eANCI",
+        "Name": "TOSAP",
+        "Actors": [
+            "Started by Citizen."
+        ],
+        "Basic flow": [
+            "II Citizen clicks on the button to access the Online Tax Payment area.",
+            "The System displays the list of fees that can be paid online.",
+            "The Citizen selects the section dedicated to the Tax for the Occupation of Public Land and Areas and its payment and enters the file code.",
+            "The System redirects the Citizen to the necessary section, showing the form of the relevant fee and the relevant amount to be paid.",
+            "The Citizen confirms that the information is correct, selects the preferred payment method, and initiates the transaction.",
+            "The System performs the transaction and displays a successful payment message."
+        ],
+        "Precondition": [
+            "The Citizen logged in.",
+            "The Citizen has made the request for the specific service.",
+            "The service request was accepted."
+        ],
+        "Postcondition": [
+            "The payment has been made.",
+            "In the case where there is insufficient funds to cover the payment or an error occurs in the transaction the System calls the case use case PaymentNotFailed.",
+            "In case there are general errors, the system calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 135,
+        "dataset": "eANCI",
+        "Name": "Forms",
+        "Actors": [
+            "Started by Citizen."
+        ],
+        "Basic flow": [
+            "II Citizen clicks on the button to access dedicated section on forms.",
+            "The System redirects the Citizen to the required section and displays the various forms available for download.",
+            "The Citizen selects the desired form.",
+            "The System starts the download."
+        ],
+        "Precondition": [
+            "The Citizen is logged in."
+        ],
+        "Postcondition": [
+            "The download has been initialized.",
+            "In case there are general errors, the system calls the use case ServiceNotAvailable."
+        ],
+        "Quality Requirements": [
+            "Not provided."
+        ]
+    },
+    {
+        "id": 136,
+        "dataset": "eANCI",
+        "Name": "ConsultationHelpOn-Line",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The Citizen enters the online help section.",
+            "The system presents a screen containing the list of features.",
+            "Citizens access the help information by clicking on the link related to the feature they wish to receive.",
+            "The system presents help information, explaining how and what actions to perform for the specific feature."
+        ],
+        "Precondition": [
+            "The citizen has logged into the system."
+        ],
+        "Postcondition": [
+            "The citizen has access to information related to a particular function"
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 137,
+        "dataset": "eANCI",
+        "Name": "DatiErrati",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The system displays a message to the terminal screen indicating that the request entered was incorrect.",
+            "Citizen reads the notification message.",
+            "The system resubmits the input form."
+        ],
+        "Precondition": [
+            "This use case extends use cases, and handles exceptional cases of failure due to incorrect input."
+        ],
+        "Postcondition": [
+            "The form input is resubmitted."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    },
+    {
+        "id": 138,
+        "dataset": "eANCI",
+        "Name": "ServiceNotAvailable",
+        "Actors": [
+            "Started by Citizen"
+        ],
+        "Basic flow": [
+            "The system displays a message on the terminal screen indicating that the request cannot be made.",
+            "Citizen reads the notification message.",
+            "The system resubmits the input form."
+        ],
+        "Precondition": [
+            "This use case extends use cases, and handles exceptional cases of failure due to technical problems."
+        ],
+        "Postcondition": [
+            "The form input is resubmitted."
+        ],
+        "Quality Requirements": [
+            "Not provided"
+        ]
+    }
+]

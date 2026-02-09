@@ -1,0 +1,1547 @@
+[
+    {
+        "id": 0,
+        "dataset": "SMOS",
+        "Name": "Login",
+        "Actors": [
+            "Registered user"
+        ],
+        "Brief Description": "Allows a user to log in to the system",
+        "Precondition": [
+            "User is not logged in to the system.",
+            "User has username and password Complete and submit login form"
+        ],
+        "Postcondition": [
+            "The system displays the work area of the Registered User .",
+            "Interruption of the connection to the SMOS server."
+        ],
+        "Basic flow": [
+            "Verify that username and password have length >=5. If the condition is met go to step two, otherwise notify the user of the error.",
+            "Search the archive to see if the username and password entered by the user are among the loggable users",
+            "If the search is successful, the user is logged into the system"
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "SMOS",
+        "Name": "LoginError",
+        "Actors": [
+            "Registered user"
+        ],
+        "Brief Description": "Occurs when the user has entered incorrect authentication data.",
+        "Precondition": [
+            "Data provided for login is incorrect"
+        ],
+        "Postcondition": [
+            "The user can try logging in again"
+        ],
+        "Basic flow": [
+            "View the login form"
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "SMOS",
+        "Name": "Logout",
+        "Actors": [
+            "Registered user"
+        ],
+        "Brief Description": "Allows a user to exit the system",
+        "Precondition": [
+            "User is logged in to the system .",
+            "Click on the logout button"
+        ],
+        "Postcondition": [
+            "The user can log back into the system"
+        ],
+        "Basic flow": [
+            "View the login form"
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "SMOS",
+        "Name": "EditPassword",
+        "Actors": [
+            "Registered user"
+        ],
+        "Brief Description": "Allows a user to change their password",
+        "Precondition": [
+            "User is logged in to the system .",
+            "Click on the \"Change Password\" button"
+        ],
+        "Postcondition": [
+            "The user's password has been changed.",
+            "The user cancels the operation Interruption of the connection to the SMOS server"
+        ],
+        "Basic flow": [
+            "Fill out the form and submit;",
+            "View the form with the fields: old password, new password, confirm new password.",
+            "Confirm that the password has been changed"
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "SMOS",
+        "Name": "ViewElistUsers",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "View the list of users in the system",
+        "Precondition": [
+            "User is logged in as administrator .",
+            "User clicks on the \"User Management\" button"
+        ],
+        "Postcondition": [
+            "The system displays the list of users in the system .",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Search for users in the archive.",
+	    "display a list of them"
+        ]
+    },
+    {
+        "id": 5,
+        "dataset": "SMOS",
+        "Name": "NewUser",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Entering a new user into the system",
+        "Precondition": [
+            "The user is logged in as administrator .",
+            "The user has performed the use case \"ViewUser List\".",
+	    "the system is displaying the list of users in the system .",
+            "The user clicks on the \"New User\" button"
+        ],
+        "Postcondition": [
+            "A new user has been created Data error is notified Administrator aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Fill in the fields of the form.",
+	    "Click on the \"Save\" button",
+            "View the user entry form consisting of the following fields: First Name, Last Name, e-mail, cell, login, password, password confirmation.",
+            "Performs checks on the validity of the entered data and enters the new user into the archive; in case the entered data is invalid, activates the use case \"ErrorData\""
+        ]
+    },
+    {
+        "id": 6,
+        "dataset": "SMOS",
+        "Name": "ViewDetailsUser",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "View a user's details",
+        "Precondition": [
+            "The user is logged in as administrator.",
+            "The user has performed the use case \"ViewListUsers\".",
+            "The system is displaying the list of users in the system.",
+            "The user clicks on the \"Details\" button"
+        ],
+        "Postcondition": [
+            "The system displays detailed information about a user.",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Displays the user's detailed information and in particular: First name, Last name, e-mail, cell, login, password."
+        ]
+    },
+    {
+        "id": 7,
+        "dataset": "SMOS",
+        "Name": "EditUser",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Changing one or more data regarding a user in the system",
+        "Precondition": [
+            "The user is logged in as administrator .",
+            "The user has performed the \"ViewUserDetails\" use case.",
+            "The system is Viewing a user's details .",
+            "The user modifies one or more pieces of information contained in the form of Display of user details."
+        ],
+        "Postcondition": [
+            "User has been changed Data error is notified Administrator aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Click on the \"edit\" button",
+            "Performs checks on the validity of the entered data and edits the user; in case the entered data is invalid, activates the use case \"ErrorData\""
+        ]
+    },
+    {
+        "id": 8,
+        "dataset": "SMOS",
+        "Name": "DeleteUser",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Delete a user from the system",
+        "Precondition": [
+            "The user is logged in as administrator .",
+            "The user has performed the use case \"ViewUserDetails\".",
+            "The system is Viewing a user's details .",
+            "The user clicks on the \"Delete\" button"
+        ],
+        "Postcondition": [
+            "User has been deleted .",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Delete user from the archive",
+            "View updated user list"
+        ]
+    },
+    {
+        "id": 9,
+        "dataset": "SMOS",
+        "Name": "Assign/RemoveRolesToA User",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to assign or remove roles to a user",
+        "Precondition": [
+            "The user is logged in as administrator .",
+            "The user has performed the \"ViewUserDetails\" use case.",
+            "The system is Viewing a user's details .",
+            "The user clicks on the \"User Roles\" button."
+        ],
+        "Postcondition": [
+            "User roles are changed Administrator aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Selects the roles to be assigned or removed to the user",
+            "Click on the \"Submit\" button",
+            "View the role management form",
+            "Assigns or removes user roles as directed by the Administrator"
+        ]
+    },
+    {
+        "id": 10,
+        "dataset": "SMOS",
+        "Name": "Assign/RemoveTeachingToAtUnTeacher.",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to assign or remove teaching to a teacher",
+        "Precondition": [
+            "The user is logged in as administrator .",
+            "The user has performed the \"ViewUserDetails\" use case.",
+            "The system is Viewing a teacher's details .",
+            "The user clicks on the \"Teacher Teachings\" button."
+        ],
+        "Postcondition": [
+            "One or more teacher teachings have been assigned or removed Administrator aborts Operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Select the academic year",
+            "Select the desired class",
+            "Select the teachings to be associated with or removed from the teacher",
+            "View the teaching management form for the teacher in question",
+            "View the list of available classes for the selected year",
+            "View the list of teachings associated with that class",
+            "Assigns or removes teacher teachings as directed by the Administrator"
+        ]
+    },
+    {
+        "id": 11,
+        "dataset": "SMOS",
+        "Name": "Assign/RemoveStudentsToA Parent",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to associate new students with a parent or remove previously entered associations",
+        "Precondition": [
+            "The user is logged in as administrator .",
+            "The user has performed the \"ViewUserDetails\" use case.",
+            "The system is Viewing the details of a parent .",
+            "The user clicks on the \"Parenting\" button."
+        ],
+        "Postcondition": [
+            "One or more children have been associated with or removed from a parent.",
+            "Administrator aborts operation Connection to SMOS server aborted."
+        ],
+        "Basic flow": [
+            "Selecting students to assign or remove to parent",
+            "Click on the \"Submit\" button",
+            "View the child management form for the parent in question",
+            "Assigns/Removes students associated with a Parent"
+        ]
+    },
+    {
+        "id": 12,
+        "dataset": "SMOS",
+        "Name": "ViewListClasses",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to view the list of classes",
+        "Precondition": [
+            "User is logged in to the system with the role of Administrator .",
+            "User clicks on the \"Manage Classes\" button"
+        ],
+        "Postcondition": [
+            "The system shows the list of classes for the selected academic year.",
+            "The Administrator stops the operations.",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Select the academic year of interest.",
+            "Allows you to select the academic year whose class list you want to view.",
+            "Search for classes in the archive and display the class management screen",
+            "View the list of classes for the selected academic year."
+        ]
+    },
+    {
+        "id": 13,
+        "dataset": "SMOS",
+        "Name": "InsertNewClass",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Inserts a new class into the archive",
+        "Precondition": [
+            "The user is logged in to the system as an Administrator .",
+            "The user has already run the use case \"ViewListClasses\".",
+            "The system Is viewing the list of classes for a particular academic year.",
+            "The 'user clicks on the \"New Class\" button."
+        ],
+        "Postcondition": [
+            "User has entered a class into the system Data error is notified Connection to SMOS server aborted Administrator aborts operation"
+        ],
+        "Basic flow": [
+            "Fill out the form.",
+            "Click on the \"Save\" button",
+            "The system shows the form to fill out with: name, address, academic year.",
+            "It performs checks on the validity of the entered data and inserts the new class into the archive; in case the entered data is invalid, it activates the \"ErrorData\" use case."
+        ]
+    },
+    {
+        "id": 14,
+        "dataset": "SMOS",
+        "Name": "ViewDetailsClass",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to view the details of a class",
+        "Precondition": [
+            "The user has already logged in .",
+            "The user has already run the use case \"ViewListClasses\".",
+            "The system Is viewing the list of classes for an academic year .",
+            "Click on the \"show class details\" button"
+        ],
+        "Postcondition": [
+            "The user displays detailed information about a class.",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "View fencing with details of an individual class: name, address, school year."
+        ]
+    },
+    {
+        "id": 15,
+        "dataset": "SMOS",
+        "Name": "DeleteClass",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Delete a class from the archive",
+        "Precondition": [
+            "The user is logged in to the system as Administrator.",
+            "The user has run the use case \"ViewClassDetails\".",
+            "The user displays the detailed information of a class.",
+            "The user Clicks on the \"Delete\" button"
+        ],
+        "Postcondition": [
+            "User deleted a class .",
+            "Connection to SMOS server broken"
+        ],
+        "Basic flow": [
+            "Delete the class from the archive",
+            "View updated class list"
+        ]
+    },
+    {
+        "id": 16,
+        "dataset": "SMOS",
+        "Name": "ViewListAddresses",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to view the list of Addresses",
+        "Precondition": [
+            "User is logged in to the system with the role of Administrator .",
+            "User clicks on the \"Manage Addresses\" button"
+        ],
+        "Postcondition": [
+            "The system shows the list of addresses in the archive .",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "View the list of addresses."
+        ]
+    },
+    {
+        "id": 17,
+        "dataset": "SMOS",
+        "Name": "EnterNewAddress",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Inserts a new address into the archive",
+        "Precondition": [
+            "The user is logged in to the system as Administrator.",
+            "The user has already run the use case \"ViewListAddresses\".",
+            "The system is displaying the address list.",
+            "The user clicks on the \"New Address\" button"
+        ],
+        "Postcondition": [
+            "User entered an address Data error is notified Connection to SMOS server aborted Administrator aborts operation"
+        ],
+        "Basic flow": [
+            "Fill out the form.",
+            "Click on the \"Save\" button",
+            "The system shows the form to be filled out with: name address.",
+            "It performs checks on the validity of the entered data and inserts a new address into the archive; in case the entered data is invalid, it activates the \"ErrorData\" use case."
+        ]
+    },
+    {
+        "id": 18,
+        "dataset": "SMOS",
+        "Name": "ViewDetailsAddress",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to view the details of an address",
+        "Precondition": [
+            "The user has already logged in.",
+            "The user has already run the use case \"ViewListAddresses\".",
+            "The system is displaying the address list.",
+            "The user clicks on the \"show address details\" button"
+        ],
+        "Postcondition": [
+            "The user displays detailed information about an individual address.",
+            "Connection to SMOS server interrupted Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Displays the screen with details of an individual address; specifically :address name."
+        ]
+    },
+    {
+        "id": 19,
+        "dataset": "SMOS",
+        "Name": "DeleteAddress",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Delete an address from the archive",
+        "Precondition": [
+            "The user is logged in to the system as Administrator.",
+            "The user has run the use case \"ViewDetailsAddress\".",
+            "The user displays the detailed information of an address.",
+            "The user clicks on the \"Delete\" button"
+        ],
+        "Postcondition": [
+            "User deleted an address .",
+            "Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Checks whether the address has associated classes; if so, it shows an error message \"Unable to delete address, delete associated classes and try again,\" otherwise delete the address.",
+            "View updated address list"
+        ]
+    },
+    {
+        "id": 20,
+        "dataset": "SMOS",
+        "Name": "AssignRemoveInsignments",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Assigns or removes one or more teachings from an address",
+        "Precondition": [
+            "The user is logged in to the system as Administrator.",
+            "The user has run the use case \"ViewDetailsAddress\".",
+            "The user views the detailed information of an address.",
+            "The user clicks on the button \"Address Teachings\""
+        ],
+        "Postcondition": [
+            "Administrator aborts operation Connection to SMOS server aborted.",
+            "The system has changed the teachings related to the address"
+        ],
+        "Basic flow": [
+            "Select the teachings to be assigned or removed to the address",
+            "Click on the \"Submit\" button",
+            "Displays a form from which teachings can be added and/or removed at the address.",
+            "Associates or removes selected teachings to the address.",
+            "Return to the address details display."
+        ]
+    },
+    {
+        "id": 21,
+        "dataset": "SMOS",
+        "Name": "ViewListInsights",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to view the list of teachings",
+        "Precondition": [
+            "User is logged in to the system with the role of Administrator .",
+            "User clicks on the \"Manage Teachings\" button"
+        ],
+        "Postcondition": [
+            "The system shows the list of teachings in the archive.",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Search for teachings in the archive and access the teachings screen.",
+            "View the list of teachings through teaching management."
+        ]
+    },
+    {
+        "id": 22,
+        "dataset": "SMOS",
+        "Name": "InsertNewTeaching",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Inserts a new teaching into the archive",
+        "Precondition": [
+            "The user is logged in to the system as Administrator.",
+            "The user has already run the use case \"ViewElencoTeaching\".",
+            "The system is displaying the list of teachings.",
+            "The user clicks on the \"New Teaching\" button"
+        ],
+        "Postcondition": [
+            "User entered a teaching Error is notified Connection to SMOS server aborted Administrator aborts operation"
+        ],
+        "Basic flow": [
+            "Fill out the form.",
+            "Click on the \"Save\" button",
+            "The system shows the form to be filled in with: teaching name.",
+            "It performs checks on the validity of the entered data and enters the new teaching into the archive; in case the entered data is invalid, it activates the \"ErrorData\" use case."
+        ]
+    },
+    {
+        "id": 23,
+        "dataset": "SMOS",
+        "Name": "ViewDetailsTeaching",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to view the details of a teaching",
+        "Precondition": [
+            "The user has already logged in .",
+            "The user has already run the use case \"ViewListInsights\".",
+            "The system is displaying the list of teachings .",
+            "User clicks on the \"teaching details\" button"
+        ],
+        "Postcondition": [
+            "User displays detailed information of an individual teaching .",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "View the screen with details of an individual teaching."
+        ]
+    },
+    {
+        "id": 24,
+        "dataset": "SMOS",
+        "Name": "EditTeaching",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Editing details of a teaching",
+        "Precondition": [
+            "The user is logged in to the system as an Administrator .",
+            "The user has run the use case \"ViewTeachingDetails\" .",
+            "The user views the detailed information of a teaching .",
+            "The user modifies any of the information in the form of display of teaching details"
+        ],
+        "Postcondition": [
+            "User changed a teaching Data error is notified Connection to SMOS server aborted Administrator aborts operation"
+        ],
+        "Basic flow": [
+            "Click the \"Save\" button",
+            "It performs checks on the validity of the entered data and modifies the teaching in the archive; in case the entered data is invalid, it activates the \"ErrorData\" use case.",
+            "View the updated teaching list"
+        ]
+    },
+    {
+        "id": 25,
+        "dataset": "SMOS",
+        "Name": "DeleteTeaching",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Delete a teaching from the archive",
+        "Precondition": [
+            "The user is logged in to the system as Administrator.",
+            "The user has run the use case \"ViewTeachingDetails\".",
+            "The user views the detailed information of a teaching.",
+            "The user clicks on the \"Delete\" button"
+        ],
+        "Postcondition": [
+            "User deleted a teaching .",
+            "Connection to SMOS server broken"
+        ],
+        "Basic flow": [
+            "Delete teaching from the archive",
+            "View the updated teaching list"
+        ]
+    },
+    {
+        "id": 26,
+        "dataset": "SMOS",
+        "Name": "ViewListRecords",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "View the list of records for an academic year",
+        "Precondition": [
+            "User must be logged in to the system as Administrator .",
+            "Click on the \"Digital Registry\" button"
+        ],
+        "Postcondition": [
+            "System is displaying the list of records referring to a particular academic year Administrator aborts Operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Select school year",
+            "Shows a screen for selecting the academic year of interest.",
+            "Search the archive for all digital records for that year and display them associated with the class to which they belong."
+        ]
+    },
+    {
+        "id": 27,
+        "dataset": "SMOS",
+        "Name": "ViewDetailsSingleRegister",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "View details of one of the class registers",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user must have performed the use case \"ViewListRecords\"",
+	    "Click on the \"Details\" button associated with one of the records."
+        ],
+        "Postcondition": [
+            "The system is displaying details of a class register .",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Displays on the screen the information contained in the register organized by date.",
+            "In particular it shows, for today's date, the list of pupils, specifying: absent/present, late entries and a form from which you can manage justifications and disciplinary notes."
+        ]
+    },
+    {
+        "id": 28,
+        "dataset": "SMOS",
+        "Name": "InsertAbsencesAdmin",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Digitization of the Registry, data entry by the Administrator",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewDetailsSingleRegister\".",
+            "Select the date on which they want to enter the information."
+        ],
+        "Postcondition": [
+            "Absence and tardiness data have been entered into the system.",
+            "The system has sent notifications to parents.",
+            "The system remains on the register screen.",
+            "Administrator aborts operation.",
+            "Connection to SMOS server aborted."
+        ],
+        "Basic flow": [
+            "Fill out the form by entering absent/present students and click \"Save\"",
+            "Update the displayed screen by date",
+            "Sends the data to the server.",
+            "The server for each absence sends an e-mail notification to the student's parent.",
+            "View updated registry data."
+        ]
+    },
+    {
+        "id": 29,
+        "dataset": "SMOS",
+        "Name": "InsertDelayAdmin",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Digitization of the Registry, data entry by the Administrator",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewDetailsSingleRegister\".",
+            "Select the date on which they want to enter the information."
+        ],
+        "Postcondition": [
+            "Late data has been entered into the system.",
+            "The system has sent notifications to parents.",
+            "The system remains on the register screen.",
+            "Administrator aborts operation.",
+            "Connection to SMOS server aborted."
+        ],
+        "Basic flow": [
+            "Fill out the form by entering students with tardiness and click \"Save\"",
+            "Update the displayed screen by date",
+            "Sends the data to the server.",
+            "View updated registry data."
+        ]
+    },
+    {
+        "id": 30,
+        "dataset": "SMOS",
+        "Name": "EditAbsence",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Editing of absences by the Administrator. Editing is intended as inserting/deleting the absence.",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewDetailsSingleRegister\".",
+            "Select the date on which they wish to edit an absence"
+        ],
+        "Postcondition": [
+            "The system changed the selected absence and sent parents a notification of the change.",
+            "The system remains on the log screen.",
+            "Administrator aborts operation .",
+            "Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Edit the absence (Insert or Delete) and click \"Save\"",
+            "Refresh the screen based on the selected date",
+            "Sends the changed data to the server.",
+            "The system sends a correction e-mail to the parent of the student."
+        ]
+    },
+    {
+        "id": 31,
+        "dataset": "SMOS",
+        "Name": "EditDelay",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "modification of a delay by the Administrator",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewDetailsSingleRegister\".",
+            "Select the date on which they wish to change the delay"
+        ],
+        "Postcondition": [
+            "The system changed the delays to the date entered.",
+            "The system remains on the log screen.",
+            "Administrator aborts operation .",
+            "Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "The user edits the delay and clicks \"Save\"",
+            "Refresh the screen based on the selected date",
+            "The system sends the changed data to the server ."
+        ]
+    },
+    {
+        "id": 32,
+        "dataset": "SMOS",
+        "Name": "EliminateDelay",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Elimination of a delay by the Administrator.",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewDetailsSingleRegister\".",
+            "Select the date on which you wish to delete a delay."
+        ],
+        "Postcondition": [
+            "The system has eliminated the delay.",
+            "The system remains on the log screen.",
+            "Administrator aborts operation .",
+            "Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Delete a student's late entry and click \"Save\"",
+            "Refresh the screen based on the selected date",
+            "Eliminates late entry from the archive."
+        ]
+    },
+    {
+        "id": 33,
+        "dataset": "SMOS",
+        "Name": "ViewListAbout",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "View the list of justifications",
+        "Precondition": [
+            "User must be logged in to the system as Administrator",
+            "User has performed the use case \"ViewDetailsSingleRegister\"",
+            "Click the \"Justifications\" button related to a student"
+        ],
+        "Postcondition": [
+            "System is displaying the list of justifications inherent to the student Administrator aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Shows all the student's absences recorded during the selected school year; excused absences are displayed in green, while those to be excused are displayed in red."
+        ]
+    },
+    {
+        "id": 34,
+        "dataset": "SMOS",
+        "Name": "ViewListNotes",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "View the list of notes inherent to the student",
+        "Precondition": [
+            "User must be logged in to the system as Administrator",
+	    "User has performed the use case \"ViewDetailsSingleRegister\"",
+            "Click on the \"Notes\" button associated with a student"
+        ],
+        "Postcondition": [
+            "System is displaying the list of notes referred to the student Administrator aborts Operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Shows all of the student's notes recorded during the school year"
+        ]
+    },
+    {
+        "id": 35,
+        "dataset": "SMOS",
+        "Name": "InsertExplanation",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Entry Justifies",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewSingleRegisterDetails\".",
+            "The user has performed the use case \"ViewListExcuses\".",
+            "The user clicks on one of the absences in red"
+        ],
+        "Postcondition": [
+            "The justification data has been entered into the system.",
+            "The system returns to the register screen.",
+            "Administrator aborts operation .",
+            "Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Fill out the form.",
+            "Click \"Save\"",
+            "Shows a form in which to enter justification fields (justification date).",
+            "Save the justification."
+        ]
+    },
+    {
+        "id": 36,
+        "dataset": "SMOS",
+        "Name": "InsertNote",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Entering Disciplinary Notes",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewDetailsSingleRegister\".",
+            "The user has already performed the use case \"ViewListNote\".",
+            "The user clicks on the \"New Note\" button"
+        ],
+        "Postcondition": [
+            "The note data has been entered into the system.",
+            "The system has sent the notification to parents.",
+            "The system returns to the log screen.",
+            "Administrator aborts operation Connection to SMOS server aborted."
+        ],
+        "Basic flow": [
+            "Fill out the form.",
+            "Click \"Save\"",
+            "Shows a form with note fields (student, date, teacher , description).",
+            "Save the note and send an email notification to the parent"
+        ]
+    },
+    {
+        "id": 37,
+        "dataset": "SMOS",
+        "Name": "ViewDetailsJustify",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "View the details of a justification",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewElect List\"",
+            "Click on one of the absences in green"
+        ],
+        "Postcondition": [
+            "The system is displaying the details of a justification.",
+            "Administrator aborts operation Connection to SMOS server aborted."
+        ],
+        "Basic flow": [
+            "Shows a form with justification details.",
+            "The ability to edit or delete the justification."
+        ]
+    },
+    {
+        "id": 38,
+        "dataset": "SMOS",
+        "Name": "ViewDetailsNote",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "View the details of a note",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewListNotes\"",
+            "Click on the \"details\" button associated with one of the notes"
+        ],
+        "Postcondition": [
+            "The system is displaying the details of a note.",
+            "Administrator aborts operation Connection to SMOS server aborted."
+        ],
+        "Basic flow": [
+            "Shows a form with details of the note: student, description, teacher, date."
+        ]
+    },
+    {
+        "id": 39,
+        "dataset": "SMOS",
+        "Name": "EditJustification",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Editing a Justification",
+        "Precondition": [
+            "The user must be logged in to the system as an Administrator .",
+            "The user has performed the use case \"ViewDetailsJustify\".",
+            "The system is viewing the details of a justification"
+        ],
+        "Postcondition": [
+            "The justification has been changed.",
+            "The system returns to the log screen.",
+            "Administrator aborts operation Connection to SMOS server aborted."
+        ],
+        "Basic flow": [
+            "Edit one or more fields of the displayed form: date justifies.",
+            "Click on \"Save\"",
+            "Edit justification."
+        ]
+    },
+    {
+        "id": 40,
+        "dataset": "SMOS",
+        "Name": "EditNote",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Modification of a Disciplinary Note",
+        "Precondition": [
+            "User must be logged in to the system as Administrator .",
+            "User has performed the use case \"ViewDetailsNote\""
+        ],
+        "Postcondition": [
+            "The note data has been changed.",
+            "The system returns to the register screen.",
+            "Administrator aborts operation .",
+            "Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "The user edits one or more fields in the displayed form: Student, description, teacher, date.",
+            "The user clicks \"Save\"",
+            "The system saves the changes"
+        ]
+    },
+    {
+        "id": 41,
+        "dataset": "SMOS",
+        "Name": "EliminateJustify",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Delete Justify",
+        "Precondition": [
+            "The user must be logged in to the system as an Administrator .",
+            "The user has performed the use case \"ViewDetailsJustify\".",
+            "The system is displaying the details of a justification.",
+            "Click on \"Delete\""
+        ],
+        "Postcondition": [
+            "The justification has been deleted from the system.",
+            "The system returns to the log screen.",
+            "Administrator aborts operation .",
+            "Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Eliminate justification."
+        ]
+    },
+    {
+        "id": 42,
+        "dataset": "SMOS",
+        "Name": "DeleteNote",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Elimination of Disciplinary Notes",
+        "Precondition": [
+            "The user must be logged in to the system as Administrator .",
+            "The user has performed the use case \"ViewDetailsNote\".",
+            "The system is viewing.",
+            "The details of a note .",
+            "The user clicks the \"Delete\" button"
+        ],
+        "Postcondition": [
+            "The note was deleted.",
+            "The system sent the notification to the parents.",
+            "The system returns to the registry screen.",
+            "Administrator aborts operation .",
+            "Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "The system sends an errata notification to the student's parents, then deletes the note data from the file."
+        ]
+    },
+    {
+        "id": 43,
+        "dataset": "SMOS",
+        "Name": "MakeMonitoringStudents",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows you to query the system about the number of absences and notes associated with students",
+        "Precondition": [
+            "The user is logged in to the system as an administrator .",
+            "The user clicks on the \"Student Monitoring\" button"
+        ],
+        "Postcondition": [
+            ": Has been information about pupils' absences and notes.",
+            "Connection to SMOS server interrupted."
+        ],
+        "Basic flow": [
+            "Search the archive for students who have, for the current school year a number of absences and notes above a predetermined threshold.",
+            "Displays a screen presenting the data obtained."
+        ]
+    },
+    {
+        "id": 44,
+        "dataset": "SMOS",
+        "Name": "ViewOnePagella",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Viewing a report card",
+        "Precondition": [
+            "User has logged in to the system as Administrator .",
+            "User clicks on the \"Online report cards\" button"
+        ],
+        "Postcondition": [
+            "System displays a student's report card.",
+            "User aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Select the academic year",
+            "Selects the class of the student whose report card you want to view",
+            "Select the student.",
+            "The quarter whose report card to view by clicking on the appropriate button.",
+            "Displays the list of classes in the system with a \"Report Cards\" button associated with each class next to it",
+            "Displays the list of pupils in the class chosen by the user",
+            "View the selected student's report card referring to the selected quarter."
+        ]
+    },
+    {
+        "id": 45,
+        "dataset": "SMOS",
+        "Name": "EntryPage",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Entering a student's report card performed by the Administrator",
+        "Precondition": [
+            "User has logged in to the system as Administrator .",
+            "User clicks on the \"Online report cards\" button"
+        ],
+        "Postcondition": [
+            "A report card related to a student has been added to the system.",
+            "User aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Selects the class of the pupil whose report card is to be entered",
+            "Select the student to enter the report card for by clicking on the relevant button",
+            "Enters report card grades, all or in part, and clicks the \"save\" button",
+            "Displays the list of classes in the system referring to the current academic year with a \"Report Cards\" button associated with each class next to it",
+            "Displays the list of pupils in the class chosen by the user",
+            "View the form for entering a report card",
+            "Inserts grades entered into the archive and returns the user to the class student viewing page."
+        ]
+    },
+    {
+        "id": 46,
+        "dataset": "SMOS",
+        "Name": "EditOfOnePage",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Use case for editing a student's report card",
+        "Precondition": [
+            "The user has logged in to the system as Administrator.",
+            "The user has performed the use case \"ViewOfAPage \".",
+            "The user clicks on the edit button"
+        ],
+        "Postcondition": [
+            "A report card related to a pupil is changed.",
+            "User aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Enter the new data and click the confirmation button",
+            "View form with fields you can edit including grades for different subjects",
+            "The system displays a confirmation message and displays the form with the list of pupils"
+        ]
+    },
+    {
+        "id": 47,
+        "dataset": "SMOS",
+        "Name": "DeleteOfOnePage",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Administrator deletes a report card from the system",
+        "Precondition": [
+            "The user has logged in to the system as Administrator.",
+            "The user has performed the use case \"Viewing a report card\".",
+            "The user clicks on the \"delete\" button"
+        ],
+        "Postcondition": [
+            "A report card related to a student is deleted .",
+            "Connection to the SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "The user accepts the deletion by pressing the confirmation key",
+            "The system displays a form to confirm the deletion",
+            "Displays a message of successful deletion and displays the form with the list of classes"
+        ]
+    },
+    {
+        "id": 48,
+        "dataset": "SMOS",
+        "Name": "ViewRequestsSubscription",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows the administrator to view the list of applications that have arrived at the system",
+        "Precondition": [
+            "User is logged into the system as an administrator .",
+            "User clicks on the \"View Enrollment Request List\" button featured in the home"
+        ],
+        "Postcondition": [
+            "User is viewing the list of student applications to the system.",
+            "User aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "View the list of enrollments yet to be activated."
+        ]
+    },
+    {
+        "id": 49,
+        "dataset": "SMOS",
+        "Name": "AcceptSubscriptionStudent",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows the administrator to accept a student's enrollment in the system",
+        "Precondition": [
+            "User has already performed the \"View Enrollment Requests\" use case.",
+            "User clicks on the \"Accept\" button associated with an enrollment request"
+        ],
+        "Postcondition": [
+            "User accepted a request to enroll in the system.",
+            "User aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Activates the new user in the system.",
+            "View the list of enrollments yet to be activated"
+        ]
+    },
+    {
+        "id": 50,
+        "dataset": "SMOS",
+        "Name": "RejectSubscriptionStudent",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows the administrator to reject a student's enrollment in the system",
+        "Precondition": [
+            "User has already performed the \"View Enrollment Requests\" use case.",
+            "User clicks on the \"Reject\" button associated with an enrollment request"
+        ],
+        "Postcondition": [
+            "User rejected a request to enroll in the system.",
+            "User aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Deletes the application to the system.",
+            "View the list of enrollments yet to be activated"
+        ]
+    },
+    {
+        "id": 51,
+        "dataset": "SMOS",
+        "Name": "Search Entity",
+        "Actors": [
+            "Administrator"
+        ],
+        "Brief Description": "Allows the administrator to search the system for all entities characterized by the keywords entered",
+        "Precondition": [
+            "User is logged in to the system as an admin .",
+            "User enters the text to be searched and clicks on the \"Search\" button"
+        ],
+        "Postcondition": [
+            "The user is viewing an active list of entities corresponding to the keywords entered.",
+            "User aborts operation .",
+            "Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Displays the list of entities related to the keywords searched; specifically shown in an active list are: Classes, Teachings, Addresses, Users found."
+        ]
+    },
+    {
+        "id": 52,
+        "dataset": "SMOS",
+        "Name": "ViewListClasses",
+        "Actors": [
+            "ATA Personnel"
+        ],
+        "Brief Description": "Visualization of classes",
+        "Precondition": [
+            "The user must be logged into the system as ATA staff"
+        ],
+        "Postcondition": [
+            "The user is shown a list from which to choose the class."
+        ],
+        "Basic flow": [
+            "The system shows the user a screen with all the classes in the database, with a button to access the register for each class."
+        ]
+    },
+    {
+        "id": 53,
+        "dataset": "SMOS",
+        "Name": "InsertAbsences",
+        "Actors": [
+            "ATA Personnel"
+        ],
+        "Brief Description": "Digitization of the registry, data collection from ATA staff class by class.",
+        "Precondition": [
+            "The user must be logged in to the system as ATA staff.",
+            "The user has performed the use case ViewListClassroomsATA.",
+            "Select a class whose data is to be entered into the system"
+        ],
+        "Postcondition": [
+            "Absence data has been entered into the system.",
+            "The system has sent notifications to parents.",
+            "The user is shown the home screen again.",
+            "Connection to SMOS server interrupted.",
+            "The user aborts the operation."
+        ],
+        "Basic flow": [
+            "User selects absent students.",
+            "Click save",
+            "Shows the user a screen with pupils and radio buttons to select whether a pupil is absent or present.",
+            "By default the pupil is present.",
+            "The system sends the data to the server.",
+            "The server for each absence sends an e.",
+            "mail notification to the student's parent."
+        ]
+    },
+    {
+        "id": 54,
+        "dataset": "SMOS",
+        "Name": "InsertDelayAta",
+        "Actors": [
+            "ATA Personnel"
+        ],
+        "Brief Description": "Digitization of the registry, data collection from ATA staff class by class.",
+        "Precondition": [
+            "User must be logged in to the system as ATA staff.",
+            "User has performed the use case ViewListClassroomsATA.",
+            "Select a class whose data is to be entered into the system"
+        ],
+        "Postcondition": [
+            "Delay data has been entered into the system.",
+            "The user is shown the home screen again.",
+            "Connection to SMOS server interrupted.",
+            "The user stops operations."
+        ],
+        "Basic flow": [
+            "User selects delays.",
+            "User clicks \"Confirm\"",
+            "The system shows the user a screen with all pupils present, with a \"late\" checkbox next to it.",
+            "If selected, select fields are activated on the side to select the time of the delay",
+            "The system sends the data to the server."
+        ]
+    },
+    {
+        "id": 55,
+        "dataset": "SMOS",
+        "Name": "ViewClassListDoctor",
+        "Actors": [
+            "Lecturer"
+        ],
+        "Brief Description": "This use case allows a teacher to view the list of classes in which he or she teaches",
+        "Precondition": [
+            "The user is logged in to the system as a teacher .",
+            "The 'user clicks the \"Digital Register\" button"
+        ],
+        "Postcondition": [
+            "The list of all classes in which the teacher teaches was shown .",
+            "Connection to SMOS server broken."
+        ],
+        "Basic flow": [
+            "Select the academic year of interest.",
+            "View the list of academic years in which there is at least one class in which the lecturer teaches.",
+            "View the classes associated with the selected school year."
+        ]
+    },
+    {
+        "id": 56,
+        "dataset": "SMOS",
+        "Name": "ViewRegister",
+        "Actors": [
+            "Lecturer"
+        ],
+        "Brief Description": "Viewing the class register",
+        "Precondition": [
+            "The user is logged in to the system as a teacher .",
+            "The user has performed the use case \"ViewListClasses\".",
+            "The system is displaying the list of all the classes in which he/she teaches .",
+            "The user clicks on the \"Register\" button associated with one of the classes"
+        ],
+        "Postcondition": [
+            ": Class register information was shown .",
+            "Connection to SMOS server interrupted."
+        ],
+        "Basic flow": [
+            "Displays information related to the class register and in particular:Date, Absences, Disciplinary Notes, Tardies and Justifications."
+        ]
+    },
+    {
+        "id": 57,
+        "dataset": "SMOS",
+        "Name": "DisplayOfAPagellaLecturer",
+        "Actors": [
+            "Lecturer"
+        ],
+        "Brief Description": "Viewing a report card",
+        "Precondition": [
+            "User has logged into the system as a Teacher .",
+            "User clicks on the \"Online Report Cards\" button"
+        ],
+        "Postcondition": [
+            "System displays a student's report card.",
+            "User aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Select the academic year of interest.",
+            "Select one of the displayed classes.",
+            "Select the student whose report card and four-month reference period to view by clicking on the appropriate button.",
+            ".",
+            "View the list of academic years in which there is at least one class in which the lecturer teaches.",
+            "View the classes associated with the selected school year.",
+            "Displays the list of pupils in the class chosen by the user",
+            "View the selected student's report card referring to the specified four-month period."
+        ]
+    },
+    {
+        "id": 58,
+        "dataset": "SMOS",
+        "Name": "DisplayOfAStudentPage",
+        "Actors": [
+            "Student"
+        ],
+        "Brief Description": "The report card of the student requesting it is displayed",
+        "Precondition": [
+            "User has logged into the system as a Student .",
+            "User clicks on \"online report card\""
+        ],
+        "Postcondition": [
+            "The system displays a student's report card .",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Select the report card of interest",
+            "The system displays the logged-in student's report cards on file",
+            "View details of selected report card"
+        ]
+    },
+    {
+        "id": 59,
+        "dataset": "SMOS",
+        "Name": "ViewScholasticDataStudent",
+        "Actors": [
+            "Student"
+        ],
+        "Brief Description": "Display of school information about the user",
+        "Precondition": [
+            "User is logged into the system as a student .",
+            "User clicks the \"Digital Registry\" button"
+        ],
+        "Postcondition": [
+            "Class register data related to the student was shown .",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Search the archive for data related to the register of the class to which the student belongs",
+            "View data related to the student and in particular: Date, Absences, Disciplinary Notes, Tardiness and Justifications."
+        ]
+    },
+    {
+        "id": 60,
+        "dataset": "SMOS",
+        "Name": "ViewStudentData",
+        "Actors": [
+            "Parent"
+        ],
+        "Brief Description": "This use case allows a parent to view information about their children's",
+        "Precondition": [
+            "User is logged into the system as a parent .",
+            "'User clicks the \"Register\" button associated with one of his or her children"
+        ],
+        "Postcondition": [
+            "Information about one of the user''s children was shown.",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Displays a summary table with information about the children and in particular:Date, Absences, Disciplinary Notes, Tardiness and Justifications."
+        ]
+    },
+    {
+        "id": 61,
+        "dataset": "SMOS",
+        "Name": "ViewOnePagella",
+        "Actors": [
+            "Parent"
+        ],
+        "Brief Description": "The required student's report card is displayed",
+        "Precondition": [
+            "User has logged into the system as a Parent.",
+            "User clicks on the report card button associated with one of their children"
+        ],
+        "Postcondition": [
+            "System displays a student's report card.",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Select the report card of interest",
+            "View selected student's report cards",
+            "View details of selected report card"
+        ]
+    },
+    {
+        "id": 62,
+        "dataset": "SMOS",
+        "Name": "MakeMonitoringStudents",
+        "Actors": [
+            "Direction"
+        ],
+        "Brief Description": "Allows students with a number of notes and absences above a user-specified threshold to be displayed",
+        "Precondition": [
+            "User is logged in to the system as management.",
+            "'User clicks on the \"Student Monitoring\" button"
+        ],
+        "Postcondition": [
+            "Information pertaining to collected data was displayed .",
+            "Connection to SMOS server interrupted."
+        ],
+        "Basic flow": [
+            "Look for students with a number of absences and notes above the established threshold.",
+            "View retrieved information."
+        ]
+    },
+    {
+        "id": 63,
+        "dataset": "SMOS",
+        "Name": "ViewListRecords",
+        "Actors": [
+            "Direction"
+        ],
+        "Brief Description": "View the list of records for an academic year",
+        "Precondition": [
+            "User must be logged in to the system as Management .",
+            "'User clicks on the \"Digital Registry\" button"
+        ],
+        "Postcondition": [
+            "System is displaying the list of records referring to a particular academic year Management aborts Operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Select the academic year",
+            "Shows a screen for selecting the academic year of interest.",
+            "Search the archive for all digital records for that year and display them associated with the class to which they belong"
+        ]
+    },
+    {
+        "id": 64,
+        "dataset": "SMOS",
+        "Name": "ViewRegister",
+        "Actors": [
+            "Direction"
+        ],
+        "Brief Description": "Details related to the register of a class",
+        "Precondition": [
+            "The user is logged in to the direction system.",
+            "The user has performed the \"ViewListRegisters\" use case.",
+            "The system is displaying the list of all registers for a particular academic year.",
+            "The user clicks the \"Register\" button associated with one of the classes"
+        ],
+        "Postcondition": [
+            "Class register information was shown .",
+            "Connection to SMOS server interrupted"
+        ],
+        "Basic flow": [
+            "Displays on the screen the information contained in the register organized by date.",
+            "In particular it shows, for the selected date the list of pupils, specifying: absent/present, late entries and a form from which you can manage justifications and disciplinary notes."
+        ]
+    },
+    {
+        "id": 65,
+        "dataset": "SMOS",
+        "Name": "ViewOnePagella",
+        "Actors": [
+            "Direction"
+        ],
+        "Brief Description": "Viewing a report card",
+        "Precondition": [
+            "User has logged into the system as a Directorate .",
+            "User clicks on the \"Online Report Cards\" button"
+        ],
+        "Postcondition": [
+            "System displays a student's report card.",
+            "User aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Select the academic year",
+            ".",
+            "Selects the class of the student whose report card you want to view.",
+            "Select the student whose report card and quarter of interest you wish to view by clicking on the relevant button",
+            "Displays the list of classes in the system with a \"Report Cards\" button associated with each class next to it",
+            "Displays the list of pupils in the class chosen by the user",
+            "Displays the selected student's report card referring to the selected semester."
+        ]
+    },
+    {
+        "id": 66,
+        "dataset": "SMOS",
+        "Name": "RegistrationAlSite",
+        "Actors": [
+            "Visitor"
+        ],
+        "Brief Description": "Allows a student to register with the system",
+        "Precondition": [
+            "The user clicks on the \"Register\" button on the home page"
+        ],
+        "Postcondition": [
+            "User has made request for system enrollment",
+	    "User aborts operation Connection to SMOS server aborted"
+        ],
+        "Basic flow": [
+            "Fills in the fields of the form",
+            "Submits the form",
+            "View the registration form containing: First name, Last name, Mobile phone, e-mail, username, password, password confirmation.",
+            "Enters the application into the system"
+        ]
+    }
+]

@@ -1,0 +1,939 @@
+[
+    {
+        "id": 0,
+        "dataset": "easyClinic",
+        "Name": "Input anagrafica of a laboratory",
+        "Brief Description": "It allows the operator to enter the anagrafica of a laboratory analysis or any data that the characterize",
+        "Precondition": [
+            "The Operator has an interest to enter the age of laboratory within the SIO",
+            "The Operator has been recognized by system (See UcValOp)",
+            "The Operator has all the data that characterize  the anagrafica of the laboratory"
+        ],
+        "Postcondition": [
+            "The data in the SIO not be modified",
+            "The anagrafica of the laboratory is properly inserted inside the SIO"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of the anagrafica input service Laboratory",
+            "View the mask to enter information needed",
+            "Inserts data about the anagrafica of laboratory",
+            "Confirm placement",
+            "Verify the data entered",
+            "Stores data",
+            "Notify that the operation it is finished with success"
+        ],
+        "Alt. Flow": [
+            "Data entered invalid",
+            "Display a message showing the data deemed invalid",
+            "Reinserts running from 1, underpinned the fields of the form with data entered",
+            "Operator cancels operation",
+            "ends the execution of use case with failure",
+            "The anagrafica of a laboratory is characterized by the following data: name, VAT, address, city, province, CAP, additional addresses, telephone, and notes.",
+            "Note: In italics, data are highlighted optional whose inclusion does not affect the correct completion of the operation."
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "easyClinic",
+        "Name": "Changing anagrafica laboratory",
+        "Brief Description": "It allows the operator to change the anagrafica of a laboratory analysis. It deals with the modification of data about anagrafica of laboratory analysis",
+        "Precondition": [
+            "The Operator has been recognized by system (See UcValOp) and anagrafica of laboratory is inside the SIO"
+        ],
+        "Postcondition": [
+            "The anagrafica data of laboratory are not changed: remain in the first state",
+            "The anagrafica of the laboratory is properly amended"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of service changing of the anagrafica of laboratory",
+            "View the list of laboratories in the SIO",
+            "Select the laboratory which change the anagrafica",
+            "Confirm your selection",
+            "View the mask for editing the anagrafica of laboratory",
+            "Changing the angrafica of laboratory",
+            "Confirm the changes",
+            "Verify the data insert by operator",
+            "updates data",
+            "Notify that the operation finished with success"
+        ],
+        "Alt. Flow": [
+            "Data entered invalid",
+            "Display a message showing the data deemed invalid",
+            "Reinserts running from 4, underpinned the fields of the form with data entered",
+            "Operator cancels operation",
+            "ends the execution of use case with failure",
+            "The anagrafica of a laboratory is characterized by the following data: name, VAT, address, city, province, CAP, addresses, additional telephone, and notes.",
+            "NB: In italics are highlighted optional data whose inclusion does not affect the correct completion of the operation."
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "easyClinic",
+        "Name": "Delete anagrafica laboratory",
+        "Brief Description": "It allows the operator to remove the anagrafica of a laboratory analysis. It works for the elimination of data at anagrafica on a laboratory analysis.",
+        "Precondition": [
+            "The Operator has been recognized by system (See UcValOp) and age Laboratory is inside the SIO."
+        ],
+        "Postcondition": [
+            "The anagrafica data of the laboratory are not changed, they remain in the state of the first execution.",
+            "The age of the laboratory is successfully eliminated."
+        ],
+        "Basic flow": [
+            "The operator activates the execution of the elimination of the anagrafica of the laboratory.",
+            "View the list of laboratories in the SIO.",
+            "Select the laboratory which needs to change the anagrafica.",
+            "Confirm your selection.",
+            "View the mask to eliminate the anagrafica of the laboratory.",
+            "Confirm the delete of laboratory.",
+            "Delete the data about anagrafica of laboratory.",
+            "Notify that the operation is finished with success."
+        ],
+        "Alt. Flow": [
+            "Operator cancels operation",
+            "ends the execution of use case with 6.1 failure.",
+            "The mask will contain data on the laboratory selected to enable the operator to monitor them in detail before to act the delete."
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "easyClinic",
+        "Name": "Inserting doctor anagrafica",
+        "Brief Description": "It allows the operator to input the anagrafica of a doctor who works at the outpatient.The Operator is responsible for the input of the doctor anagrafica in the SIO.",
+        "Precondition": [
+            "The Operator has been recognized by the System (See UcValOp) and has all the data that characterize the doctor anagrafica."
+        ],
+        "Postcondition": [
+            "The data in the SIO cannot be modified.",
+            "The doctor anagrafica is correctly inserted in the SIO. The operator activates the execution of the input service of the doctor anagrafica."
+        ],
+        "Basic flow": [
+            "View the mask for input of needed information",
+            "Insert data of doctor anagrafica",
+            "Confirm input",
+            "Verify the data insert by the operator",
+            "tore data",
+            "Notify that the operation is finished with success",
+            "Data entered invalid:",
+            "Display a message showing the data deemed invalid",
+            "Take back running from point 1, underpinned the fields of the form with data inserted by the operator"
+        ],
+        "Alt. Flow": [
+            "Operator cancels operation",
+            "Ends the execution of use case with failure",
+            "The age of a physician is characterized by the following data: name, surname, sex, code tax, date of birth, province of birth place, address of home, province of residence, ZIP code, telephone, specialization year, certification, and additional notes.",
+            "NB: In italics are highlighted data Optional whose inclusion does not affect on the correct completion of the operation."
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "easyClinic",
+        "Name": "Changing doctor anagrafica",
+        "Brief Description": "It allows the operator to change the anagrafica of a doctor who works at the outpatient. It deals with the modification of data about a doctor anagrafica",
+        "Precondition": [
+            "The Operator has been recognized by the System (See UcValOp) and the doctor is present within the SIO."
+        ],
+        "Postcondition": [
+            "The anagrafica data of the doctor are not modified, remain in this was before.",
+            "The personal doctor is correctly changed.The anagrafica data of the doctor are updated."
+        ],
+        "Basic flow": [
+            "The operator activates the execution of Chanching service of the doctor anagrafica",
+            "View the list of doctors present in the SIO.",
+            "Select the anagrafica doctor which change the anagrafica",
+            "Confirm the selection",
+            "View the mask for changing of the doctor anagrafica",
+            "Changing the anagrafica of doctor",
+            "Confirm Changes",
+            "Verify the data insert by operator",
+            "Remember the updates",
+            "Notify that the operation is finished with success."
+        ],
+        "Alt. Flow": [
+            "Data entered invalid",
+            "Display a message showing the data are invalid",
+            "take back running from 4 underpinned the fields of the form with data insert by user",
+            "Operator cancels operation",
+            "ends the execution of use case with failure",
+            "The anagrafica of a doctor is characterized by the following data: name, surname, sex, code, tax code, date of birth, place of birth, province of birth, place of address home, province of residence, address ZIP code, telephone, specialization, year certification, and additional notes.NB: In italics are highlighted data Optional whose inclusion does not affect on the correct completion of the operation."
+        ]
+    },
+    {
+        "id": 5,
+        "dataset": "easyClinic",
+        "Name": "Delete doctor anagrafica",
+        "Brief Description": "It allows the operator to delete the anagrafica of a doctor who works at the outpatient",
+        "Precondition": [
+            "He works for the delete of data of anagrafica related to a doctor",
+            "The Operator has been recognized by system (See UcValOp) and anagrafica of the doctor is present within the SIO"
+        ],
+        "Postcondition": [
+            "The details of the doctor are not modified, remain in this state was before execution",
+            "The doctor anagrafica is successfully deleted"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of delete of the register service laboratory",
+            "View the list of laboratories that are in the SIO",
+            "Select the doctor which changing the anagrafica",
+            "Confirm the selection",
+            "View the mask to delete the doctor anagrafica",
+            "confirm to delete of doctor",
+            "Delete the data  about anagrafica of doctor",
+            "Notify that the operation is finished with success"
+        ],
+        "Alt. Flow": [
+            "Operator cancels operation",
+            "ends the execution of use case with failure",
+            "The mask will contain data about the medical selected so as to allow the operator to examine them in detail before proceeding to delete"
+        ]
+    },
+    {
+        "id": 6,
+        "dataset": "easyClinic",
+        "Name": "Validate operator",
+        "Brief Description": "He works to perform the functions necessary to authenticate an operator",
+        "Precondition": [
+            "It's Interest to make their validation in order to use the all features available in system"
+        ],
+        "Postcondition": [
+            "The Operator is not recognized by system",
+            "The Operator is recognized by system and enabled it"
+        ],
+        "Basic flow": [
+            "The operator tries to log on system",
+            "View the mask for validation of operator",
+            "Inserts login and password",
+            "Confirm data",
+            "verify login and identify password of a operator within the SIO",
+            "allows access",
+            "View the main mask"
+        ],
+        "Alt. Flow": [
+            "Operator cancels the validation operation",
+            "System: ends the execution of use case with failure",
+            "Validation Failed",
+            "System: Show appropriate message",
+            "System: take back the execution by 1 point and underpins the fields of the form with data inserted by user"
+        ]
+    },
+    {
+        "id": 7,
+        "dataset": "easyClinic",
+        "Name": "Record visit",
+        "Brief Description": "It allows the operator to record a visit held in outpatient",
+        "Precondition": [
+            "The Operator has an interest in a record visit held in outpatient",
+            "The Operator has been recognized by system (See UcValOp)",
+            "The Operator has received the data of for visit"
+        ],
+        "Postcondition": [
+            "The Clinic of Folder Patient who was subjected to visit is not changed",
+            "All information is stored in the patient folder clinic"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of registration service of a visit",
+            "View the mask to record of the visit",
+            "inputs the neccesary data of the registration of visit",
+            "Confirm input",
+            "Verify the data inserted by operator",
+            "Stores data",
+            "Notify the operator that the operation was concluded successfully"
+        ],
+        "Alt. Flow": [
+            "Input Data of a new examination",
+            "Inserting a new examination.",
+            "The Operator has interest to input data an examination of the visit concerned",
+            "Back on 6 point",
+            "Invalid data set",
+            "Show an appropriate message",
+            "take back running from 1, underpinned the fields of the form with data inserted by user",
+            "Operator cancels the registration operation",
+            "ends the use case with failure",
+            "The data required for registration of visit are: the date, the name of the doctor who carried out the survey, the reason for the visit, illnesses accused by the patient, history made by medical diagnosis, tests prescribed therapy prescribed (indicating medicines and time of recruitment) and necessary",
+            "Furthermore, the inclusion of possible values instrumental observations made during the visit (eg heart beat, the pressure number of blood, found dioptres etc)",
+            "For biological testing and instrumental is must enter information on the laboratory that has made them the values of results of each examination and evaluation diagnosis made by medical"
+        ]
+    },
+    {
+        "id": 8,
+        "dataset": "easyClinic",
+        "Name": "Changing visit",
+        "Brief Description": "It allows the operator to change a visit previously recorded",
+        "Precondition": [
+            "The Operator has an interest in a change visit previously recorded",
+            "The Operator has been recognized by system (See UcValOp)",
+            "The Operator has received the data of for visit",
+            "The visit is registered in the SIO"
+        ],
+        "Postcondition": [
+            "The clinic folder of patient who was subjected to visit is not changed",
+            "Information of Visit in  clinic folder of patient are updated"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of service editing a visit",
+            "View the list of visits in chronological order",
+            "Select the visit by change",
+            "Confirm your selection",
+            "View the mask for the modification of a visit",
+            "Changing data of the visit",
+            "Confirm Changes",
+            "Verify the data insert by operator",
+            "Remember the updates",
+            "Notify to the operator that the operation was concluded successfully"
+        ],
+        "Alt. Flow": [
+            "Input of Data about to a new examination",
+            "Inserting new examination.",
+            "The Operator is interest to input data of an examination of the visit in object",
+            "Return to step 5",
+            "Changing data of an examination",
+            "Change examination data.",
+            "The Operator is interest to modify the data an examination of the visit edit review",
+            "Return to step 5",
+            "Deleting data of an examination",
+            "Deleting data examination.",
+            "The Operator's interest to delete data an examination of the visit",
+            "Return to step 5",
+            "Invalid data set",
+            "Show an appropriate message",
+            "take back running from 4 step, underpinned the fields of the form with data inserted by operator",
+            "Operator cancels the change operation",
+            "ends the use case with failure",
+            "The data required for registration of visit are: the date, the name of the doctor who carried out the survey, the reason for the visit, illnesses accused by the patient, history made by medical diagnosis, tests prescribed therapy prescribed (indicating medicines and time of recruitment) and necessary",
+            "Furthermore, the inclusion of possible values instrumental observations made during the visit (eg heart beat, the pressure number of blood, found dioptres etc)",
+            "For biological testing and instrumental is must enter information on the laboratory that has made them the values of results of each examination and evaluation diagnosis made by medical"
+        ]
+    },
+    {
+        "id": 9,
+        "dataset": "easyClinic",
+        "Name": "Delete visit",
+        "Brief Description": "It allows the operator to delete a visit previously recorded",
+        "Precondition": [
+            "The Operator's interest to delete a visit previously recorded",
+            "The Operator has been recognized by system (See UcValOp) and the visit is registered in the SIO"
+        ],
+        "Postcondition": [
+            "The data in the SIO not be modified",
+            "The Folder Clinic Patient   which was submitted to visit eliminated is updated"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of service elimination of a visit",
+            "View the list of visits in chronological order",
+            "Select the visit to delete",
+            "Confirm the selection",
+            "View the mask for viewing of visit",
+            "Confirm the delete",
+            "Delete the visit and examinations related to it",
+            "Notify the operator that the operation was concluded successfully"
+        ],
+        "Alt. Flow": [
+            "Operator cancels the operation",
+            "ends the use case with failure",
+            "The mask will contain data on the visit selected so as to allow the operator to verify them in detail before proceeding to delete"
+        ]
+    },
+    {
+        "id": 10,
+        "dataset": "easyClinic",
+        "Name": "Input examination",
+        "Brief Description": "It allows the operator to record results of a examination supported by a patient required a visit held in outpatient",
+        "Precondition": [
+            "The Operator's interest to enter details of a review supported by a Patient",
+            "The Operator has been recognized by System (See UcValOp) and the visit to refers the examination must be already recorded in the SIO"
+        ],
+        "Postcondition": [
+            "The data in the SIO not be modified",
+            "The Folder Clinic Patient argued that the examination is updated"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of input service of data from an examination",
+            "View the mask to record of examination",
+            "Input necessary data to registration of examination",
+            "Confirm input",
+            "Verify the data inserted by operator",
+            "Stores data confirm the elimination",
+            "Notify the operator that the operation was concluded successfully"
+        ],
+        "Alt. Flow": [
+            "Invalid data set",
+            "Show an appropriate message",
+            "take back running from step 1 underpinned the fields of the form with data inserted by user",
+            "Operator cancels the operation",
+            "Registration",
+            "ends the use case with failure",
+            "The data required for registration of a consideration are: the type of examination, information relating to the laboratory where they made the values of the results and diagnostic evaluation made by the doctor"
+        ]
+    },
+    {
+        "id": 11,
+        "dataset": "easyClinic",
+        "Name": "Changing examination",
+        "Brief Description": "It allows the operator to change a examination previously recorded",
+        "Precondition": [
+            "The Operator has an interest in change examination  previously recorded",
+            "The Operator has been recognized by System (See UcValOp) examination is registered in the SIO and",
+            "The Operator has received the results of to be change"
+        ],
+        "Postcondition": [
+            "The Clinic of Folder Patient who has undergone is not changed",
+            "Information on examination to be updated within of the patient's Clinic Folder"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of service to modify an examination",
+            "View a list of tests carried out in chronological order",
+            "Select the examination by change",
+            "Confirm your selection",
+            "View the mask for the modification of a examination",
+            "Change of data",
+            "Confirm Changes",
+            "Verify the data inserted by operator",
+            "updates the examination.",
+            "Notify the operator that the operation was concluded successfully"
+        ],
+        "Alt. Flow": [
+            "Invalid data set",
+            "Show an appropriate message",
+            "take back running from step 4, underpinned the fields of the form with data inserted by operator",
+            "Operator cancels the operation",
+            "Review",
+            "ends the use case with failure",
+            "The data required for registration of a consideration are: the type of examination, information relating to the laboratory where they made the values of the results and diagnostic evaluation made by the doctor"
+        ]
+    },
+    {
+        "id": 12,
+        "dataset": "easyClinic",
+        "Name": "Delete examination",
+        "Brief Description": "It allows the operator to delete a Visit previously recorded",
+        "Precondition": [
+            "The Operator's interest to delete a review previously recorded",
+            "The Operator has been recognized by System (See UcValOp) and the examination showed registered in the SIO"
+        ],
+        "Postcondition": [
+            "The data in the SIO not be modified",
+            "The Folder Clinic Patient who had undergone to examination eliminated is updated"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of service elimination of an examination",
+            "View a list of examinations conducted in chronological order",
+            "Select the examination to change",
+            "Confirm your selection",
+            "View the mask for viewing examination",
+            "confirms the deletion",
+            "Delete the examination",
+            "Notify the operator that the operation was concluded successfully"
+        ],
+        "Alt. Flow": [
+            "Operator cancels the operation",
+            "ends the use case with failure",
+            "The mask will contain information relating to selected so as to allow the operator to monitor them in detail before proceeding to delete"
+        ]
+    },
+    {
+        "id": 13,
+        "dataset": "easyClinic",
+        "Name": "Book visit",
+        "Brief Description": "It allows the operator to meet request for a booking service made by an ambulatory patient.The Operator has an interest in the record renting an outpatient service requested by a patient",
+        "Precondition": [
+            "The Operator has been recognized by System (See UcValOp)",
+            "The patient is been recognized by the system (See UcValPaz) and has issued to The module RSA properly completed"
+        ],
+        "Postcondition": [
+            "The data in the SIO not be modified",
+            "The outpatient service required is properly booked"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of service booking service",
+            "The Operator has received a request for a first visit",
+            "View the mask for booking of outpatient service",
+            "Select the type of visit that the patient wants to make",
+            "Inserts motivation of the request",
+            "Confirm data inserted",
+            "Verify that the sequence of reservations are valid (See BrValSeq)",
+            "Select available dates",
+            "Confirm your reservation",
+            "Stores data",
+            "Notify the operator that the operation was concluded successfully"
+        ],
+        "Alt. Flow": [
+            "Sequence reservations invalid",
+            "Show an appropriate message",
+            "Reinserts execution from step 2",
+            "Operator cancels the operation",
+            "Reservations",
+            "ends the use case with failure",
+            "For a first visit, the patient's personal data will be saved at this point.",
+	    "In addition, before the visit, the patient can view and print the hospital patient card."
+        ]
+    },
+    {
+        "id": 14,
+        "dataset": "easyClinic",
+        "Name": "Changing reservation",
+        "Brief Description": "It allows the operator to meet request to change a reservation a service by Outpatient",
+        "Precondition": [
+            "The Operator has an interest in changing the renting an outpatient service previously requested by a patient",
+            "The Operator has been recognized by system (See UcValOp)",
+            "The patient has been recognized by the system (See UcValPaz)",
+            "The reservation of which requires the amendment is in the SIO"
+        ],
+        "Postcondition": [
+            "The data in the SIO not be modified",
+            "The reservation is successfully slipped a date"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of service to changing a reservation",
+            "View the list of reservations for the patient",
+            "Select the reservation to be changed",
+            "Confirm the selection",
+            "View the mask for changing the reservations",
+            "Select dates available",
+            "confirm the change",
+            "verifies that the sequence of reservations is valid (See BrValSeq)",
+            "updates the data",
+            "Notify the operator that the operation was concluded successfully"
+        ],
+        "Alt. Flow": [
+            "Sequence reservations invalid",
+            "Show an appropriate message",
+            "Rejuvenating running from step 4",
+            "Operator cancels the operation",
+            "Review",
+            "ends the use case with failure",
+            "The sequence of reservations must be ricontrollata because the patient may take a different reservation since last editing"
+        ]
+    },
+    {
+        "id": 15,
+        "dataset": "easyClinic",
+        "Name": "Cancel Reservation",
+        "Brief Description": "It allows the operator to meet request for annulment of a renting an outpatient service by a patient",
+        "Precondition": [
+            "The Operator's interest to cancel reservation an outpatient ambulatorial service previously requested by a patient",
+            "The Operator has been recognized by System (See UcValOp)",
+            "The patient has been recognized by the system (See UcValPaz)",
+            "The reservation of which requires the cancellation is in the SIO"
+        ],
+        "Postcondition": [
+            "The data in the SIO not be modified",
+            "The reservation is definitively annulled"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of service cancellation of a Reservations",
+            "View the list of reservations for the patient",
+            "Select the reservation to be changing",
+            "Confirm cancellation",
+            "Verify that the sequence of reservations are valid (See BrValSeq)",
+            "Cancel Reservation",
+            "Notify the operator that the operation was concluded successfully"
+        ],
+        "Alt. Flow": [
+            "Sequence reservations invalid",
+            "Show an appropriate message",
+            "Reinserts running from step 1",
+            "Operator cancels the operation",
+            "Review",
+            "ends the use case with failure",
+            "The sequence of reservations must be ricontrollata because the patient may take a different reservation since last editing"
+        ]
+    },
+    {
+        "id": 16,
+        "dataset": "easyClinic",
+        "Name": "Changing anagrafica of the patient",
+        "Brief Description": "It allows the operator to change the anagrafica of a patient that are at outpatient.It deals with the modification of data about anagrafica a Patient",
+        "Precondition": [
+            "The Operator has been recognized by system (See UcValOp)",
+            "The patient is been recognized by the system (See UcValPaz)",
+            "The age of the patient is inside of SIO"
+        ],
+        "Postcondition": [
+            "The anagrafica data of the patient are not modified before execution.",
+            "The anagrafica of the patient is properly changed"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of change Service  of the anagrafica of the patient",
+            "View the mask for editing the anagrafica of patient",
+            "Change the anagrafica of patient",
+            "Confirm Changes",
+            "Verify the data inserted by operator",
+            "Remember the updates",
+            "Notify that the operation finished with success"
+        ],
+        "Alt. Flow": [
+            "Invalid data set",
+            "Display a message showing the data deemed invalid",
+            "Reinserts running from 1, underpinned the fields of the form with data insterted by user",
+            "Operator cancels function",
+            "change",
+            "ends the execution of use case with failure",
+            "The anagrafica of a patient is characterized by following data: name, surname, sex, code, tax, date of birth, place of birth, province of birth, place of home address, province of residence address, ZIP code, additional telephone and Notes.",
+            "NB: In italics are highlighted data, Optional whose inclusion does not affect on the correct completion of the operation"
+        ]
+    },
+    {
+        "id": 17,
+        "dataset": "easyClinic",
+        "Name": "input anagrafica of patient",
+        "Brief Description": "It allows the operator to enter the anagrafica of a patient who contact the outpatient for the first time.",
+        "Precondition": [
+            "The Operator has an interest in record the anagrafica of a new patient after the surgery and before booking for a Visit",
+            "The Operator has been recognized by system (See UcValOp)",
+            "The Patient issued to the form S A R  with the section about anagrafica successfully completed"
+        ],
+        "Postcondition": [
+            "The data in the SIO not be modified",
+            "The anagrafica of the patient is correctly maintained in memory and stored in the SIO only end of the reservation of the first visit"
+        ],
+        "Basic flow": [
+            "View the mask for input of necessary information",
+            "Inserts data about anagrafica of Patient",
+            "Confirm input",
+            "Verify the data inserted by operator",
+            "Build and assigns Hospital Card (See BrCreCar)",
+            "First visit"
+        ],
+        "Alt. Flow": [
+            "Invalid data set",
+            "Display a message showing the data deemed invalid",
+            "Reinserts running from 1 step, underpinned the fields of the form with data inserted by operator",
+            "Operator cancels function",
+            "insertion",
+            "ends the execution of use case with failure",
+            "The anagrafica of a patient is characterized by following data: name, surname, sex, code, tax, date of birth, place of birth, province of birth, place of home address, province of residence address, ZIP code, additional telephone and Notes.",
+            "NB: In italics are highlighted data, Optional whose inclusion does not affect on the correct completion of the operation"
+        ]
+    },
+    {
+        "id": 18,
+        "dataset": "easyClinic",
+        "Name": "Access section of patient",
+        "Brief Description": "It allows access to this patient by enabling the operator to meet one or more Requests received by Patient",
+        "Precondition": [
+            "The Operator's interest to access the section of the patient in order to enslave the requests received from patient",
+            "The Operator has been recognized by system (See UcValOp)"
+        ],
+        "Postcondition": [
+            "The system denies access to section patient",
+            "The operator gets access section and enabled the patient to meet the requests received from patient"
+        ],
+        "Basic flow": [
+            "The operator activates the execution of service access to section patient",
+            "valid patient",
+            "View mask of section patient"
+        ],
+        "Alt. Flow": [
+            "Operator cancels the operation",
+            "access to patient session",
+            "ends the use case with failure"
+        ]
+    },
+    {
+        "id": 19,
+        "dataset": "easyClinic",
+        "Name": "Validate patient",
+        "Brief Description": "He works to perform the functions necessary to authenticate an patient",
+        "Precondition": [
+            "Operator has an interest in validating the patient to access to the section relating to his information",
+            "The Operator has been recognized by system (See UcValOp)",
+            "The patient must provide the operator with the Hospital Card or tax code"
+        ],
+        "Postcondition": [
+            "The patient is not recognized system",
+            "The patient is recognized by system Operator and access to its section"
+        ],
+        "Basic flow": [
+            "The Operator active enforcement of a depending on a specific patient",
+            "View the mask for validating the patient",
+            "input the code of hospital Card",
+            "Confirm validation",
+            "Verify that the code of hospital card or tax code to identify a patient within SIO",
+            "Get patient information",
+            "Transfer patient data to the memory"
+        ],
+        "Alt. Flow": [
+            "Validation through tax code",
+            "injects the tax code of patient",
+            "Reinserts running from step 3",
+            "Operator cancels function",
+            "validation",
+            "ends the execution of use case with failure",
+            "Login failed",
+            "Show appropriate message",
+            "Reinserts execution from step 2"
+        ]
+    },
+    {
+        "id": 20,
+        "dataset": "easyClinic",
+        "Name": "Show clinic folder",
+        "Brief Description": "Allows a patient to view clinic folder own folder using the specific locations displaced of the outpatient",
+        "Precondition": [
+            "He has an interest in access to your clinic folder",
+            "The patient has been recognized by system (See UcAccTB)"
+        ],
+        "Postcondition": [
+            "The patient obtains display information contained in their clinic folder"
+        ],
+        "Basic flow": [
+            "The patient activates the execution of service display clinic folder",
+            "Access to the database and retrieves information in patient clinic folder",
+            "View details of patient and the list of visits in chronological order and pathology"
+        ],
+        "Alt. Flow": [
+            "Patient displays details of visit",
+            "Select a visit from the list and requires viewing details",
+            "Access to the database and retrieves the details of the visit selected",
+            "Display the mask containing the details of the visit",
+            "Patient decides to print the clinic folder",
+            "Start printing the clinic folder",
+            "generates the report and sends it to printer",
+            "Patient decides to print details of a visit",
+            "Start printing the details of visit",
+            "generates the report and sends it to printer",
+            "For each visit, lists the date, the name of the doctor who carried out the survey, and reason for the visit",
+            "for each visit, lists the date the name of the doctor who made the visit, reason for the visit, and accused by illnesses patient history made by the doctor, the diagnostic tests prescribed, the therapy (giving medicines and time of recruitment) ,the reported values,any observations made instrumental during the visit (e.g. heartbeat, blood pressure values, number of dioptres found etc.)",
+            "For biological and/or instrumental examinations, once they have been made,  provides information relating to the laboratory that performed them and the values of the results of each examination and diagnostic evaluation made by the doctor."
+        ]
+    },
+    {
+        "id": 21,
+        "dataset": "easyClinic",
+        "Name": "Show Reservations",
+        "Brief Description": "Allows a patient to view thr list of reservation profits using the appropriate locations displaced of the outpatient",
+        "Precondition": [
+            "He has an interest in access to the their reservations profits",
+            "The patient has been recognized by system (See UcAccTB)"
+        ],
+        "Postcondition": [
+            "The patient obtains the display of the list of its reservations"
+        ],
+        "Basic flow": [
+            "The patient activates the execution of service displaying their reservations",
+            "Access to the database and retrieves information of the useful patient reservation",
+            "View the list of the patient bookings in chronological order"
+        ],
+        "Alt. Flow": [
+            "Patient decides to print the reservations list",
+            "Start printing the list of Reservations",
+            "generates the report and sends it to printer",
+            "for each reservation lists the date, time, type of access, and why visit"
+        ]
+    },
+    {
+        "id": 22,
+        "dataset": "easyClinic",
+        "Name": "Show anagrafica",
+        "Brief Description": "Allows a patient of view their anagrafica data using the specific locations displaced of the outpatient",
+        "Precondition": [
+            "He has an interest in access to your anagrafica information",
+            "The patient has been recognized by system(See UcAccTB)"
+        ],
+        "Postcondition": [
+            "The patient obtains display of their anagrafica data"
+        ],
+        "Basic flow": [
+            "The patient activates the execution of service display their anagrafica data",
+            "Access to the database and retrieves information about patient anagrafica",
+            "View information patient anagrafiche"
+        ],
+        "Alt. Flow": [
+            "Patient decides to print information displayed",
+            "Start printing the list of reservations",
+            "generates the report and sends it to printer",
+            "The age of a patient is characterized by following data: name, surname, sex, tax code, date of birth, province of birth place, address of home, province of residence, ZIP code, telephone and Notes"
+        ]
+    },
+    {
+        "id": 23,
+        "dataset": "easyClinic",
+        "Name": "Access Box Tower",
+        "Brief Description": "Allows the patient to access a locations of internally displaced of the outpatient",
+        "Precondition": [
+            "He's Interest to log on to see your information",
+            "The patient must be in possession of Hospital Card"
+        ],
+        "Postcondition": [
+            "The patient is not recognized system",
+            "The patient is recognized by system and is authorized to have access to his section"
+        ],
+        "Basic flow": [
+            "Patient access to one of the locations displaced of the outpatient",
+            "valid patient",
+            "find patients information",
+            "Transfer patient data in the memory",
+            "View the root mask of a box tower"
+        ],
+        "Alt. Flow": []
+    },
+    {
+        "id": 24,
+        "dataset": "easyClinic",
+        "Name": "Validation patient",
+        "Brief Description": "He works to perform the functions necessary to authenticate an patient",
+        "Precondition": [
+            "He has nterest to log on to see your information",
+            "The patient must be in possession of Hospital Card"
+        ],
+        "Postcondition": [
+            "The patient is not recognized system",
+            "The patient is recognized by system and access to its section"
+        ],
+        "Basic flow": [
+            "Patient access to Box Tower",
+            "View the mask for the login operation",
+            "input the code of Hospital Card PIN",
+            "Confirm validation",
+            "Verify that the couple (Hospital Card PIN)",
+            "identifies a patient within SIO"
+        ],
+        "Alt. Flow": [
+            "Patient cancels validation function",
+            "ends the execution of use case with failure",
+            "Validation Failed",
+            "Show appropriate message",
+            "Reinserts running from 1 step"
+        ]
+    },
+    {
+        "id": 25,
+        "dataset": "easyClinic",
+        "Name": "Report reservations",
+        "Brief Description": "It allows the operator to have a report on reservation",
+        "Precondition": [
+            "The Operator has interest to have a report of reservation",
+            "The Operator has been recognized by system (See UcValOp)"
+        ],
+        "Postcondition": [],
+        "Basic flow": [
+            "The operator activates the execution of service report reservation",
+            "View the mask for viewing of the report of reservation",
+            "Select the time gap",
+            "Select the type of information summary",
+            "Confirm selection",
+            "Access to the database and found in the training required",
+            "View information obtained"
+        ],
+        "Alt. Flow": [
+            "Operator decides to print information",
+            "Start printing information displayed",
+            "generates the report and sends it to printer",
+            "Operator cancels the operation",
+            "ends the use case with failure",
+            "An operator can \"access the following summary information:",
+            "For a particular patient, the sequence of bookings in a given period or throughout the period where it was in contact with the clinic, specifying the dates of appointments and the types of visit;",
+            "For a specific date, a list of all reservations made"
+        ]
+    },
+    {
+        "id": 26,
+        "dataset": "easyClinic",
+        "Name": "Report visits",
+        "Brief Description": "It allows the operator to have a record of the outpatient visits, inside so have a total of visits made by a patient, visits supported by a doctor etc",
+        "Precondition": [
+            "The Operator has interest to have a report of visits within of the outpatient",
+            "The Operator has been recognized by system (See UcValOp)"
+        ],
+        "Postcondition": [],
+        "Basic flow": [
+            "The operator activates the execution of service record visits",
+            "View the mask for viewing the reporting of visits",
+            "Select the time gap",
+            "Select the type of information summary",
+            "Confirm selection",
+            "Access to the database and found in the required training",
+            "View information obtained"
+        ],
+        "Alt. Flow": [
+            "Operator decides to print information",
+            "Start printing information displayed",
+            "generates the report and sends it to printer",
+            "Operator cancels the operation",
+            "ends the use case with failure",
+            "The Operator can access the following summary information:",
+            "All visits with the patient undergoes a doctor visit who led the visit;",
+            "All visits made by the same doctor with the dates of patients visited and the required examinations;",
+            "All visits made by a patient with the dates of doctor, accused of diagnostic pathology examinations and medicines prescribed"
+        ]
+    },
+    {
+        "id": 27,
+        "dataset": "easyClinic",
+        "Name": "Report examinations",
+        "Brief Description": "It allows the operator to have a report on tests carried out in reference to visits made in outpatient",
+        "Precondition": [
+            "The Operator has interest to have a report of tests carried out",
+            "The Operator has been recognized by system (See UcValOp)"
+        ],
+        "Postcondition": [],
+        "Basic flow": [
+            "The operator activates the execution of reporting service examinations",
+            "View the mask for viewing the reporting of examinations",
+            "Select the storm",
+            "Confirm your selection",
+            "Access to the database and found in the required training",
+            "View information obtained"
+        ],
+        "Alt. Flow": [
+            "Operator decides to print",
+            "information",
+            "Start printing information displayed",
+            "generates the report and sends it to printer",
+            "Operator cancels the operation",
+            "ends the use case with failure",
+            "The system displays a list of examinations indicating the date, prescribed prescription, completion date, patient medical prescriber diagnosis and laboratory where the examination was carried out"
+        ]
+    },
+    {
+        "id": 28,
+        "dataset": "easyClinic",
+        "Name": "The average time of waiting",
+        "Brief Description": "It allows the operator to get an estimate the average time required to serve a booking",
+        "Precondition": [
+            "The Operator's interest to have a estimating the average time to serve a reservation request"
+        ],
+        "Postcondition": [],
+        "Basic flow": [
+            "The operator activates the execution of service for calculating the estimated average time",
+            "View a mask to see the result of the calculation estimation of average time to serve a request reservations",
+            "Start function",
+            "View results calculating"
+        ],
+        "Alt. Flow": [
+            "Operator decides to print information",
+            "Start printing information displayed",
+            "generates the report and sends it to printer",
+            "Operator cancels the operation",
+            "ends the use case with failure",
+            "The time of service delivered in days equals the time between the date of request reservation and when the appointment is assigned"
+        ]
+    },
+    {
+        "id": 29,
+        "dataset": "easyClinic",
+        "Name": "Plans reservations",
+        "Brief Description": "It allows the operator to view and print plans of bookings made for each type visit in tabular form",
+        "Precondition": [
+            "The Operator's interest to see and print the plans reservations",
+            "The Operator has been recognized by system (See UcValOp)"
+        ],
+        "Postcondition": [],
+        "Basic flow": [
+            "The operator activates the execution of service to view and print plans reservations",
+            "View a mask to view and print plans reservations",
+            "Select the type of visit",
+            "Enable",
+            "Access to the database and found in the required training",
+            "View information obtained"
+        ],
+        "Alt. Flow": [
+            "Operator decides to print information",
+            "Start printing information displayed",
+            "generates the report and sends it to printer",
+            "Operator cancels the operation",
+            "ends the use case with failure",
+            "The types of access that the operator can select are: First Visit Day, and Hospital Visit Check",
+            "for each reservation in this plan Reservations is the name of patient"
+        ]
+    }
+]

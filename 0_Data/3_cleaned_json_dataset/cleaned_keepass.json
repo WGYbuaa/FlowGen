@@ -1,0 +1,414 @@
+[
+    {
+        "id": 0,
+        "Name": "New Database",
+        "Brief Description": "This feature provides the ability to create a new database. It is the first thing a user must do to begin using KeePass. Its main function is the determination of the master password that will unlock the database from now on",
+        "Basic flow": [
+            "User opens KeePass and select New->Database",
+            "User writes his private Master Password and/or selects Key File",
+            "User selects OK",
+            "Master Password confirmation: the user retypes Master Password",
+            "The main database window opens"
+        ],
+        "Alt. Flow": [
+            [
+                "User selects Help",
+                "The help file opens"
+            ],
+            [
+                "User selects Cancel",
+                "Exit from KeePass"
+            ],
+            [
+                "The user does not determines a Master Password",
+                "A message is appeared which prompts him to enter a password or key file"
+            ]
+        ],
+        "Postcondition": [
+            "KeePass must be downloaded and installed",
+            "Master Password has no limits in length.",
+            "A whole sentence can be used with more than 100 characters."
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 1,
+        "Name": "Open Database",
+        "Brief Description": "This feature allows the user to open an existing database. When choosing to open a database a user is transferred to his documents where he navigates to find the database he wants. When the database is found, the master password is wanted so that the database will be unlocked. Once this is done the user is free to access his data.",
+        "Basic flow": [
+            "User opens KeePass and select Open->Database",
+            "User navigates through his folders",
+            "User selects a database",
+            "User types Master Password",
+            "The main database window opens"
+        ],
+        "Alt. Flow": [
+            [
+                "User selects a type of folder non suitable for database",
+                "A message “file not found” appears",
+                "User selects another folder"
+            ],
+            [
+                "Master Password is wrong",
+                "A message “invalid/wrong key” appears",
+                "User types another master key"
+            ],
+            [
+                "User chooses cancel",
+                "Exit from KeePass"
+            ]
+        ],
+        "Postcondition": [
+            "Folder selected must be of type the database can read and that is “name”.kdb"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 2,
+        "Name": "Save Database",
+        "Brief Description": "This feature allows the user to save any changes or updates he has performed to his database. When a database is opened, the user can access his passwords, organize them into new groups and subgroups, delete and add entries and so much more. But when it is time for the database to close or during his working on the database, he can save the changes made.",
+        "Basic flow": [
+            "User opens KeePass and changes his data",
+            "User selects save database",
+            "Database is saved",
+            "User exits KeePass"
+        ],
+        "Alt. Flow": [
+            [
+                "User selects save as",
+                "User gives a new database name",
+                "New database is saved and opens with the same master password"
+            ],
+            [
+                "User continues working after he saves the database"
+            ],
+            [
+                "User wants to exit KeePass",
+                "A message is appeared asking if he wants to save the database",
+                "User selects yes and exits, or no and exits or cancel and return to database"
+            ],
+            [
+                "Users minimizes the database",
+                "A message is appeared asking if he wants to save the database before locking"
+            ]
+        ],
+        "Postcondition": [
+            "Databases must have different names or else the previews one will be replace if selected"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 3,
+        "Name": "Print Database",
+        "Brief Description": "This feature allows user to print a selection of data that are stored in the database. While working on the database, the user has the option to print data from his database. This can be done by selecting print. When this happens, a list of data types that can be printed are shown and the user can select the data to be printed. More specifically fields that can be selected for printing are: Backup entries, which contain entries in the back up group, password groups, group tree, title, username, password, URL, notes, creation time, last access, last modification, expires, icon, UUID and attachment.",
+        "Basic flow": [
+            "User opens KeePass",
+            "User selects print from file menu",
+            "The list of options opens with checked the fields: password groups, title, user name, password, URL, notes",
+            "User selects OK",
+            "Data are print",
+            "User returns on the main window"
+        ],
+        "Alt. Flow": [
+            [
+                "User selects some more fields and/or unselects some others."
+            ],
+            [
+                "User unselects all fields",
+                "An empty report is printed"
+            ],
+            [
+                "User selects Cancel",
+                "User returns on the main window"
+            ]
+        ],
+        "Postcondition": [
+            "There must be entries in the database in order for them to be printed"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 4,
+        "Name": "Search Database",
+        "Brief Description": "This feature allows user to search for keywords in his database. There is the ability to search in the database for usernames, groups, passwords, URLs, notes and titles. This is very useful when the user needs to find out very quickly which password is required in one account or what username he has put on another account. It is not necessary to write in the search field all characters. By writing just one character the database will present all data which contains it or are related with it.",
+        "Basic flow": [
+            "User opens KeePass",
+            "User types a password, user name, URL, word of notes, title or group that exist in the database",
+            "The list of data related to search word are appeared in the main window"
+        ],
+        "Alt. Flow": [
+            [
+                "User types two or more words in the search field",
+                "Nothing appears in the main window"
+            ],
+            [
+                "User does not type anything",
+                "Nothing appears in the main window"
+            ],
+            [
+                "User types part or even just one character of password, user name, URL, word of notes, title or group"
+            ],
+            [
+                "User types data not related with the database",
+                "Nothing appears in the main window"
+            ]
+        ],
+        "Postcondition": [
+            "All data related to the word must be shown.",
+            "For example if user types “abc” and abc is part of a password and of a username, both entries must be shown"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 5,
+        "Name": "Add Group/Subgroup",
+        "Brief Description": "This feature is used to keep data organized in categories for easier access. There is the ability to organize data into groups and subgroups. The user can create a new group or subgroups into an existing group. When creating a group/subgroup the user must select a name and then he can add entries into it.",
+        "Basic flow": [
+            "User opens KeePass and selects to add new group/subgroup",
+            "User types a name and has the option to select an image",
+            "User selects OK",
+            "The group/subgroup is created",
+            "The access returns to the database main window"
+        ],
+        "Alt. Flow": [
+            [
+                "User leaves the group/subgroup name field empty",
+                "A message is appeared “Add a name for the group/subgroup”"
+            ],
+            [
+                "User selects Cancel",
+                "The access returns to main window"
+            ]
+        ],
+        "Postcondition": [
+            "A name is required in order for the new group/subgroup to be created",
+            "A subgroup cannot be created when no group is selected"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 6,
+        "Name": "Modify group/subgroup",
+        "Brief Description": "This feature allows user to change a name given to a group/subgroup. When user wants to change a group or subgroup’s name he has the ability to do that by modifying it.",
+        "Basic flow": [
+            "User opens KeePass and selects modify group/subgroup",
+            "User types the new name and has the option to select an image",
+            "User selects OK",
+            "The group/subgroup changes name",
+            "The access returns to the database main window"
+        ],
+        "Alt. Flow": [
+            [
+                "User leaves the group/subgroup name field empty",
+                "A message is appeared “Add a name for the group/subgroup”"
+            ],
+            [
+                "User selects Cancel",
+                "The group/subgroup’s name remains the same",
+                "The access returns to main window"
+            ]
+        ],
+        "Postcondition": [
+            "A name is required in order for the group/subgroup to be renamed"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 7,
+        "Name": "Delete Group/Subgroup",
+        "Brief Description": "This feature allows the user to delete a group/subgroup. When a user wants to delete an existing group/subgroup he can do this by selecting Delete group/subgroup from the edit menu. In order for that to happen, he must have chosen first a group/subgroup.",
+        "Basic flow": [
+            "User opens KeePass and selects a group/subgroup",
+            "User selects to delete the group/subgroup",
+            "A message is appeared to confirm the delete",
+            "User selects yes",
+            "The group/subgroup is deleted",
+            "The main window opens"
+        ],
+        "Alt. Flow": [
+            [
+                "User selects no",
+                "The group/subgroup is not deleted"
+            ]
+        ],
+        "Postcondition": [
+            "Not exists."
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 8,
+        "Name": "Find Group/Subgroup",
+        "Brief Description": "This feature allows user to find data into a specific group/subgroup. The user selects a group/subgroup and then he chooses “find in this group” from file menu. Then a window appears which prompts the user to write a sequence of characters (letters and numbers) from one character to 200 (or more). After that a menu of options to choose from appears and the user can select to search for: title, user name, password, URL, notes, group name. Search results appear in the main window.",
+        "Basic flow": [
+            "User opens KeePass and selects to find something in a selected group/subgroup",
+            "User types the word to search for",
+            "User selects the fields which will be searched",
+            "User selects OK",
+            "Results appears at the database main window"
+        ],
+        "Alt. Flow": [
+            [
+                "User leaves the find field empty",
+                "All data from the group/subgroup appear"
+            ],
+            [
+                "User leaves all search in boxes unchecked",
+                "Nothing appears in the main window"
+            ],
+            [
+                "User selects cancel",
+                "The main window appears"
+            ],
+            [
+                "User leaves the find field empty",
+                "User leaves all search in boxes unchecked",
+                "Nothing appears in the main window"
+            ]
+        ],
+        "Postcondition": [
+            "In order to find something in a group a word must be placed in the find field"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 9,
+        "Name": "Add Entry",
+        "Brief Description": "This feature adds a new entry on the database. The user can add a new entry on the database by clicking add entry on the main menu. When he does this, a window opens which is actually a form. In this form the user completes the fields he wants. He can fill in fields like: group where the entry will be added, title, user name, password, repeat password, URL, notes, expiration date and attachment file. Not all fields are required for an entry to be created. In fact an entry can be added with no fields at all. By selecting OK the entry is created in the group selected.",
+        "Basic flow": [
+            "User opens KeePass and selects to add an entry",
+            "User fills in the form, as many fields as he wants, from 1 to 9",
+            "User selects OK",
+            "The new entry is added in the selected group"
+        ],
+        "Alt. Flow": [
+            [
+                "User fills in the password field",
+                "The repeat password field is not identical with the password field",
+                "A message appears “the repeated password must be identical with the password"
+            ],
+            [
+                "User leaves all fields empty"
+            ],
+            [
+                "User selects help",
+                "The help file or URL field features or Autotype is opened"
+            ],
+            [
+                "User selects cancel",
+                "The main window opens"
+            ]
+        ],
+        "Postcondition": [
+            "An entry must belong to a group to be created",
+            "When the password field is completed the repeat password field must be completed",
+            "Password field and repeat password field must be identical"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 10,
+        "Name": "View/Edit Entry",
+        "Brief Description": "This feature allows the user to change or modify an existing entry. The user can modify the context of an entry he already has added. This can be done by selecting view/edit entry. In order for that to happen, the user must select an entry first. When he does this, the form he filled in when he created or last modified the entry open. Then the user can change the group, title, user name, password, URL, notes, expiration date and attachment file. His changes are saved by clicking OK.",
+        "Basic flow": [
+            "User opens KeePass and selects to view/edit an existing entry",
+            "User changes the fields he wants in the form",
+            "User selects OK",
+            "The modified entry is saved in the selected group"
+        ],
+        "Alt. Flow": [
+            [
+                "User changes the password field",
+                "The repeat password field is not identical with the password field",
+                "A message appears “the repeated password must be identical with the password"
+            ],
+            [
+                "User selects help",
+                "The help file or URL field features or Autotype is opened"
+            ],
+            [
+                "User selects cancel",
+                "The main window opens and the selected entry is not modified"
+            ]
+        ],
+        "Postcondition": [
+            "An entry must be selected to be viewed or modified",
+            "When the password field is changed the repeat password field must be Changed and be identical with password field"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 11,
+        "Name": "Duplicate Entry",
+        "Brief Description": "This feature creates an exact copy of the selected entry in the same group. The user can create an exact copy of an entry. This can be done by selecting an entry and clicking duplicate entry. When this is done the new entry is added in the same group were the first was.",
+        "Basic flow": [
+            "User opens KeePass and selects an existing entry",
+            "User duplicates entry",
+            "The new entry is added below the first one"
+        ],
+        "Alt. Flow": [],
+        "Postcondition": [
+            "An entry must be selected before it is duplicated"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 12,
+        "Name": "Delete Entry",
+        "Brief Description": "This feature allows the user to delete an existing entry. The user can delete an existing entry by selecting it and then by clicking delete entry. When this is done a message appears and informs the user that if he deletes the entry he won’t be able to restore it back.",
+        "Basic flow": [
+            "User opens KeePass and selects to delete an existing entry",
+            "A message appears “Are you sure you want to delete the selected entry?”",
+            "User selects yes",
+            "The deleted entry is permanently removed from the database"
+        ],
+        "Alt. Flow": [
+            [
+                "User selects more than one entry"
+            ],
+            [
+                "User selects no",
+                "No entry is deleted"
+            ]
+        ],
+        "Postcondition": [
+            "An entry must be selected to be deleted"
+        ],
+        "dataset": "keepass"
+    },
+    {
+        "id": 13,
+        "Name": "Change Language",
+        "Brief Description": "This feature allows user to choose one of the language translations that are available in KeePass. The user can select between a number of translations that are available at KeePass website. There are available translations in Arabic, Brazilian, Bulgarian, Catalan, Chinese (Simplified and Traditional), Czech, Danish, Dutch, English, Estonian, Finnish, French, Galician, German, Greek, Hebrew, Hungarian, Italian, Japanese, Korean, Lithuanian, Macedonian, Malay, Norwegian, Polish, Portuguese, Romanian, Russian, Serbian, Slovak, Spanish, Swedish, Turkish and Ukrainian. All the user has to do is to select change language from the view menu and then the language he wants. If he already has download languages packets he can choose one of them. If he wants another language pack he can select get more language. Doing this he will be transferred at KeePass website and choose the language he wants for downloading.",
+        "Basic flow": [
+            "User opens KeePass and selects to change language from the view menu",
+            "The user selects a language to load from the list that appears",
+            "A message appears that informs user that the installation has been done and in order for the changes to take place KeePass must be restarted",
+            "User selects yes (restart now)",
+            "KeePass asks to save any changes that may have been made in the database and restarts",
+            "User unlocks the database using the Master Password",
+            "The database appears translated in the new language"
+        ],
+        "Alt. Flow": [
+            [
+                "User selects get more languages",
+                "The browser opens in KeePass website were translations are located",
+                "User selects a language he wants",
+                "The language file downloads and can be found at the list with available languages in the language menu"
+            ],
+            [
+                "User selects no (restart later)",
+                "No changes are appeared in the database until the next time KeePass restarts"
+            ],
+            [
+                "User selects close",
+                "No changes are made in the database"
+            ]
+        ],
+        "Postcondition": [
+            "An internet connection and a browser are required in order to download new language translations.",
+            "For the following features, use cases are not included"
+        ],
+        "dataset": "keepass"
+    }
+]

@@ -1,0 +1,949 @@
+[
+    {
+        "id": 0,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "HATS-SML",
+            "Host OS"
+        ],
+        "Precondition": [
+            "An application has been selected (Refer to Use Case 3).",
+            "The transformation language program and core domain files have been created (Refer to Use Case 5)."
+        ],
+        "Basic flow": [
+            "User selects the option to parse a transformation language program from currently open application (ALT 1).",
+            "User selects a transformation language program file (.tlp) to parse (Refer to Use Case 4) (ALT 2).",
+            "The HATS-GUI compares the time stamps on the lexical specification and grammar files to the time stamp on the application’s parser file.",
+            "The parser file is the youngest of the three files (ALT 3, ALT 6).",
+            "The HATS-GUI sends a message to the Host OS to start either the ParseTarget or the ParseProgram program and sends the names of the target file or program file, the output file, and the parser file to the Host OS.",
+            "HATS-SML parses the input file (ALT 7) and writes the output to the output file.",
+            "End of use case."
+        ],
+        "Name": "Parse",
+        "Brief Description": "The user requests the parsing of a transformation language program or a target file. The file to be parsed and the parser file are inputs to HATS-SML. HATS-SML generates an SDT. The output is saved in the application.",
+        "Alt. Flow": [
+            [
+                "The user selects the option to parse a target file instead of a transformation language program.",
+                "The user selects a target file to parse (Refer to Use Case 4) (ALT 2).",
+                "Use case continues with step 3."
+            ],
+            [
+                "A file is already selected.",
+                "Step 2 is skipped.",
+                "Use case continues with step 3."
+            ],
+            [
+                "No parser file exists.",
+                "The HATS-GUI sends a message to the Host OS to start the MakeParser program and sends the lexical specification and grammar file names and the parser file name.",
+                "The Host OS starts the MakeParser program.",
+                "MakeParser writes the output parser file (ALT 5).",
+                "Use case continues with step 4."
+            ],
+            [
+                "Error on creation of parser file.",
+                "HATS-SML encounters an error creating the parser file.",
+                "The HATS-GUI writes the error message to the error window.",
+                "End of use case."
+            ],
+            [
+                "Parser file is not youngest.",
+                "Use case continues with step A3-3A."
+            ],
+            [
+                "Parser error",
+                "HATS-SML encounters an error parsing the input file.",
+                "The HATS-GUI writes the error message to the error window.",
+                "End of use case."
+            ]
+        ],
+        "Postcondition": [
+            "The SDT is saved in the application."
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "HATS-SML",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Target and transformation language programs have been prepared.",
+            "An application has been selected  (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects the option to execute a transformation language program from the currently selected application.",
+            "User selects a transformation language program file (Refer to Use Case 4) (ALT 1).",
+            "The HATS-GUI compares the time stamp on the lexical specification and grammar files to the time stamp on the parser file.",
+            "The parser file is younger (ALT 2, ALT 3).",
+            "The HATS-GUI compares the time stamp of the parsed program file and the parser, the transformation language program, and the user-defined library files.",
+            "The parsed program file is younger than any of these files (ALT 4, ALT 5).",
+            "The HATS-GUI clears the displays for the standard error and standard output.",
+            "The HATS-GUI sends a message to the Host OS to start the ApplyTransformations  program and sends the names of the parsed program file and the user-defined library file to the Host OS.",
+            "The HATS-GUI redirects the standard error and standard output streams of the ApplyTransformation  process and collects data written to these streams for later display.",
+            "The HATS-SML ApplyTransformation  program writes output SDTs to files named in the transformation language program.",
+            "(The transformation language program contains all references to input and output files.",
+            "The HATS-GUI does not handle file input and file output for ApplyTransformaion .)",
+            "End of use case."
+        ],
+        "Name": "Execute Transformation Program",
+        "Brief Description": "The user requests the application of a transformation language program to a target file. HATS-SML applies the transformation language program to the target.",
+        "Alt. Flow": [
+            [
+                "A transformation language program file has already been selected.",
+                "Step 2 is skipped.",
+                "Use case continues with step 3."
+            ],
+            [
+                "No parser file exists.",
+                "The HATS-GUI creates a program parser file (Refer to Use Case 1).",
+                "Use case continues with step 4."
+            ],
+            [
+                "Parser file is not younger.",
+                "Use case continues with step A2-3A."
+            ],
+            [
+                "No program.parsed file exists.",
+                "The HATS-GUI creates a parsed program file (Refer to Use Case 1).",
+                "Use case continues with step 5."
+            ],
+            [
+                "Program.parsed file is not younger.",
+                "Use case continues with step A4-4A."
+            ]
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Desired application exists (Refer to Use Case 5)."
+        ],
+        "Basic flow": [
+            "System requests from Host OS a list of existing applications within current directory.",
+            "Host OS returns list of files within current directory.",
+            "System displays list of existing applications within current directory (ALT 1, ALT 2).",
+            "User selects an application within the list (ALT 2).",
+            "System sets selected application as the current application.",
+            "End of use case."
+        ],
+        "Name": "Select Application",
+        "Brief Description": "The user selects an application.",
+        "Alt. Flow": [
+            [
+                "No applications exist in current directory.",
+                "User cannot select any application to perform operations on it.",
+                "End of use case."
+            ],
+            [
+                "User chooses to move up or down a directory level.",
+                "User selects a subdirectory or the parent directory.",
+                "System changes current directory.",
+                "Use case continues with step 1."
+            ]
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "Host OS"
+        ],
+        "Precondition": [
+            "An application has been selected (Refer to Use case 3)."
+        ],
+        "Basic flow": [
+            "System requests from Host OS a list of files in the current directory.",
+            "Host OS only returns list of files in the current directory.",
+            "System displays this list of files (ALT 1, ALT 2).",
+            "User selects a file within the list (ALT 2, ALT 3).",
+            "System sets selected file as the current file.",
+            "End of use case."
+        ],
+        "Name": "Select File",
+        "Brief Description": "The user wants to perform some operation, and the system requests a filename.  A list of file names in the currently selected application is presented.  The user selects one file name in the application.",
+        "Alt. Flow": [
+            [
+                "No files exist in current directory.",
+                "User cannot select any application to perform operations on it.",
+                "End of use case."
+            ],
+            [
+                "User chooses to move up or down a directory level.",
+                "User selects a subdirectory or the parent directory.",
+                "System changes current directory.",
+                "Use case continues with step 1."
+            ],
+            [
+                "User enters path of file instead of selecting from list.",
+                "User types path and file name.",
+                "System/OS accesses file using path (ALT 4).",
+                "System prompts user to accept copying file into current application.",
+                "User has option to confirm or cancel.",
+                "User confirms (ALT 5).",
+                "System copies file into current application.",
+                "Use case continues with step 5."
+            ],
+            [
+                "User-entered file not available.",
+                "System presents user with error “file not found.”",
+                "End of use case."
+            ],
+            [
+                "User does not confirm.",
+                "System does not copy file into current application.",
+                "Use case continues with A3-4F."
+            ]
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Application has been selected (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects option to close the currently selected application",
+            "System asks for confirmation from user to close application.",
+            "User confirms to close application (ALT 1).",
+            "System checks that the changes to currently selected application’s configuration have been saved (ALT 2).",
+            "System sets currently selected application to ‘none’.",
+            "End of use case."
+        ],
+        "Name": "Close Application",
+        "Brief Description": "The user wants to perform some operation on a selected application.  These operations include open, close, save, save as, create new, edit files within application, and configure the application.",
+        "Alt. Flow": [
+            [
+                "User cancels operation",
+                "User selects cancel option.",
+                "System cancels the operation.",
+                "End of use case."
+            ],
+            [
+                "Changes to currently selected application have not been saved.",
+                "System asks user to confirm save application.",
+                "User chooses to save application (ALT 3).",
+                "System saves the changes made to the application configuration before closing (Scenario 2).",
+                "End of use case."
+            ],
+            [
+                "User chooses not to save application.",
+                "System closes the application without saving the changes made to the application.",
+                "End of use case."
+            ]
+        ]
+    },
+    {
+        "id": 5,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Application has been selected (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects option to save currently selected application.",
+            "System requests Host OS to save configuration file for the selected application.",
+            "Host OS saves the configuration file for the selected application into a non-volatile storage (ALT 1).",
+            "System informs user that application has been saved.",
+            "End of use case."
+        ],
+        "Name": "Save Application",
+        "Brief Description": "The user wants to perform some operation on a selected application.  These operations include open, close, save, save as, create new, edit files within application, and configure the application.",
+        "Alt. Flow": [
+            [
+                "Host OS operating system was unable to save the current application.",
+                "System informs that application has not been saved.",
+                "End of use case."
+            ]
+        ]
+    },
+    {
+        "id": 6,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Application has been selected (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects to save a currently open application using a different directory name.",
+            "System requests user for a name to save the open application.",
+            "User enters or selects a name for the application to be saved (ALT 1).",
+            "System confirms that application name is unique (ALT 2).",
+            "System requests Host OS to create new directory with the given name.",
+            "Host OS creates new application with the entered name (ALT 3).",
+            "System requests Host OS to copy core files, configuration files, and ..tlp files to the new directory.",
+            "Host OS copies all files from selected application to created application (ALT 3).",
+            "System informs user that application has been saved with entered name.",
+            "End of use case."
+        ],
+        "Name": "Save Application As",
+        "Brief Description": "The user wants to perform some operation on a selected application.  These operations include open, close, save, save as, create new, edit files within application, and configure the application.",
+        "Alt. Flow": [
+            [
+                "User chooses to cancel operation",
+                "User selects cancel option.",
+                "System cancels the operation and the application is not saved.",
+                "End of use case."
+            ],
+            [
+                "Application already exists.",
+                "System informs user that an application already exists with this name.",
+                "End of use case."
+            ],
+            [
+                "Host OS experiences file system error.",
+                "End of use case."
+            ]
+        ]
+    },
+    {
+        "id": 7,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Application has been selected (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects option to edit a file within the currently selected application.",
+            "User selects file to edit (Use Case 4).",
+            "System checks application to determine if editor is associated with this file.",
+            "An editor is associated with the file if the configuration explicitly associates this file with an editor or an editor is associated with files of this type.",
+            "An editor is associated with this file (ALT 1).",
+            "The HATS-GUI sends message to Host OS to start the preferred editor in new process and passes file name to editor.",
+            "Host OS initiates process, puts editor in process, sends the filename as argument.",
+            "End of use case."
+        ],
+        "Name": "Edit Files in an Application",
+        "Brief Description": "The user wants to perform some operation on a selected application.  These operations include open, close, save, save as, create new, edit files within application, and configure the application.",
+        "Alt. Flow": [
+            [
+                "No editor is associated with this file.",
+                "The HATS-GUI prompts the user to select a configured editor.",
+                "The user selects a configured editor.",
+                "The HATS-GUI prompts the user to associate the editor with the file or the file type.",
+                "The user selects associating the editor with the file type (ALT 2, ALT 3).",
+                "The HATS-GUI associates the editor with the file type by updating the application configuration.",
+                "The selected editor becomes the preferred editor.",
+                "Use case continues with step 4."
+            ],
+            [
+                "User selects associating editor with specific file.",
+                "The HATS-GUI associates the editor with the specific file by updating the application configuration.",
+                "Use case continues with step A1-3F."
+            ],
+            [
+                "User selects cancel.",
+                "End of use case."
+            ]
+        ]
+    },
+    {
+        "id": 8,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "Host OS"
+        ],
+        "Precondition": [
+            "None."
+        ],
+        "Basic flow": [
+            "User selects option to create a new application.",
+            "Close existing application if one is selected  (Refer to Use Case 5 – Scenario 1).",
+            "System asks user to enter a name and location for new application.",
+            "User enters name and location for new application (ALT 1).",
+            "System requests Host OS to create new application.",
+            "Host OS creates new application  (ALT 2).",
+            "System informs user that new application has been created.",
+            "End of use case."
+        ],
+        "Name": "Create New Application",
+        "Brief Description": "The user wants to perform some operation on a selected application.  These operations include open, close, save, save as, create new, edit files within application, and configure the application.",
+        "Alt. Flow": [
+            [
+                "User selects to cancel operation.",
+                "System cancels operation.",
+                "No application is created.",
+                "End of use case."
+            ],
+            [
+                "An application with the same name already exists.",
+                "System presents error message “Application already exists.”",
+                "End of use case."
+            ]
+        ]
+    },
+    {
+        "id": 9,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Application has been selected (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects option to configure editors.",
+            "The system prompts for editor name and configuration information.",
+            "Editor configuration information must be sufficient to start the editor on the Host OS.",
+            "User enters editor name and parameters (ALT 1).",
+            "System saves editor configuration in application configuration.",
+            "End of use case."
+        ],
+        "Name": "Configure Editor List.",
+        "Brief Description": "The user selects an application.  The user configures the settings of the selected application.  The settings of an application include, available editors, SDT display colors, SDT display shapes, default number of levels to expand, file associations between files and editors, and file associations between target files and transformation language program.",
+        "Alt. Flow": [
+            [
+                "User selects to cancel.",
+                "End of use case."
+            ]
+        ]
+    },
+    {
+        "id": 10,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Application has been selected (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects option to configure the colors and shapes of the graphical representation of an SDT.",
+            "System displays a list containing types of displayed nodes and their corresponding current configured colors.",
+            "The types of displayed nodes are given in Table 4.",
+            "User selects a type of node from list.",
+            "(ALT 1).",
+            "System displays a list of supported colors and shapes.",
+            "User selects a color and a shape from the list for the selected type of displayed node (ALT 2).",
+            "System sets the selected values as the color and shape for the type of displayed node selected.",
+            "End of use case."
+        ],
+        "Name": "Configure SDT display.",
+        "Brief Description": "The user selects an application.  The user configures the settings of the selected application.  The settings of an application include, available editors, SDT display colors, SDT display shapes, default number of levels to expand, file associations between files and editors, and file associations between target files and transformation language program.",
+        "Alt. Flow": [
+            [
+                "User cancels the ‘configure display’ operation.",
+                "System cancels operation.",
+                "No changes in the default colors of are made.",
+                "End of use case."
+            ],
+            [
+                "User cancels operation for a particular type of displayed node selected.",
+                "System cancels operation.",
+                "No change to the default color for a particular type of displayed node is made.",
+                "Use case continues with step 2."
+            ]
+        ]
+    },
+    {
+        "id": 11,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Application has been selected (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects option to configure the default number of levels to expand in response to a single mouse click.",
+            "System asks user to select or enter a number of levels to expand.",
+            "User enters or selects a number of levels to expand.",
+            "Number entered is a natural number.",
+            "System sets the entered or selected number of levels as the default number of levels to expand.",
+            "End of use case."
+        ],
+        "Name": "Configure Expand Levels.",
+        "Brief Description": "The user selects an application.  The user configures the settings of the selected application.  The settings of an application include, available editors, SDT display colors, SDT display shapes, default number of levels to expand, file associations between files and editors, and file associations between target files and transformation language program.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 12,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Application has been selected (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects option to associate file types with editors (ALT 1).",
+            "System displays a list of configured editors.",
+            "(Refer to Use Case 6.)",
+            "System displays a list of file types.",
+            "User selects a file type from list  (ALT 2).",
+            "User selects an editor from list (ALT 2).",
+            "System associates the selected file type with the selected editor.",
+            "When the user tries to edit a file of the type selected, the system will request the Host OS to initiate a process with the associated editor.",
+            "(Refer to Use Case 5.)",
+            "End of use case."
+        ],
+        "Name": "File Associations:  Editors.",
+        "Brief Description": "The user selects an application.  The user configures the settings of the selected application.  The settings of an application include, available editors, SDT display colors, SDT display shapes, default number of levels to expand, file associations between files and editors, and file associations between target files and transformation language program.",
+        "Alt. Flow": [
+            [
+                "User selects option to associate a particular file with an editor.",
+                "System displays a list of configured editors.",
+                "(Refer to Use Case 6.)",
+                "System displays the list of files in the currently selected application (ALT 3).",
+                "User selects a file from list (ALT 2).",
+                "User selects an editor from list (ALT 2).",
+                "System associates the selected file with the selected editor.",
+                "When the user tries to edit the selected file, the system will request the Host OS to initiate a process with the associated editor.",
+                "(Refer to Use Case 5.)",
+                "End of use case."
+            ],
+            [
+                "User  cancels operation.",
+                "User selects cancel option.",
+                "System cancels operation.",
+                "No changes in the associations are made.",
+                "End of use case."
+            ],
+            [
+                "File is already selected.",
+                "Use case continues with step A1-1D."
+            ]
+        ]
+    },
+    {
+        "id": 13,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Application has been selected (Refer to Use Case 3)."
+        ],
+        "Basic flow": [
+            "User selects option to save configuration.",
+            "System saves configuration with the application.",
+            "End of use case."
+        ],
+        "Name": "Save Configuration",
+        "Brief Description": "The user selects an application.  The user configures the settings of the selected application.  The settings of an application include, available editors, SDT display colors, SDT display shapes, default number of levels to expand, file associations between files and editors, and file associations between target files and transformation language program.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 14,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User selects option to view and manipulate a graphical representation of an SDT.",
+            "User selects SDT to view and manipulate (Refer to Use Case 4).",
+            "System displays a graphical representation of the selected SDT in an on-screen work area.",
+            "The work area of the SDT display contains the following elements:",
+            "a) A window that displays the displayed graph representation of the SDT.",
+            "b) A text window that displays the labels of the leaf nodes in the currently displayed graph.",
+            "c) If either window is too small to contain all the information to be presented, the windows will have scroll bars to facilitate scrolling.",
+            "The system will respond to dragging of scroll buttons (or pressing arrow keys) by shifting the display in the appropriate direction.",
+            "d) If the SDT is too large for the window, a separate, small window with a compressed view of the SDT will be displayed.",
+            "In this window, a displayed graph of the entire SDT will be drawn.",
+            "The nodes of this displayed graph will be smaller than the displayed nodes in the SDT display work area.",
+            "It is not necessary that the user be able to read node labels.",
+            "It is only necessary that the user be able to see the high-level structure of the SDT.",
+            "A small box named the locator box  will be displayed showing the part of the SDT currently displayed in the main SDT display window.",
+            "User is able to manipulate the displayed graph representation of the SDT.",
+            "(See the remaining scenarios.)"
+        ],
+        "Name": "SDT Display.",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 15,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User selects one or more displayed nodes.",
+            "Displayed node selection methods are described here.",
+            "A single node can be selected by a right mouse click on the node.",
+            "A single node can be selected via the keyboard by moving the keyboard cursor to a node and pressing the enter  key.",
+            "The keyboard cursor is moved between nodes using the tab key.",
+            "Several nodes can be selected by drawing a mouse box around the desired nodes.",
+            "Several nodes can be selected by holding the shift key down and selecting individual displayed nodes.",
+            "When a user selects a set of nodes using these operations (and the shift key is not held down), the previously selected set of nodes (if any) is unselected.",
+            "System highlights the smallest well-formed tree of the selected nodes in the displayed graph.",
+            "System finds corresponding portion of leaf text of the selected nodes in the displayed graph.",
+            "System highlights the corresponding portion of leaf text.",
+            "If both SDT and Pretty-printed text are displayed, the system will find the corresponding pretty-printed text and highlight that text in the Pretty-print text window.",
+            "End of use case."
+        ],
+        "Name": "Select nodes.",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 16,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "The user clicks the mouse in the navigation window SDT display.",
+            "The system determines the node in the displayed graph closest to the mouse cursor and redraws the displayed graph with this node in the center of the main display.",
+            "The system updates the locator box in the navigation window display.",
+            "End of use case."
+        ],
+        "Name": "Navigation window navigation.",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 17,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User points the mouse cursor at a node and clicks the left mouse button (ALT 1).",
+            "System displays the tree by expanding descendants of the node in the displayed graph.",
+            "The number of levels to expand is given by the application configuration.",
+            "If fewer than this number of levels exist, then all descendants of the chosen node are displayed",
+            "System changes the shape and color of selected node as specified in the application configuration to indicate that it has become an expanded node.",
+            "End of use case."
+        ],
+        "Name": "Expand",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": [
+            [
+                "User selects to expand selected nodes.",
+                "User selects a set of nodes (Refer to Scenario 2).",
+                "User selects to expand selected nodes.",
+                "Use case continues with step 2."
+            ]
+        ]
+    },
+    {
+        "id": 18,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User points the mouse cursor at a node and clicks the left mouse button.",
+            "System removes all descendants of the selected node from the displayed graph.",
+            "System changes the shape and color of selected node as specified in the application configuration to indicate that it has become a collapsed node.",
+            "End of use case."
+        ],
+        "Name": "Collapse",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 19,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User selects one or more displayed nodes.",
+            "(Refer to Use Case 7.)",
+            "User selects option to hide selected displayed nodes.",
+            "System removes the selected nodes from the displayed graph.",
+            "System changes the types of the displayed nodes remaining on the screen to indicate that there are hidden nodes in the displayed graph.",
+            "End of use case."
+        ],
+        "Name": "Hide nodes",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 20,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User selects option to search SDT for a desired sub-tree.",
+            "System asks user for the criteria to search nodes.",
+            "Search criteria for SDTs are presented in Appendix E.",
+            "User enters search criteria.",
+            "System finds the first matching sub-tree in the SDT starting at the current keyboard cursor location (ALT 1).",
+            "System creates a displayed graph for the sub-tree matching the search criteria.",
+            "The displayed nodes of the matching sub-tree are highlighted.",
+            "If no nodes match the search criteria, none are highlighted.",
+            "If both SDT and Pretty-printed text are displayed, the pretty-printed text corresponding to the highlighted nodes of the SDT is highlighted.",
+            "End of use case."
+        ],
+        "Name": "Search",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": [
+            [
+                "Failed search.",
+                "The system displays a message indicating that the search has failed. ",
+                "End of use case."
+            ]
+        ]
+    },
+    {
+        "id": 21,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User selects option to repeat a search SDT for a desired sub-tree.",
+            "System finds the next matching sub-tree in the SDT starting at the current keyboard cursor location.",
+            "System creates a displayed graph for the sub-tree matching the search criteria.",
+            "The displayed nodes of the matching sub-tree are highlighted.",
+            "If no nodes match the search criteria, none are highlighted.",
+            "If both SDT and Pretty-printed text are displayed, the pretty-printed text corresponding to the highlighted nodes of the SDT is highlighted.",
+            "End of use case."
+        ],
+        "Name": "Repeat Search",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 22,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "System displays text of leaf nodes in currently displayed graph in a text window.",
+            "User selects a portion of displayed text.",
+            "System highlights selected portion of text in the text window.",
+            "User selects option to copy selected text.",
+            "Minimally, the system will copy selected text in response to the Ctrl-Insert  key combination.",
+            "System puts the selected and copied text in the Host OS copy/paste buffer.",
+            "End of use case."
+        ],
+        "Name": "Copy Text From Text Window.",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 23,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "The system is displaying an SDT generated by a transformation program.",
+            "The transformation program is executed while the SDT is being displayed.",
+            "The SDT file is overwritten by the ApplyTransformation program"
+        ],
+        "Basic flow": [
+            "The user selects the option to refresh the display of the SDT.",
+            "The system disposes of the currently displayed SDT.",
+            "The system reads the SDT file and displays the newly generated SDT.",
+            "The display of the SDT contains approximately the same number of nodes as the previously displayed SDT.",
+            "End of use case."
+        ],
+        "Name": "Refresh Display.",
+        "Brief Description": "The user wants to display and manipulate a graphical representation of an SDT. Manipulation of a graphical representation of an SDT includes selecting and unselecting displayed nodes, navigation through the display using a navigation window and scrolling, expanding and collapsing displayed nodes, hiding displayed nodes, searching for SDT sub-trees, and finding smallest well-formed trees.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 24,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User selects option to view and manipulate a pretty-printed text from a particular successful",
+            "transformation.",
+            "User selects pretty-printed text to view and manipulate.",
+            "(Refer to Use Case 4.)",
+            "System displays the pretty-printed text in a work window.",
+            "The work area of the display of pretty-printed text contains a text window that displays the text.",
+            "If the window is too small to contain all the information to be presented, the windows will have scroll bars to facilitate scrolling.",
+            "The system will respond to dragging of scroll buttons (or pressing arrow keys) by shifting the display in the appropriate direction.",
+            "User is able to manipulate the pretty-printed text.",
+            "(See the remainder of the scenarios.)",
+            "End of use case."
+        ],
+        "Name": "Display Pretty-Printed Text",
+        "Brief Description": "The user wants to display and manipulate a text representation of the result of applying a transformation language program to a target file.  Manipulation of text includes selecting text and searching for sub-strings.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 25,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User selects a portion of the displayed pretty-printed text.",
+            "Text selection methods are described here.",
+            "Text can be selected by clicking and dragging the mouse across an area of text.",
+            "Text can be selected by holding the shift key and moving the keyboard cursor using the arrow keys.",
+            "When a user selects text using these operations, the previously selected text (if any) is unselected.",
+            "System highlights selected portion of the displayed pretty-printed text.",
+            "If both pretty-printed text and graphical representation of SDT are displayed, the system finds the corresponding displayed nodes of the SDT of the selected portion of pretty-printed text and highlights the corresponding displayed nodes of the SDT.",
+            "End of use case."
+        ],
+        "Name": "Select text.",
+        "Brief Description": "The user wants to display and manipulate a text representation of the result of applying a transformation language program to a target file.  Manipulation of text includes selecting text and searching for sub-strings.",
+        "Alt. Flow": []
+    },
+    {
+        "id": 26,
+        "dataset": "hats",
+        "Actors": [
+            "User,",
+            "Host OS"
+        ],
+        "Precondition": [
+            "Transformation of a target file was successful and transformation output has been stored and associated with the application."
+        ],
+        "Basic flow": [
+            "User selects option to search pretty-printed text for desired text.",
+            "System asks user for the criteria to search text.",
+            "Text search criteria are given in Appendix F.",
+            "User enters or selects criteria to search text.",
+            "System finds those portions of pretty-printed text that match the search criteria and highlights those portions of the text that match (ALT 1).",
+            "If both the pretty-printed text and the graphical representation of an SDT are displayed, the system finds the corresponding nodes of the SDT of the selected portion of pretty-printed text and highlights the corresponding nodes of the SDT.",
+            "End of use case."
+        ],
+        "Name": "Search",
+        "Brief Description": "The user wants to display and manipulate a text representation of the result of applying a transformation language program to a target file.  Manipulation of text includes selecting text and searching for sub-strings.",
+        "Alt. Flow": [
+            [
+                "Failed search.",
+                "The system displays a message indicating that the search has failed.",
+                "End of use case."
+            ]
+        ]
+    },
+    {
+        "id": 27,
+        "dataset": "hats",
+        "Actors": [
+            "User",
+            "HATS-SML"
+        ],
+        "Precondition": [
+            "A target SDT file has been generated and a pretty-print style file exists.",
+            "An application has been selected.",
+            "(Refer to Use Case 3.)"
+        ],
+        "Basic flow": [
+            "User selects the option to pretty-print a target from the currently selected application.",
+            "User selects a target SDT (Refer to Use Case 4) (ALT 1).",
+            "No pretty-print style file is associated with the target file.",
+            "The HATS-GUI prompts the user to select a pretty-print style file.",
+            "User selects a pretty-print style file (Refer to Use Case 4) (ALT 2).",
+            "HATS-GUI generates a file name by appending “.txt” to the target SDT root name.",
+            "The HATS-GUI verifies that no file with this name exists in the current directory.",
+            "This file becomes the output file name (ALT 3).",
+            "The HATS-GUI sends a message to the Host OS to start the Pretty-print program and sends the target SDT file name, the pretty-print style file name, and the output file name to Pretty-print as command line arguments.",
+            "HATS-SML applies the style file to the target SDT and writes the output to the output file specified on the command line (ALT 6).",
+            "HATS-SML terminates.",
+            "End of use case."
+        ],
+        "Name": "Generate Pretty-printed Output",
+        "Brief Description": "The user requests the application of a pretty-print style file to a target SDT. The necessary file names are passed to HATS-SML, HATS-SML applies the pretty-print style to the SDT, and a formatted text file is generated.",
+        "Alt. Flow": [
+            [
+                "A target SDT has already been selected.",
+                "Step 2 is skipped.",
+                "Use case continues with step 3."
+            ],
+            [
+                "A pretty-print style file is associated with the target file.",
+                "Use case continues with step 5."
+            ],
+            [
+                "A file already exists with the output file name.",
+                "HATS-GUI prompts the user to save the output under a new name.",
+                "The prompt includes a text window containing the current output file name, a cancel option, and an OK option.",
+                "The user enters a new name and selects OK (ALT 4, ALT 5).",
+                "Use case continues with step 6."
+            ],
+            [
+                "User selects the Cancel option.",
+                "End of use case."
+            ],
+            [
+                "User selects OK option without changing file name.",
+                "The output file name remains unchanged.",
+                "The existing file will be overwritten.",
+                "Use case continues with step 7."
+            ],
+            [
+                "The Pretty-print encounters an error.",
+                "No text file is generated.",
+                "The HATS-GUI displays an error message.",
+                "End of use case."
+            ]
+        ]
+    }
+]

@@ -1,0 +1,975 @@
+[
+    {
+        "id": 0,
+        "dataset": "viper",
+        "Name": "Manage  Requests",
+        "Brief Description": "The main requests management page that coordinator will manage all  request from customer or to suppliers",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can manage his request can add ,view or edit his requests"
+        ],
+        "Basic flow": [
+            "The coordinator press “Manage  Requests”",
+            "The coordinator use any function.",
+            "The coordinator will manage all requests function."
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may use phone to request from suppliers"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "viper",
+        "Name": "Add Request",
+        "Brief Description": "Coordinator can add new request  and send it to his supplier",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can add new request.",
+            "The request sent to supplier"
+        ],
+        "Basic flow": [
+            "The coordinator press “Add Request”",
+            "The coordinator fills the request form.",
+            "The coordinator will send the request to supplier"
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may use phone to request from suppliers"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "viper",
+        "Name": "View Requests",
+        "Brief Description": "Coordinator issues requests , coordinator can show all  requests that sent his supplier or that came from his customer",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can show all requests."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Requests”",
+            "The coordinator view list of requests."
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may want to see the customers requests only",
+                "Coordinator may want to see the requests that sent to  suppliers"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "viper",
+        "Name": "View Request Details",
+        "Brief Description": "Coordinator can show the details of any request that he chose.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can show the details of a request."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Request Details”",
+            "The coordinator views the details of a request."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "viper",
+        "Name": "Edit Request",
+        "Brief Description": "The Coordinator can edit  request and notify his supplier",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can edit exist request.",
+            "The notification will send to supplier."
+        ],
+        "Basic flow": [
+            "The coordinator press “Edit Request”",
+            "The coordinator modifies the request information.",
+            "The coordinator will send a notification to supplier"
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may use phone to request from suppliers"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 5,
+        "dataset": "viper",
+        "Name": "Delete Request",
+        "Brief Description": "The Coordinator can delete  request and notify his supplier",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can delete exist request.",
+            "The notification will send to supplier."
+        ],
+        "Basic flow": [
+            "The coordinator press “Delete Request”",
+            "The information about the request will show.",
+            "Press “Delete” to processing the deleting",
+            "The coordinator will send a notification to supplier"
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may use phone to delete the  request from suppliers"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 6,
+        "dataset": "viper",
+        "Name": "Manage Items",
+        "Brief Description": "The main items management page that coordinator will manage the items that he have and may supply to customer",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can manage his items can add ,view or edit his items"
+        ],
+        "Basic flow": [
+            "The coordinator press “Manage Items”",
+            "The coordinator use any function.",
+            "The coordinator will manage all items function."
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may use some different items"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 7,
+        "dataset": "viper",
+        "Name": "Add Item",
+        "Brief Description": "Coordinator can add new items  and may supply it to our customer",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can add new item"
+        ],
+        "Basic flow": [
+            "The coordinator press “Add Item”",
+            "The coordinator fills the item form.",
+            "The coordinator will save the item."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 8,
+        "dataset": "viper",
+        "Name": "View Items",
+        "Brief Description": "The coordinator can view all  items that he have ,that may receive from supplier and may supply it for his customers",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can view all Items."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Items”",
+            "The coordinator view list of Items"
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may want to see the Items category",
+                "Coordinator may want to see the Items that sent to customers"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 9,
+        "dataset": "viper",
+        "Name": "View Item Details",
+        "Brief Description": "Coordinator can show the details of any items that he chooses.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can show the details of an item."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Item Details”",
+            "The coordinator views the details of an item."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 10,
+        "dataset": "viper",
+        "Name": "Edit Item.",
+        "Brief Description": "The Coordinator can edit item that he want.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can edit exist item.",
+            "The notification will send to supplier and customer if need."
+        ],
+        "Basic flow": [
+            "The coordinator press “Edit Item”",
+            "The coordinator modifies the item information.",
+            "The coordinator will send a notification to supplier or customer if need."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 11,
+        "dataset": "viper",
+        "Name": "Delete Item",
+        "Brief Description": "The Coordinator can delete any item from his list and his supply.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can delete exist item."
+        ],
+        "Basic flow": [
+            "The coordinator press “Delete Item”",
+            "The information about the item will show.",
+            "Press “Delete” to processing the deleting"
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 12,
+        "dataset": "viper",
+        "Name": "Manage Resources Locations",
+        "Brief Description": "The main resources locations management page that coordinator will manage the resources locations that he have and may use it to store or supplying.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can manage his resources locations can add, view or edit his resources locations."
+        ],
+        "Basic flow": [
+            "The coordinator press “Manage Resources Locations”",
+            "The coordinator use any function.",
+            "The coordinator will manage all resources locations function."
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may use some different locations"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 13,
+        "dataset": "viper",
+        "Name": "Add Location",
+        "Brief Description": "Coordinator can add new resources locations and may start to use it in our supply and storing.",
+        "Precondition": [
+            "Must the coordinator login."
+        ],
+        "Postcondition": [
+            "The coordinator can add new resource location."
+        ],
+        "Basic flow": [
+            "The coordinator press “Add Location”",
+            "The coordinator fills the location form.",
+            "The coordinator will save the location."
+        ],
+        "Alt. Flow": [
+            [
+                "May add nearest resources locations."
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 14,
+        "dataset": "viper",
+        "Name": "View Locations",
+        "Brief Description": "The coordinator can view all resources locations that he have, that use to supplying our customer and store our items.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can view all resources locations."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Locations”.",
+            "The coordinator view list of Locations."
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may want to see the Locations category",
+                "Coordinator may want to see the Locations that nearest to our customer."
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 15,
+        "dataset": "viper",
+        "Name": "View Location Details",
+        "Brief Description": "Coordinator can show the details of resource location that he chooses.",
+        "Precondition": [
+            "Must the coordinator login."
+        ],
+        "Postcondition": [
+            "The coordinator can show the details of a location."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Location Details”",
+            "The coordinator views the details of a location."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 16,
+        "dataset": "viper",
+        "Name": "Edit Location.",
+        "Brief Description": "The Coordinator can edit a location that he wants.",
+        "Precondition": [
+            "Must the coordinator login",
+            "The coordinator press “Edit Location”"
+        ],
+        "Postcondition": [
+            "The coordinator can edit exist location."
+        ],
+        "Basic flow": [
+            "The coordinator press “Edit Location”",
+            "The coordinator modifies the location information."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 17,
+        "dataset": "viper",
+        "Name": "Delete Location",
+        "Brief Description": "The Coordinator can delete any location from his list.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can delete exist location."
+        ],
+        "Basic flow": [
+            "The coordinator press “Delete Location”",
+            "The information about the location will show.",
+            "Press “Delete” to processing the deleting"
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 18,
+        "dataset": "viper",
+        "Name": "Edit Profile",
+        "Brief Description": "The supplier can edit his profile. The profile contains the name of the supplier, the address, contact person and email… etc.",
+        "Precondition": [
+            "The actor has logged in."
+        ],
+        "Postcondition": [
+            "The supplier profile is updated to the newly entered values."
+        ],
+        "Basic flow": [
+            "He clicks on the proper link to edit his profile.",
+            "Whether he make changes or not, when he clicks on the proper link to submit the profile values, the current values of the profile is saved and he is returned to the main menu."
+        ],
+        "Alt. Flow": [
+            [
+                "none"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "Invalid input : Generating error message and discard changes."
+            ]
+        ]
+    },
+    {
+        "id": 19,
+        "dataset": "viper",
+        "Name": "View Supply Requests",
+        "Brief Description": "To show a list of pending requests.",
+        "Precondition": [
+            "The actor has logged in."
+        ],
+        "Postcondition": [
+            "The list of pending requests is rendered."
+        ],
+        "Basic flow": [
+            "He clicks on the proper link to view supply requests.",
+            "A list of pending requests is listed."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            "If there is no requests : A message is displayed stating that there is no requests."
+        ]
+    },
+    {
+        "id": 20,
+        "dataset": "viper",
+        "Name": "View Request Details",
+        "Brief Description": "To view extended details of the chosen request.",
+        "Precondition": [
+            "The actor has logged in."
+        ],
+        "Postcondition": [
+            "Details of the chosen request are displayed."
+        ],
+        "Basic flow": [
+            "He clicks on the proper link to view supply requests.",
+            "A list of pending requests is listed.",
+            "He clicks on the proper link on a request to display its details."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 21,
+        "dataset": "viper",
+        "Name": "Send Feedback on Request",
+        "Brief Description": "The supplier states whether he can supply all the requested items or part of them and the time frame to deliver them.",
+        "Precondition": [
+            "The actor has logged in.",
+            "The actor views a certain request details."
+        ],
+        "Postcondition": [
+            "A message indicating successful submission is generated."
+        ],
+        "Basic flow": [
+            "He input his feedback and submits.",
+            "A success (or error) message is displayed."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 22,
+        "dataset": "viper",
+        "Name": "Edit Profile",
+        "Brief Description": "The customer can edit his profile. The profile contains the name of the customer, his address, contact person and email… etc.",
+        "Precondition": [
+            "The actor has logged in."
+        ],
+        "Postcondition": [
+            "The customer profile is updated to the newly entered values."
+        ],
+        "Basic flow": [
+            "He clicks on the proper link to edit his profile.",
+            "Whether he makes changes or not, when he clicks on the proper link to submit the profile values, the current values of the profile is saved and he is returned to the main menu."
+        ],
+        "Alt. Flow": [
+            [
+                "none"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "Invalid input : Generating error message and discard changes."
+            ]
+        ]
+    },
+    {
+        "id": 23,
+        "dataset": "viper",
+        "Name": "Add Request",
+        "Brief Description": "Customer can add new request.",
+        "Precondition": [
+            "The Customer has logged in."
+        ],
+        "Postcondition": [
+            "A new request is added."
+        ],
+        "Basic flow": [
+            "The Customer press “Add Request”",
+            "The Customer fills the request form.",
+            "The Customer will send the request to the Coordinator."
+        ],
+        "Alt. Flow": [
+            [
+                "Customer may use phone to request from Coordinator.",
+                "The Coordinator, then, adds the request manually."
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 24,
+        "dataset": "viper",
+        "Name": "View Requests",
+        "Brief Description": "Customer can view all his pending requests that were sent to the Coordinator.",
+        "Precondition": [
+            "The Customer has logged in."
+        ],
+        "Postcondition": [
+            "The Customer views all requests."
+        ],
+        "Basic flow": [
+            "The Customer press “View Requests”",
+            "The Customer view list of requests."
+        ],
+        "Alt. Flow": [
+            [
+                "Customer may want to refine viewed request on certain criteria.",
+                "Customer may want to see some older requests."
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 25,
+        "dataset": "viper",
+        "Name": "Edit Request",
+        "Brief Description": "The Customer can edit  request and notify the Coordinator.",
+        "Precondition": [
+            "The Customer has logged in."
+        ],
+        "Postcondition": [
+            "The chosen request is edited.",
+            "The notification will send to the coordinator."
+        ],
+        "Basic flow": [
+            "The Customer press “Edit Request”",
+            "The Customer modifies the request information.",
+            "A notification will be sent to the Coordinator."
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may use phone to request from suppliers"
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 26,
+        "dataset": "viper",
+        "Name": "Delete Request",
+        "Brief Description": "The Coordinator can delete  request and notify his supplier",
+        "Precondition": [
+            "The Customer has logged in."
+        ],
+        "Postcondition": [
+            "The Customer can delete a chosen request.",
+            "The notification will be sent to the Coordinator."
+        ],
+        "Basic flow": [
+            "The Customer press “Delete Request”",
+            "The information about the request will show.",
+            "Press “Delete” to processing the deleting",
+            "The Customer will send a notification to supplier"
+        ],
+        "Alt. Flow": [
+            [
+                "Customer may use phone to delete the request by the Coordinator."
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 27,
+        "dataset": "viper",
+        "Name": "Manage Customers",
+        "Brief Description": "The main customers management page that coordinator will manage all customers information",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator should add ,view, edit or delete customers"
+        ],
+        "Basic flow": [
+            "The coordinator press “Manage  Customers”",
+            "The coordinator use any function.",
+            "The coordinator will manage all customers function."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 28,
+        "dataset": "viper",
+        "Name": "Add Customer",
+        "Brief Description": "Coordinator can add new Customer.",
+        "Precondition": [
+            "Must the coordinator login",
+            "The coordinator press “Add Customer”"
+        ],
+        "Postcondition": [
+            "The coordinator can add new customer."
+        ],
+        "Basic flow": [
+            "The coordinator press “Add Customer”",
+            "The coordinator fills the new customer form.",
+            "The coordinator will send the customer to supplier"
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 29,
+        "dataset": "viper",
+        "Name": "View Customers",
+        "Brief Description": "coordinator can view a list of all customers.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can show all customers."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Customers”",
+            "The coordinator view list of customers."
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may want to see refined list on certain criteria only."
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 30,
+        "dataset": "viper",
+        "Name": "View Customer Details",
+        "Brief Description": "Coordinator can show the details of any customer that he chose.",
+        "Precondition": [
+            "Must the coordinator login",
+            "The coordinator press “View Customer Details”"
+        ],
+        "Postcondition": [
+            "The coordinator can show the details of a customer."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Customer Details”",
+            "The coordinator views the details of a customer."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 31,
+        "dataset": "viper",
+        "Name": "Edit Customer",
+        "Brief Description": "The Coordinator can edit  customer him.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can edit exist customer."
+        ],
+        "Basic flow": [
+            "The coordinator press “Edit Customer”",
+            "The coordinator modifies the request information.",
+            "The coordinator will send a notification to the customer."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 32,
+        "dataset": "viper",
+        "Name": "Delete Customer",
+        "Brief Description": "The coordinator can delete a certain customer",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can delete exist customer.",
+            "The customer will be notified by option."
+        ],
+        "Basic flow": [
+            "The coordinator press “Delete Customer”",
+            "The information about the customer will show.",
+            "Press “Delete” to processing the deleting",
+            "The coordinator will send a notification to the customer on option."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 33,
+        "dataset": "viper",
+        "Name": "Manage Suppliers",
+        "Brief Description": "The main suppliers management page that coordinator will manage all suppliers information",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator should add ,view, edit or delete his suppliers."
+        ],
+        "Basic flow": [
+            "The coordinator press “Manage  Suppliers”",
+            "The coordinator use any function.",
+            "The coordinator will manage all suppliers function."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 34,
+        "dataset": "viper",
+        "Name": "Add Supplier",
+        "Brief Description": "Coordinator can add new Supplier",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can add new Supplier."
+        ],
+        "Basic flow": [
+            "The coordinator press “Add Supplier”",
+            "The coordinator fills the new Supplier form.",
+            "The coordinator will send the Supplier to supplier"
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 35,
+        "dataset": "viper",
+        "Name": "View Suppliers",
+        "Brief Description": "coordinator can view a list of all Suppliers.",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can show all Supplier."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Suppliers”",
+            "The coordinator view list of Suppliers."
+        ],
+        "Alt. Flow": [
+            [
+                "Coordinator may want to see refined list on certain criteria only."
+            ]
+        ],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message."
+            ]
+        ]
+    },
+    {
+        "id": 36,
+        "dataset": "viper",
+        "Name": "View Supplier Details",
+        "Brief Description": "Coordinator can show the details of any Supplier that he chose.",
+        "Precondition": [
+            "Must the coordinator login",
+            "The coordinator press “View Supplier Details”"
+        ],
+        "Postcondition": [
+            "The coordinator can show the details of a Supplier."
+        ],
+        "Basic flow": [
+            "The coordinator press “View Supplier Details”",
+            "The coordinator views the details of a Supplier."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 37,
+        "dataset": "viper",
+        "Name": "Edit Supplier",
+        "Brief Description": "The Coordinator can edit  Supplier and notify him (on option.)",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can edit exist Supplier."
+        ],
+        "Basic flow": [
+            "The coordinator press “Edit Supplier”",
+            "The coordinator modifies the Supplier information.",
+            "The coordinator will send a notification to the Supplier."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    },
+    {
+        "id": 38,
+        "dataset": "viper",
+        "Name": "Delete Supplier",
+        "Brief Description": "The coordinator can delete a certain Supplier",
+        "Precondition": [
+            "Must the coordinator login"
+        ],
+        "Postcondition": [
+            "The coordinator can delete exist Supplier.",
+            "The Supplier will be notified by option."
+        ],
+        "Basic flow": [
+            "The coordinator press “Delete Supplier”",
+            "The information about the customer will show.",
+            "Press “Delete” to processing the deleting",
+            "The coordinator will send a notification to the Supplier on option."
+        ],
+        "Alt. Flow": [],
+        "Exc. Flow": [
+            [
+                "\"Error!\" message"
+            ]
+        ]
+    }
+]

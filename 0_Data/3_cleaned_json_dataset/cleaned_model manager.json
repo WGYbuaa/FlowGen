@@ -1,0 +1,207 @@
+[
+    {
+        "id": 0,
+        "dataset": "model manager",
+        "Name": "“WeatherFDDA”:  Setting up a  real time or off-line FDDA job",
+        "Brief Description": "The objective of this feature is to automate the set up of new real time and off-line FDDA jobs. This use case describes the set up of GMOD jobs, re-runs and case studies. At this point, RTFDDAensemble jobs will be submitted to the MM as 'by hand' jobs or through a job configuration file.The MM will provide a default GMOD job configuration, which can be changed by the user. It is important to note that the model manager will accept andrun “custom” GMOD jobs. These are jobs that are also set up through the Setup-module, but donot use the default GMOD configuration  For a “custom” GMOD job, e.g., the user may choose tosupply his/her own input data, own pre-processors or a customized version of a MM5 executable.MM's Job-Setup module will allow the user to substitute the default configuration, but it is theuser's responsibility to make sure that these scripts, executables, etc.  reside on the cluster orclusters where the job will be running on. Submitting a “custom” GMOD job thought the Job-Setupmodule will allow the user to save the job's configuration with the MM.Set up and run a real time and off-line GMOD job.",
+        "Basic flow": [
+            "User chooses to “Set up  a Weather FDDA Job”.",
+            "User may choose a cluster where the job should run on.",
+            "User decides what model should be used: MM5 or WRF.",
+            "User defines a JOBID.",
+            "User determines domains(TBD): creates own domains (Note: This may only apply to MM5 jobs.",
+            "From earlier discussions: creating domain files for WRF takes a long time.)",
+            "or chooses between a number of pre-defined domains or submits own TERRAIN files",
+            "User defines when a job is to be run and/or what cycle to run.",
+            "If the cycle time is in the past, then the user is prompted to specify whether the job is a “case study” or “re-run”.",
+            "User supplies other job specific information, such as, cycle interval, forecast length and other applicable information.",
+            "User can specify whether to write restart files and the frequency of how often they are to be written (TBD: Is this a correct statement and does frequency only apply to WRF?).",
+            "User can choose between predefined sigma-level configurations or supply own sigma-level configuration",
+            "User has the option to specify the number of nodes to use.",
+            "User can choose to receive email notification upon start, end and termination of the job.",
+            "User chooses between standard or custom IC/BC data sources:•standard: ETA, AVNFTP (GFS), GFS004 or custom: provide data source (e.g., host:Full_Path_to_Dir) or For off-line jobs, the user must specify the data source, i.e., location (MetVault or a directory) and time period.",
+            "Important note for re-runs, if the input data is to obtain from the MetVault, then MetVault returns the data that was available and used in that cycle.",
+            "TBD: Determine standard IC/BC data source and standard pre-processors",
+            "Depending on the choice above, user can provide custom IC/BC pre-processor or choose the standard:standard processing or provide own pre-processing script",
+            "User is given the option to run additional pre-processors for the IC/BC data, such as, LDAS or supply own custom pre-processor or skip this option.",
+            "User chooses between standard and/or custom obs data sources and processing: Standard: WMO, SAMS, MADIS, GTS, RAWS, okmeso, SatWinds, ACARS, etc.. and/or provide custom obs source1 and custom obs processor1; provide custom obs source2 and custom obs processor2 etc.. or For off-line jobs, the user must specify the data source, i.e., location (MetVault or a directory) and time period.",
+            "Important note for re-runs, if the input data is to obtain from the MetVault, then MetVault returns the data that was available and used in that cycle.",
+            "TBD: Define all standard observational data sources and identify their processing scripts.",
+            "Depending on the choice of the model different options are given to the user: MM5: The domain size and number of nodes for this job was determined earlier.",
+            "Based on both choices, the user is presented with different MM5-executables to choose from.",
+            "These executables have been compiled in advanced.",
+            "The MM will be able to retrieve the compile info about the executables, e.g., domain size, number of nodes, number of sigma levels, etc.. These few executables are standard executables (TBD: determine what 'standard MM5 executable’ means).",
+            "Or, the user can also supply own executable, e.g., its location on the cluster.",
+            "WRF: User defines model options (TBD: determine possible model options)",
+            "User chooses whether or not to run Final Analysis.",
+            "This may only apply to re-runs and case studies.",
+            "User chooses whether or not to run Prelim.",
+            "Analysis.",
+            "This may only apply to re-runs and case studies.",
+            "User chooses whether or not run additional processing on the model output.",
+            "(TBD: What exactly are the options for additional processing?",
+            "Bias Correction?)",
+            "User can choose to save the model output in MetVault.",
+            "If 'yes', user must specify what output file is to be sent to the MetVault.",
+            "User is given the option to save and submit the job now.",
+            "Submitting now, would run IC/BC-data and obs processing and the model, no post-processing.",
+            "User chooses whether or not to run post-processing.",
+            "If ‘yes', then s/he will go through the action sequence in 3.4. (TBD: How customizable should post-processing be?",
+            "In GCAT, e.g., the user can specify locations for pseudo-soundings, cross sections, pseudo-obs, etc.. Do MM-users at RAL need that level of post-processing customization?",
+            "Do MM-users at the ranges need that level of post-processing customization, or would be a set pre-configured post-processing options be sufficient?)",
+            "User can save the above job configuration.",
+            "Job configurations can be saved to a file.",
+            "User submits the job."
+        ],
+        "Actors": [
+            "Meteorologist",
+            "software engineer"
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "model manager",
+        "Name": "“ClimoFDDA”:  Setting up a  ClimoFDDA job",
+        "Brief Description": "The objective of this feature is to integrate the GCAT functionalities within the MM. Suppose the user is logged on to the system and has made the following choices “Submit a newjob” -> “Set up a new model job”. S/he is then presented with two more options: “ Weather FDDA” and “Climo”.Set up and run a ClimoFDDA job. At this point, the MM only supports “ClimoFDDA”.",
+        "Basic flow": [
+            "Chooses to  “Set up a Climo Job”.",
+            "User defines a JOBID.",
+            "User supplies other job parameters.",
+            "For details, see GCAT tool",
+            "User determines the domain location.",
+            "User can specify locations for pseudo-obs and custom cross sections.",
+            "(TBD: Is this configuration information that is only used during post-processing?)",
+            "User picks a pre-configured MM5 setup",
+            "User sets the time line for the job: start time, end time and what years",
+            "User sets the ensemble options: hourly;min, max, mean, standard deviation,....;diurnal cycle;typical moment",
+            "User can request the number of nodes this job should run on.",
+            "User chooses whether or not run additional processing on the model output.",
+            "(TBD: Is 10. applicable to ClimoFDDA jobs?",
+            "User can choose to save the model output in MetVault.",
+            "If 'yes', user must specify what output, e.g., member and/or ensemble output is to be send to the MetVault.",
+            "User is given the option to save and submit the job now.",
+            "Submitting now, would run the member models, the ensemble, and possible model output processing, no post-processing.",
+            "User chooses whether or not to run post-processing on the ensemble output.",
+            "If “yes',then s/he will be presented with the following options:•Plots (NCL or RIP) •NAPS •MDV •Sites •MEDOC (1 – 4) •Raster •PRF •Wind Roses •....For each output product, the user is prompted to supply a destination host and location,where the output files should be copied.",
+            "The user can also specify whether the members' output should be post-processed.",
+            "S/he can specify which year-output to post-process and what post-processor(s) to use and where the output files should be copied.",
+            "The user can specify whether another process (coupled app) should be run on the post-process output products.",
+            "This needs further clarification.",
+            "User can save the above job configuration.",
+            "Job configurations can be saved to a file.",
+            "User submits the job."
+        ],
+        "Actors": [
+            "Meteorologist",
+            "software engineer"
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "model manager",
+        "Name": "Set up and submit a “post-processing” job",
+        "Brief Description": "The objective of this feature is to provide the ability to only run “post-processing” on an existing model output file. It will also provide the post-processing part of the use case “WeatherFDDA” in 3.1. Suppose the user is logged on to the system and has made the following choice, “Submit a new job”.Run post-processing on model output.",
+        "Basic flow": [
+            "User selects “Set up a new 'post-processing' job” .",
+            "User is prompted to supply location and name of the model output file: If the model output file will be produced by a running or scheduled FDDA-job, then the user supplies JOBID & cycle time.",
+            "If the model output file already exists, then the user supplies its location.",
+            "User chooses the type of post-processing:•Plots (NCL or RIP)•NAPS•MDV•Sites•MEDOC (1 – 4) •Stereo•Verification",
+            "For each of the options chosen in 3., the user can supply a custom configuration file (ifthis is applicable) or use the default configuration file.",
+            "User must supply destination location for the output products.",
+            "User can specify the number of nodes this job should run on",
+            "User can save this job's setting.",
+            "Job configurations can be saved to a file.",
+            "User submits job."
+        ],
+        "Actors": [
+            "Meteorologist",
+            "software engineer"
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "model manager",
+        "Name": "Submit a 'By-hand' job",
+        "Brief Description": "The objective of this feature is to accommodate the current GMOD-framework. It will also give the user the ability to run customized jobs. In order to submit a custom job to the MM, the user must first identify the cluster(s), where his/her job should run on. Then, log on to this machine, perform operations that are necessary for setting up the job and then register the job with the MM (see Action Sequence below). It is important to note that since a 'by-hand' job wasn't set up through MM's Job-Setup module, the MM doesn't know what the job is actually doing. In order for the MM to accept the job, the user will have to provide certain mandatory information about the job. Suppose the user is logged on to the system and has made the following choice, “Submit a new job”.Register a custom model job with the MM.",
+        "Basic flow": [
+            "User selects “Submit a 'By Hand' Job”",
+            "User supplies:Mandatory:•job id (GMUAE, GWDPG,...)•location of the script (host:/full_path_to_script)•time when to run the script•estimated time of how long the script will run•name(s) of executable(s)•max.",
+            "runtime for the executable(s)•number of nodes •location of output products (such as: host:/dir_path).",
+            "Optional:•frequency of how often the script should run•job type•any additional information",
+            "User can save the job's settings.",
+            "Job configurations can be saved to a file.",
+            "User submits job.",
+            "User can view his/her job in the job queue (see 3.1.).",
+            "User can receive an email notification when job is started, finished or killed.",
+            "(SRS Note: 'custom' job will need to notify the MM when done.)"
+        ],
+        "Actors": [
+            "Meteorologist",
+            "software engineer"
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "model manager",
+        "Name": "Load a job configuration from a file and submit the job",
+        "Brief Description": "The objective of this feature is to provide the ability to load a job configuration into MM from a file. Suppose the user is logged on to the system and has made the following choice, “Submit a new job”.",
+        "Basic flow": [
+            "User selects ”Submit a job configuration file”.",
+            "User supplies file name to load.",
+            "User can make changes to the configuration.",
+            "User can save the changed configuration.",
+            "User submits the job."
+        ],
+        "Actors": [
+            "Meteorologist",
+            "software engineer"
+        ]
+    },
+    {
+        "id": 5,
+        "dataset": "model manager",
+        "Name": "Retrieve and run a previously saved job configuration",
+        "Brief Description": "The objective of this feature is to provide the ability to retrieve a previous job configuration and to re-run this job or change its settings and run it again.Run a previously configured job.",
+        "Basic flow": [
+            "User logs on with user id/password.",
+            "User chooses to look at his/her previously saved job configurations.",
+            "A table of saved jobs may include the following attributes: Job id; Job type; Cycle time that was run last (if applicable);time this job was run last; ...",
+            "User selects a job.",
+            "User can change or delete this job configuration.",
+            "User changes the job configuration.",
+            "User can save the changed job configuration.",
+            "User submits job."
+        ],
+        "Actors": [
+            "Meteorologist",
+            "software engineer"
+        ]
+    },
+    {
+        "id": 6,
+        "dataset": "model manager",
+        "Name": "View scheduled, running and old jobs",
+        "Brief Description": "The objective of this feature is to facilitate monitoring of running jobs, viewing the job queue and viewing jobs that ran in the past.Monitor a running job and view scheduled and old jobs.",
+        "Basic flow": [
+            "User logs on with user id/password.",
+            "User chooses to look at all running jobs, all scheduled jobs (the job queue), past jobs orall jobs (running, scheduled, old).",
+            "User selects one of the four options.",
+            "User is presented with a job table.",
+            "Depending on the user's choice in 2, the job tablemay present the following attributes to the user:•user id – the 'owner' of the job •Job id•Job type – such as: GMOD, climoFDDA, FDDA-re-run, case study, custom,....•Job priority •start time•remaining time (estimated) or time it took to run the job•cycle (if applicable)•stage (Pre-processing, F-analysis, Prelim. Analysis,...)•status ( SCHEDULED, RUNNING, status in % - if applicable, DONE)•cluster and nodes (for a running job)•number of processors•and others",
+            "User can select a job and receive more detailed information",
+            "User can look at a jobs log files.",
+            "User can delete his/her jobs from the job queue.",
+            "A “super user” can delete any job fromthe job queue.",
+            "User can stop his/her running job.",
+            "A “super user” can stop any running job.",
+            "User can re-start his/her job.",
+            "A “super user” can re-start any job.",
+            "User can resume his/her stopped job.",
+            "A “super user” can resume any stopped job."
+        ],
+        "Actors": [
+            "Meteorologist",
+            "software engineer"
+        ]
+    }
+]

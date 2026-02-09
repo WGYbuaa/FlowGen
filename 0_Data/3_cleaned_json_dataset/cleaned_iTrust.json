@@ -1,0 +1,1542 @@
+[
+    {
+        "id": 0,
+        "dataset": "iTrust",
+        "Name": "Create and Deactivate Patients",
+        "Precondition": [
+            "The iTrust HCP has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The HCP enters a patient as a new user of iTrust Medical Records system.",
+                    "Only the name and email are provided.",
+                    "The patient's assigned MID and a secret key (the initial password) are personally provided to the user, with which the user can reset his/her password.",
+                    "The HCP can edit the patient according to data format 6.4 [E1] with all initial values (except patient MID) defaulting to null and/or 0 as appropriate.",
+                    "Patient MID should be the number assigned when the patient is added to the system and cannot be edited.",
+                    "The HCP does not have the ability to enter/edit/view the patient's security question/password."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The HCP selects a patient to deactivate.",
+                    "The HCP is presented with a confirmation containing the name of the patient and determines if it is the patient they intend to deactivate [E2].",
+                    "A deactivated patient can not be modified or log into the system, and can only be reactivated by the administrator."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "The HCP uploads a comma-seperated value file containing one patient per row.",
+                    "The fields of the CSV file must include at least the first name, last name, and e-mail address, with additional columns available for the other demographic values.",
+                    "The patients are created, the tables are populated, and the MIDS and temporary passwords are displayed to the HCP in a table.",
+                    "The event is logged.",
+                    "1.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The system prompts the enterer/editor to correct the format of a required data field because the input of that data field does not match that specified in data format 6.4 for patients."
+            },
+            {
+                "id": "E2",
+                "text": "If the confirmation screen does not show the name of the intended patient, the HCP is then prompted to input the correct patient identification information again."
+            },
+            {
+                "id": "E3",
+                "text": "If the file is malformed, then no data is added, and an error message explaining the correct file structure is presented."
+            }
+        ],
+        "Basic Flow": [
+            "An HCP is able to create a patient [S1] or disable a selected patient [S2].",
+            "The create/disable patients and HCP transaction is logged (UC5)."
+        ]
+    },
+    {
+        "id": 1,
+        "dataset": "iTrust",
+        "Name": "Enter/edit personal health records",
+        "Precondition": [
+            "An HCP is a registered user of the iTrust Medical Records system (UC2).",
+            "The HCP has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": "The health care personnel enters a MID [E1] of a patient and confirms their selection [E2]."
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The health care personnel may enter/edit personal health information including Patient Information (Data Format 6.4.1), Insurance Information (6.4.2), Emergency Contact Information (6.4.3), and Patient’s Health Information ([[requirements:df4|6.4.4]).",
+                    "The HCP can indicate drug allergies [S3].",
+                    "The HCP can indicate the patient has passed away, providing an appropriate diagnosis code."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "The HCP can select a medication from a pull down list and add it to the list of medications the patient is allergic to.",
+                    "The medication is checked against the patient's current and future prescriptions.",
+                    "The HCP is notified of any current or future prescriptions to which the patient has a drug allergy.",
+                    "10.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The health care professional types an invalid medical identification number and is prompted to try again."
+            },
+            {
+                "id": "E2",
+                "text": [
+                    "The patient chosen is not the desired patient.",
+                    "The health care professional does not confirm the selection and is prompted to try again."
+                ]
+            }
+        ],
+        "Basic Flow": [
+            "An HCP chooses to enter/edit personal health information for a patient [S1].",
+            "The information is viewed/edited by the HCP [S2]."
+        ]
+    },
+    {
+        "id": 2,
+        "dataset": "iTrust",
+        "Name": "Document office visit",
+        "Precondition": [
+            "An HCP is a registered user of the iTrust Medical Records system (UC2).",
+            "The iTrust user has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": "The HCP enters a MID [E1] or name of a patient and confirms their selection [E2]."
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The HCP documents the following information related to an office visit.",
+                    "All events are logged (UC5, S8).",
+                    "Required information is designated; all other information is optional:\nDate (required)\nHospital location of the office visit, if any, (the default should be the HCP's home location) (required)\nAppointment type (required) (UC60)\nNotes (numbers, characters, #, ;, ?, -, ', ., :, blankspace and carriage return are all allowed input values) (required)\nOption to send patient a billing statement (UC60)\nBasic Health Metrics (UC51) (required)\nPrescribed Medications (NDC, see Data Format 6.6) [S4]\nLab procedures that are ordered (LOINC code, see Data Format 6.11)(UC26)\nPatient Specific Instructions (UC44)\nDiagnoses (via the ICD-9CM code)\nMedical procedures (CPT code) performed\nImmunizations given (CPT Code, see UC15, S1)\nPatient referral (UC33)."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "HCPs can return to an office visit and modify or delete the fields of the office visit [notes, health metrics UC51, prescriptions, laboratory procedures (UC26), referral (UC33), diagnoses, procedures, and/or immunizations (UC15)].",
+                    "The event is logged (UC 5, S8) and the HCP is returned in the specific office visit record to verify his or her changes."
+                ]
+            },
+            {
+                "id": "S4",
+                "text": [
+                    "The HCP has selected a medication prescribed from a pull down list.",
+                    "The HCP provides the dosage in milligrams, the start and end date for the prescription, and any special instructions.",
+                    "The instructions can contain numbers, characters, #, ;, ?, -, ', ., :, blankspace and carriage return.",
+                    "The HCP must provide instructions (can neither be empty nor the default form field value), or else they cannot add the prescription.",
+                    "The HCP can add the prescription to the list of medications (UC37).",
+                    "11.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The HCP types an invalid medical identification number and is prompted to try again."
+            },
+            {
+                "id": "E2",
+                "text": [
+                    "The patient chosen is not the desired patient.",
+                    "The health care personnel does not confirm the selection and is prompted to try again."
+                ]
+            }
+        ],
+        "Basic Flow": [
+            "An HCP chooses to document [S2] or edit [S3] an office visit for a patient [S1]."
+        ]
+    },
+    {
+        "id": 3,
+        "dataset": "iTrust",
+        "Name": "Determine operational profile",
+        "Precondition": [
+            "A software tester has a login and password.",
+            "Similar to an administrator, a software tester is added by directly entering the software tester into the database by an administrator that has access to the database."
+        ],
+        "Sub. Flow": [],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "The software tester authenticates himself or herself in the iTrust Medical Records system (UC2).",
+            "He or she is then presented with the actual operational profile of the operations of the iTrust Medical Records where the use percentage is the % of total transactions for each particular transaction logging type, broken-down by each of the user types [patient, LHCP, UHCP, admin, tester]"
+        ]
+    },
+    {
+        "id": 4,
+        "dataset": "iTrust",
+        "Name": "Declare/undeclare Personal Representative",
+        "Precondition": [
+            "An HCP is a registered user of the iTrust Medical Records system (UC2).",
+            "The iTrust user has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The health care personnel types an invalid medical identification number and is prompted to try again."
+            }
+        ],
+        "Basic Flow": [
+            "The HCP selects a patient by typing in the MID of the patient [E1].",
+            "The HCP can choose to add or remove another registered user as a personal health representative to that patient."
+        ]
+    },
+    {
+        "id": 5,
+        "dataset": "iTrust",
+        "Name": "Maintain standards lists",
+        "Precondition": [
+            "The administrator has authenticated himself or herself in the iTrust Medical Records system (UC2)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The administrator will maintain [add/update] a listing of allowable immunizations that an HCP can use.",
+                    "The administrator will store (1) the CPT code (The CPT code set accurately describes medical, surgical, and diagnostic services and is designed to communicate uniform information about medical services and procedures among physicians, coders, patients, accreditation organizations, and payers for administrative, financial, and analytical purposes.",
+                    "About CPT) [E1] and (2) up to 30 alpha characters giving the name [E1] of the immunization."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The administrator will maintain a listing of allowable diagnoses that an LHCP can use.",
+                    "The administrator will store (1) the ICD-9CM code (The International Statistical Classification of Diseases and Related Health Problems (most commonly known by the abbreviation ICD) provides codes to classify diseases and a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances and external causes of injury or disease.",
+                    "NHCS Classification of Diseases, Functioning and Disability) for the diagnosis [E1]; (2) a classification that the diagnosis is either chronic/long-term.",
+                    "short term; and (3) up to 30 alphanumeric characters giving the name [E1] of the diagnosis."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "The administrator will maintain [add/update] a listing of allowable drugs that an HCP can use.",
+                    "The administrator will store (1) the National Drug Code (The National Drug Code (NDC) is a universal product identifier used in the United States for drugs intended for human use.",
+                    "National Drug Code Directory)"
+                ]
+            },
+            {
+                "id": "S4",
+                "text": [
+                    "The administrator will maintain [add/update] a listing of allowable physical services (including laboratory procedures) that an HCP can use.",
+                    "The administrator will store information of a LOINC code (Logical Observation Identifiers Names and Codes (LOINC) is a database and universal standard for identifying medical laboratory observations.",
+                    "LOINC c/o Medical Informatics) [E1] according to Data Format 6.11. The administrator may choose to upload a file containing LOINC code information [S5]."
+                ]
+            },
+            {
+                "id": "S5",
+                "text": [
+                    "The administrator selects a file containing LOINC information and chooses to upload it.",
+                    "LOINC data from this file is added to a listing of allowable physical services (including laboratory procedures that an HCP can use).",
+                    "If the file contains more fields than are supported by Data Format 6.11, all fields in Data Format 6.11 will be updated.",
+                    "15.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The administrator types an invalid code information and is prompted to try again."
+            }
+        ],
+        "Basic Flow": [
+            "An administrator chooses to maintain the standards list for immunizations [S1], diagnoses [S2], allowable drugs [S3], or allowable physical services [S4]."
+        ]
+    },
+    {
+        "id": 6,
+        "dataset": "iTrust",
+        "Name": "Identify risk of chronic disease",
+        "Precondition": [
+            "The LHCP has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The LHCP chooses to examine a patient for which the preconditions do not apply (e.g., an adult shouldn't be tested for child diabetes) and the LHCP is prompted that no analysis can occur."
+            }
+        ],
+        "Basic Flow": [
+            "Through the Personal Health Records page, an LHCP chooses a chronic disease and a patient.",
+            "The data in the database is analyzed according to the risk factors for the disease to determine if the patient exhibits one or more risk factors.",
+            "Currently available risk factors for chronic diseases are defined for Diabetes (Type 1 and Type2) and Heart Disease.",
+            "When the chosen patient satisfies the preconditions of the chosen chronic disease [E1], the LHCP is provided with a warning message if that patient exhibits three or more risk factors.",
+            "The message will display the risk factors that the patients exhibit."
+        ]
+    },
+    {
+        "id": 7,
+        "dataset": "iTrust",
+        "Name": "Proactively Determine Needed Patient Care",
+        "Precondition": [
+            "The HCP has authenticated himself or herself in the iTrust Medical Records system (UC2)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": "An alive patient who has not had an office visit for more than one year and who has been diagnosed with\ndiabetes mellitus [is diagnosed with ICD code beginning with 250:http://icd9cm.chrisendres.com/index.php?action=child&recordid=1765 ]\nasthma [is diagnosed with ICD code beginning with 493:http://icd9cm.chrisendres.com/index.php?action=child&recordid=4700 ], or\ncirculatory-system disease [is diagnosed with an ICD code between 390 and 459 inclusive: http://icd9cm.chrisendres.com/index.php?action=child&recordid=4025 ]."
+            },
+            {
+                "id": "S2",
+                "text": "An alive patient over 50 years old who has not had a flu shot [CPT codes 90656, 90658, 90660 per http://www.influenza.com/index.cfm?fa=ADDITIONAL_RES_HC_2 during the months Sept - Dec of the last calendar year (or during the months Sept - Dec of the current calendar year if the retrieval time is between Sept - Dec)."
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "An alive patient under the age of 19 who has not had proper immunizations per the immunization schedule.",
+                    "The “catch up schedule” is relevant when the patient did not begin the immunizations according to the recommended schedule.",
+                    "Hepatitis B (90371) three doses: at birth, at age 1 month, at age 6 months; catch up schedule: at least 4 weeks between dose 1 and dose 2 and at least 8 weeks between dose 2 and dose 3\nRotavirus (90681) three doses: at age 6 weeks, at age 4 months, at age 6 months; catch up schedule: at least 4 weeks between dose 1 and dose 2 and at least 4 weeks between dose 2 and dose 3\nDiphtheria, Tetanus, Pertussis (90696) six doses: at age 6 weeks, at age 4 months, at age 6 months, at age 15 months, at age 4 years, at age 11 years; catch up schedule: at least 4 weeks between dose 1 and dose 2, at least 4 weeks between dose 2 and dose 3, at least 6 months between doses 3 and 4, at least 6 months between dose 4 and dose 5, at least 5 years between dose 5 and dose 6\nHaemophilus influenzae (90645) three doses: at 6 weeks, at age 4 months, at age 12 months; catch up schedule: at least 4 weeks between dose 1 and dose 2 and at least 4 weeks between dose 2 and dose 3 if first dose is administered at younger than 12 months; if first dose is administered between 12 and 14 months, at least 8 weeks between dose 1 and dose 2 and dose three is canceled; if first dose is administered at or after 15 months, only one dose is required\nPneumococcal (90669) four doses: at age 6 weeks, at age 4 months, at age 6 months, at age 12 months; catch up schedule: at least 4 weeks between dose 1 and dose 2 and at least 4 weeks between dose 2 and dose 3 and at least 8 weeks between dose 3 and dose 4 if first dose is administered at younger than 12 months; if first dose is administered between 12 and 14 months, at least 8 weeks between dose 1 and dose 2 and dose three is canceled; if first dose is administered at or after 15 months, only one dose is required\nPoliovirus (90712) four doses: at age 6 weeks, at age 4 months, at age 6 months, 4 years; catch up schedule: at least 4 weeks between dose 1 and dose 2, at least 4 weeks between dose 2 and dose 3, at least 4 weeks between doses 3 and 4, dose 4 is not required if dose 3 was administered at the age of 4 or older\nMeasles, Mumps, Rubella (90707) two doses: at age 12 months, at age 4 years; catch up schedule: at least 4 weeks between dose 1 and dose 2\nVaricella (90396) two doses: at age 12 months, at age 4 years; catch up schedule: at least 3 months between dose 1 and dose 2\nHepatitis A (90633) two doses: at age 12 months; at age 18 months: catch up schedule: at least 6 months between dose 1 and dose 2\nHuman Papillomavirus (90649) Female only, three doses; at age 9 years; at age 9 years + 2 months; at age 9 years + 6 months; catch up schedule: at least two months between dose 1 and dose 2; at least four months between dose 2 and dose 3\n17.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "An HCP chooses Office Visit Reminders and then to identify chronic patients who need an office visit [S1], older patients who need a flu shot [S2], or any patient who is overdue for an immunization [S3].",
+            "The HCP is presented with a listing of patients for whom they are a DLHCP who need care because of satisfying the one of preceding conditions.",
+            "The presented patient information shall include each patient's name and home phone number so that reminder calls can be made.",
+            "The list is sorted based on the alphabetical order of the patients' last names, and then first names."
+        ]
+    },
+    {
+        "id": 8,
+        "dataset": "iTrust",
+        "Name": "Maintain a hospital listing",
+        "Precondition": [
+            "The administrator has authenticated himself or herself in the iTrust Medical Records system (UC2)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": "The administrator will store (1) hospital Id number for the hospital [E1], (2) up to 30 alphanumeric characters giving the name of the hospital, and (3) an address for the hospital."
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The administrator types an invalid hospital ID and is prompted to try again."
+            },
+            {
+                "id": "E2",
+                "text": "The administrator types an invalid hospital name and is prompted to try again."
+            }
+        ],
+        "Basic Flow": [
+            "An administrator chooses to maintain the hospital listing [S1].",
+            "(Note: A personnel may be assigned to more than one (UC 2, S1))"
+        ]
+    },
+    {
+        "id": 9,
+        "dataset": "iTrust",
+        "Name": "View prescription report",
+        "Precondition": [
+            "The iTrust user has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The user (patient or personal health representative) can choose to view a list of (1) their own prescriptions or (2) the prescriptions for whom the user is a person health representative by choosing one patient from a a list of these patients.",
+                    "A prescription list is then displayed [S3], sorted by start date (the later date is ranked earlier)."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The user (LHCP) selects a patient from the list of requested reports [E1, E2].",
+                    "At this point, the LHCP can view a prescription list for that patient [S3], sorted by start date (the later date is ranked earlier)."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "The prescription report is titled with the patient name.",
+                    "The prescription list includes medication, date prescribed, start date, end date for each prescription, and the name of the doctor who prescribed the medication.",
+                    "19.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The LHCP types an invalid medical identification number and is prompted to try again."
+            },
+            {
+                "id": "E2",
+                "text": [
+                    "The patient chosen is not the desired patient.",
+                    "The LHCP does not confirm the selection and is prompted to try again."
+                ]
+            }
+        ],
+        "Basic Flow": [
+            "A patient or personal health representative [S1] or LHCP [S2] chooses to view prescription reports [S3].",
+            "If the LHCP is not one of the patient's DLHCP or the UAP associated with one of their DLHCP, a message is sent to the patient and their personal representative."
+        ]
+    },
+    {
+        "id": 10,
+        "dataset": "iTrust",
+        "Name": "Create, Disable, and Edit Personnel",
+        "Precondition": [
+            "The iTrust Admin or LHCP has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "An administrator enters a LHCP, ER, or public health agent as a user of iTrust Medical Records system, initially only the name and email are provided.",
+                    "A secret key is personally provided to the user, with which the user can reset his/her password.",
+                    "The admin must specify a specialty for a new LHCP (one of: General Physician, Heart Surgeon, OB/GYN, Pediatrician, Surgeon) and for a new LT (one of blood, tissue, or general).",
+                    "The data for personnel can be edited according to Data Format 6.2 (all fields mandatory except for associated MID and Street Address 2) [S6, E1].",
+                    "The administrator shall be allowed to assign a LHCP to multiple hospitals, and the administrator can choose among only the hospitals provided in the hospital list pull down menu.",
+                    "The hospital ID numbers for a LHCP are stored in the Medical Care Personnel Affiliation database (data format 6.8).",
+                    "The administrator shall be allowed to assign a LT to a single hospital, and the administrator can choose among only the hospitals provided in the hospital list pull down menu.",
+                    "The hospital ID numbers for a LT are stored in the Medical Care Personnel Affiliation database (data format 6.11)."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "A LHCP enters an UAP as a user of iTrust Medical Records system according to data format 6.2 (all fields mandatory) [E1].",
+                    "2.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The system prompts the admin or LCHP to correct the format of a required data field because the input of that data field does not match that specified in data format 6.2, for HCPs."
+            }
+        ],
+        "Basic Flow": [
+            "An admin creates a LHCP, an ER, a Laboratory Technician (LT), or a public health agent (PHA) [S1].",
+            "A LHCP creates UAPs [S2].",
+            "Once entered, the admin or LHCP is presented a detailed confirmation screen to approve [E2]."
+        ]
+    },
+    {
+        "id": 11,
+        "dataset": "iTrust",
+        "Name": "View emergency electronic health record",
+        "Precondition": [
+            "The iTrust user (LHCP or ER) has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The LHCP or ER enters a MID [E1] and confirms the input [E2].",
+                    "21.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The LHCP/ER types an invalid medical identification number and is prompted to try again."
+            },
+            {
+                "id": "E2",
+                "text": [
+                    "The patient chosen is not the desired patient.",
+                    "The LHCP or ER does not confirm the selection and is prompted to try again."
+                ]
+            }
+        ],
+        "Basic Flow": [
+            "A LHCP or ER chooses to view an emergency report and provides an MID [E1].",
+            "The LHCP/ER is presented with a patient confirmation [E2].",
+            "The LHCP obtains a printable report [meaning you should minimize the space taken up to provide the information] containing vital information for the patient: Name, Age, Gender, Emergency contact (name and phone number), Allergies, Blood type, A list of all diagnosis codes chronic/long-term diagnoses for the patient and well as all short term diagnoses made within the last 30 days.",
+            "Display the ICD-9CM code and the name of the diagnoses.",
+            "Sort by most recent first.",
+            "A list of all prescriptions the patient is likely to be currently taking as determined by the end date of the prescription has passed by 91 days or less.",
+            "Display the National Drug Code and the name of the prescription.",
+            "Sort by most recent first.",
+            "A list of all immunizations the patient has had.",
+            "Display the CPT Code and the name of the immunization.",
+            "Sort by most recent first."
+        ]
+    },
+    {
+        "id": 12,
+        "dataset": "iTrust",
+        "Name": "View Comprehensive Patient Report",
+        "Precondition": [
+            "An LHCP has authenticated him or herself in the iTrust Medical Records system (UC2)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": "The LHCP enters a patient medical identification number (MID) [E1] and confirms his/her input [E2]."
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The LHCP can view the comprehensive patient report for the specified patient, which includes the information below.",
+                    "All patient demographic information (address, phone, etc..), see (UC4) and Data Format 6.1\nThe entire history of personal health records, see (UC10) and Data Format 6.4\nAll diagnoses, including those not normally viewable by the requesting LHCP, see (UC11) and Data Format 6.5\nAll designated HCPs (MIDs and Names), see (UC6)\nAll allergies, procedures, medications, office visits, and known relatives, see (UC11) and Data Format 6.5, 6.6\nAll MIDs and names of people that this person is representing, see (UC13)\nAll MIDs and names of people that this person is represented by, see (UC13)"
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "The LHCP views a list of requests he/she has made for reports, with the status and pertinent information about the requests.",
+                    "23.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The LHCP types an invalid MID and is prompted to try again."
+            },
+            {
+                "id": "E2",
+                "text": [
+                    "The chosen patient is not the desired patient.",
+                    "The LHCP does not confirm the selection and can try again."
+                ]
+            }
+        ],
+        "Basic Flow": [
+            "The LHCP requests a comprehensive patient report for a particular patient [S1].",
+            "The LHCP is able to view the comprehensive patient report [S2] from a list of his/her previous requests [S3]."
+        ]
+    },
+    {
+        "id": 13,
+        "dataset": "iTrust",
+        "Name": "Take Satisfaction Survey",
+        "Precondition": [
+            "The iTrust user (patient) has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "A patient or personal health representative can answer any of the following questions relative to a previous (in UC9, S1) office visit according to Data Format 6.13. How many minutes did you wait in the waiting room? How many minutes did you wait in the examination room before seeing your physician? How satisfied were you with your office visit? How satisfied were you with the treatment or information you received?",
+            "The answers to the survey are stored."
+        ]
+    },
+    {
+        "id": 14,
+        "dataset": "iTrust",
+        "Name": "View Physician Satisfaction Survey Results",
+        "Precondition": [
+            "The iTrust user has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": [
+                    "The input is not a valid zip code (see Data Format 6.2).",
+                    "The user is asked to try again."
+                ]
+            }
+        ],
+        "Basic Flow": [
+            "A user chooses to view physician satisfaction survey results.",
+            "The user provides a zip code [E1] or a hospital code and an (optional) physician type (from a pull-down list: see data format 6.2 - general, surgeon, heart specialist, pediatrician, OB/GYN).",
+            "The patient is provided with the following for each physician of that type that practices in a zip code (based upon the address/zipcode provided in UC2) that match the first three digits of the provided zip code: Name, Address, Average number of minutes patients wait in waiting room, Average number of minutes patients wait in examination room prior to seeing physician, Average office visit satisfaction, Average satisfaction with treatment/information, Percentage of office visits for which satisfaction information is available"
+        ]
+    },
+    {
+        "id": 15,
+        "dataset": "iTrust",
+        "Name": "Manage Lab Procedures",
+        "Precondition": [
+            "The iTrust user (Lab Technician, patient, or HCP) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "An HCP can create a lab procedure for a given office visit.",
+                    "The HCP selects a procedure code, a priority from 1 to 3 (1=most important, 3=not as important), and Lab Technician (listed with his/her specialty and the number of pending lab procedures in his/her priority queue, grouped by priority).",
+                    "The HCP saves the new lab procedure, or cancels the lab procedure creation [E1], [E2].",
+                    "The status of the lab procedure is marked as in transit."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "An HCP can view a previously created lab procedure for a given office visit.",
+                    "The HCP can view patient name, lab procedure code, current lab procedure status, timestamp, and Lab Technician name."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "An HCP can reassign a previously created lab procedure to a different Lab Technician if the lab procedure is not yet in the testing state.",
+                    "The HCP selects a different Lab Technician from the list of available Lab Technicians (displayed with Lab Technician specialty and the number of pending lab procedures in his/her priority queue, grouped by priority).",
+                    "The HCP confirms the reassignment, or cancels the reassignment [E2]."
+                ]
+            },
+            {
+                "id": "S4",
+                "text": [
+                    "An HCP can remove a previously created lab procedure for a given office visit.",
+                    "The HCP chooses to remove the lab procedure as long as the status is either in transit or received.",
+                    "The HCP is prompted to confirm that he/she wishes to remove the lab procedure."
+                ]
+            },
+            {
+                "id": "S5",
+                "text": [
+                    "An HCP can add commentary to a pending lab procedure [E3].",
+                    "The HCP enters a comment for a lab procedure with status as pending.",
+                    "Upon entering a comment, the lab procedure status is updated to completed."
+                ]
+            },
+            {
+                "id": "S6",
+                "text": [
+                    "A patient may view his or her own lab procedure.",
+                    "On the associated office visit page, the patient can see the current status of the lab procedure, the HCP name, and the timestamp.",
+                    "If the lab procedure status is marked as completed, the patient can see the results and the HCP-provided comments."
+                ]
+            },
+            {
+                "id": "S7",
+                "text": [
+                    "A Lab Technician can view his or her assigned lab procedures.",
+                    "The Lab Technician sees a list of all lab procedures assigned to him/her that have a status of received, followed by a list of lab procedures that remain in transit.",
+                    "The list of received lab procedures is sorted by priority (from most important to least important), with a secondary sort by timestamp (oldest to newest).",
+                    "The first lab procedure in the received list is marked with a status of testing, and all other lab procedures have a status of received.",
+                    "The list of in transit lab procedures is sorted by timestamp, from oldest to most recent.",
+                    "In both lists, the Lab Technician is provided the lab procedure ID, lab procedure code, status, priority, HCP name, and timestamp."
+                ]
+            },
+            {
+                "id": "S8",
+                "text": [
+                    "A Lab Technician can record the results of a lab procedure [E3].",
+                    "The Lab Technician enters the lab procedure numerical result and confidence interval for the lab procedure with the status of testing.",
+                    "Upon recording the results of the lab procedure, the status is updated to pending."
+                ]
+            },
+            {
+                "id": "S9",
+                "text": [
+                    "A Lab Technician can update the status of a lab procedure to received.",
+                    "In the list of in transit lab procedures [S7], the Lab Technician can update the status to received when the sample has been received in his/her lab.",
+                    "26.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": [
+                    "The lab procedure code is not the intended lab procedure code.",
+                    "The HCP selects a different procedure code."
+                ]
+            },
+            {
+                "id": "E2",
+                "text": [
+                    "The selected Lab Technician is not the intended Lab Technician.",
+                    "The HCP selects a different Lab Technician."
+                ]
+            },
+            {
+                "id": "E3",
+                "text": [
+                    "The information provided is invalid.",
+                    "The user is prompted to try again."
+                ]
+            }
+        ],
+        "Basic Flow": [
+            "An HCP can create a lab procedure for a given office visit [S1].",
+            "An HCP can view a previously created lab procedure for a given office visit [S2].",
+            "An HCP can reassign a previously created lab procedure [S3].",
+            "An HCP can remove a previously created lab procedure [S4].",
+            "An HCP can add commentary to a pending lab procedure and update the lab procedure status to completed [S5].",
+            "A patient may view his or her own lab procedure results [S6].",
+            "A Lab Technician can view his or her priority queue of lab procedures [S7].",
+            "A Lab Technician can record the results of a lab procedure [S8].",
+            "A Lab Technician can update the status of a lab procedure as received [S9].",
+            "All events are logged (UC5)."
+        ]
+    },
+    {
+        "id": 16,
+        "dataset": "iTrust",
+        "Name": "Alert Users by Email",
+        "Precondition": [
+            "An event requiring an email alert has occurred."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The user has successfully changed his/her password (UC3, S2).",
+                    "An email informing the user of the password change is sent to the user including the MID but not the password."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The status of a laboratory procedure has been updated (UC26, S3).",
+                    "The patient is notified with the following information: the LOINC number and the updated status.",
+                    "27.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "An email alert is sent out to the iTrust user in the event of a changed password [S1], status change in laboratory procedure [S2], comprehensive report requested and generated.",
+            "Note to students: the iTrust system does NOT currently support actual email sending, only a “fake” email sending facility.",
+            "All email notifications should be executed through the fake email utility."
+        ]
+    },
+    {
+        "id": 17,
+        "dataset": "iTrust",
+        "Name": "View Patients",
+        "Precondition": [
+            "The iTrust user (LCHP) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "The LHCP chooses to view all patients with which he or she has ever had an office visit with.",
+            "The patient’s name (clickable to view PHR), address, and date of last office visit are displayed.",
+            "The list is sorted by the date of the last office visit (most recent first)."
+        ]
+    },
+    {
+        "id": 18,
+        "dataset": "iTrust",
+        "Name": "Find LHCPs with experience with a diagnosis",
+        "Precondition": [
+            "The iTrust user (patient) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "A patient has just been diagnosed with a condition and wants to find the LHCPs in the area who have handled that condition.",
+            "The patient chooses 'My Diagnoses” and is presented with a listing of all their own diagnoses, sorted by diagnosis date (more recent first).",
+            "The patient can select a diagnosis and will be presented with the LHCPs in the patient's living area (based upon the first three numbers of their zip code) who have handled this diagnosis in the last three years.",
+            "The list is ranked by the quantity of patients the LHCP has treated for that diagnosis (each patient is only counted once regardless of the number of office visits).",
+            "For each LHCP, the following information is displayed: Name of LHCP linked to contact information for that LHCP, The quantity of unique patients treated by that LHCP for that diagnosis (each patient is only counted once regardless of the number of office visits), List of all prescriptions given by that LHCP for that diagnosis, List of all laboratory procedures ordered by that LHCP for that diagnosis, The LCHP's average visit satisfaction, The LHCP's average treatment satisfaction"
+        ]
+    },
+    {
+        "id": 19,
+        "dataset": "iTrust",
+        "Name": "Authenticate Users",
+        "Precondition": [
+            "Either UC1/UC2 has been completed and a user has successfully been created."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": "If the security question/answer has been set (it is not null) [E2], present security question and obtain answer [S2, E1]."
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "If answer to security question is correct, allow user to change their password.",
+                    "An email notification is sent [UC27, S1]."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "Electronic sessions must terminate after ten minutes of inactivity.",
+                    "Ensure that authentication is reset after a period of inactivity that exceeds ten minutes.",
+                    "3.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": [
+                    "The user may try three times.",
+                    "After three failed attempts with a userid in a given session, disallow attempts to log in via IP address for 15 minutes (see comments in the source code)."
+                ]
+            },
+            {
+                "id": "E2",
+                "text": "If the patient has never stored a security question/answer, the user is asked for the random password assigned on creation of the account."
+            },
+            {
+                "id": "E3",
+                "text": "A user who has enabled “Log-in with Google” can use their Google account to log into the iTrust healthcare management system."
+            }
+        ],
+        "Basic Flow": [
+            "A user enters their MID and their password to gain role-based entry into the iTrust Medical Records system [E1] or requests that their password be changed [S1].",
+            "A session that has been inactive for more than ten minutes is terminated [S3].",
+            "Upon successful authentication, the user will be directed to a personalized home page based on their role.",
+            "An authenticated session ends when the user logs out or closes the iTrust application."
+        ]
+    },
+    {
+        "id": 20,
+        "dataset": "iTrust",
+        "Name": "Messaging between LHCP and patient",
+        "Precondition": [
+            "The iTrust user (LHCP or patient) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "A patient or personal representative for a patient chooses to send a message to an LHCP (no multiple recipients allowed in a single message).",
+                    "The patient/representative is presented with a pull down menu of his/her DLHCP.",
+                    "The patient/representative chooses one of these DLHCP and types the subject (up to 100 characters) and text of a message (up to 1000 characters), and clicks the send button.",
+                    "A row for showing the message subject, the name of the recipient, and the timestamp (which includes both date and time) is then visible in the patient/representative’s message outbox.",
+                    "A bolded row for showing the message subject, the name of sender, and the timestamp is then visible in the LHCP's message inbox.",
+                    "A fake email is sent to the LHCP alerting the user that a new message has arrived.",
+                    "After a message is sent, the patient or personal representative is directed to his/her message outbox."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "An LHCP chooses to send a message to a patient/representative (no multiple recipients allowed in a single message).",
+                    "The LHCP enters and confirms the patient/representative's MID [E1, E2].",
+                    "The LHCP types the subject (up to 100 characters) and the text of a message (up to 1000 characters), and clicks the send button.",
+                    "A row for showing the message subject, the name of the recipient, and the timestamp is then visible in the LHCP’s message outbox.",
+                    "A bolded row for showing the message subject, the name of the sender, and the timestamp is then visible in the patient/representative’s message inbox, and a fake email is sent to the patient/representative that indicates that he/she has a new message from an LHCP.",
+                    "After a message is sent, the LHCP is directed to to his/her message outbox."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "A patient or patient representative wishes to reply to a message.",
+                    "The patient/representative views his or her message inbox.",
+                    "The patient/representative opens the message to which he or she wishes to reply [S5], and then clicks the reply link above the message text.",
+                    "The patient/representative enters the text of the response message (up to 1000 characters) he or she wishes to send, then clicks the send button.",
+                    "A row for showing the message subject (now preceded by “RE:”), the name of the recipient, and the timestamp is then visible in the patient/representative’s message outbox.",
+                    "A bolded row for showing the message subject (now preceded by “RE:”), the name of the sender, and timestamp is then visible in the LHCP’s message inbox.",
+                    "A fake email is sent to the LHCP alerting the LHCP that a new message reply has arrived."
+                ]
+            },
+            {
+                "id": "S4",
+                "text": [
+                    "An LHCP wishes to reply to a message.",
+                    "The LHCP views his or her message inbox.",
+                    "The LHCP opens the message to which he or she wishes to reply [S5], and then clicks the reply link above the message text.",
+                    "The LHCP enters the text of the response message (up to 1000 characters) he or she wishes to send, then clicks the send button.",
+                    "A row for showing the message subject (now preceded by “RE:”), the name of the recipient, and the timestamp are then visible in the LHCP’s message outbox.",
+                    "A bolded row for showing the message subject (now preceded by “RE:”), the name of sender, and timestamp are then visible in the patient/representative’s message inbox.",
+                    "A fake email is sent to the patient/representative alerting the patient/representative that a new message reply has arrived."
+                ]
+            },
+            {
+                "id": "S5",
+                "text": [
+                    "A user (a patient, patient representative, or LHCP) wishes to read a message from the message inbox or outbox.",
+                    "The user chooses to open his or her message inbox/outbox.",
+                    "Each row in the message inbox/outbox includes the message subject, the name of either the sender (only for the case of inbox) or recipient (only for the case of outbox), and timestamp.",
+                    "By default, the messages in the message inbox/outbox should be ordered by timestamp, the most recent first.",
+                    "Each row for an unread message in the message inbox is bolded.",
+                    "The user selects a message from the message inbox/outbox to read by clicking the “Read” link beside the row for the message, and then the message subject, the name of the sender, the name of the the recipient, timestamp, and the message text shall be displayed in a new page.",
+                    "After a message in the message inbox is read (i.e., displayed in a new page), the row for the message in the message inbox is not bolded anymore."
+                ]
+            },
+            {
+                "id": "S6",
+                "text": [
+                    "A user (a patient, patient representative, or LHCP) can sort messages in his or her message inbox by either the sender's last name or timestamp (but not both) in either ascending or descending order (where timestamps in descending order would have the most recent first).",
+                    "A user can sort messages in his or her message outbox by the recipient's last name or timestamp (but not both) in either ascending or descending order.",
+                    "To do so, a user selects one option out of the “Sort by” labeled drop-down box (with options of “Sender/Recipient” or “Timestamp”) and selects one option out of the “by order of” labeled drop-down box (with options of “ascending” or “descending”), and then click the “Sort” button.",
+                    "Note that the sorted order is not saved for later viewing after the message inbox or outbox is reopened again (where the default sorting is always used)."
+                ]
+            },
+            {
+                "id": "S7",
+                "text": [
+                    "A user (an LHCP or patient/representative) can modify his/her message displaying filter by modifying the following filtering criteria: (1) the sender (i.e., the sender's name is exactly the same as the specified string), (2) the subject (i.e., the subject is exactly the same as the specified string), (3) has the words (i.e., the subject or the message body has the specified substring), (4) doesn't have (i.e., neither the subject nor the message body has the specified substring), (5) time stamp falling into the period defined by the starting date and ending date (inclusive) (the user interface shall provide both the option of typing in a specific date in the date format and the option of selecting a date from a calendar for the current month).",
+                    "Note that a single filter includes values for these five filtering criteria (rather than five filters for these five filtering criteria) and a value could be an empty string, indicating that this criterion has no impact on filtering (i.e., imposing no constraints related to this criterion).",
+                    "The user interface shall be initially populated with the values of the filtering criteria from the previously saved filter.",
+                    "After the user modifies the criteria, the user chooses to click the “Cancel” button to cancel the modifications of the filter (i.e., repopulate the user interface with the values of the filtering criteria from the previously saved filter), to click the “Test Search” button to search (i.e., displaying the message inbox [S5] including only the messages satisfying the specified filtering criteria), or to click the “Save” button to save the modified filter.",
+                    "Each user is associated with only one filter (being saved across login sessions) and applies only this saved filter.",
+                    "The user's associated filter initially has all empty inputs for the filtering criteria before the user modifies it.",
+                    "30.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The HCP types an invalid medical identification number and is prompted to try again."
+            },
+            {
+                "id": "E2",
+                "text": [
+                    "The patient chosen is not the desired patient.",
+                    "The HCP does not confirm the selection and is prompted to try again."
+                ]
+            }
+        ],
+        "Basic Flow": [
+            "An LHCP wants to send a message to a patient and/or that patient's personal representative [S2] or a patient or personal representative wants to send a message to one of their DLHCP or that of a person they are representing [S1].",
+            "LHCPs and patients/representatives may reply to messages [S3, S4].",
+            "An LHCP or patient/representative may view a message [S5].",
+            "An LHCP or patient/representative can sort his or her message inbox and message outbox [S6].",
+            "An LHCP or patient/representative can modify and save his/her message displaying filter [S7] or view his/her message inbox [S5] including only the messages satisfying the specified filtering criteria in the saved filter."
+        ]
+    },
+    {
+        "id": 21,
+        "dataset": "iTrust",
+        "Name": "Find LHCPs for prescription renewal",
+        "Precondition": [
+            "The iTrust user (patient) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The expired prescription report list is titled with the patient name.",
+                    "The expired prescription list includes medication, date prescribed (i.e., the day of the office visit), start date, end date for each prescription, and the name of the LHCP who prescribed the medication (where the name of the LHCP is linked to contact information for that LHCP).",
+                    "If there are no expired prescriptions, an empty expired prescription list is presented."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The patient clicks on the name of the LHCP for an expired prescription, and is presented with the contact information for that LHCP (including First Name Last Name, LHCP Type, Street Address 1, Street Address 2, City, State, Zip Code, Phone, and Contact Email); if any type of contact information is missing or the whole contact information for the LHCP is not available in the database, the corresponding missing types of information are simply shown as blank.",
+                    "31.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "A patient wants to renew the patient's expired prescriptions (i.e., prescriptions' end dates are earlier than the current date) and therefore wants to find the LHCPs who earlier wrote the patient's expired prescriptions (it is assumed that the doctors who wrote prescriptions are all LHCPs so no LHCP checks on the prescription-writing doctors are needed).",
+            "The patient chooses “My Expired Prescription Reports” and is presented with a list of the patient's expired prescriptions [S1], sorted by start date (the later date is ranked earlier closer to the top).",
+            "The patient can select to view contact information of a selected LHCP shown in the expired prescription list [S2]."
+        ]
+    },
+    {
+        "id": 22,
+        "dataset": "iTrust",
+        "Name": "Proactively Confirm Prescription-Renewal Needs",
+        "Precondition": [
+            "The HCP has authenticated himself or herself in the iTrust Medical Records system (UC2),(UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": "A chronic special-diagnosis-history patient is an alive patient who has been diagnosed with at least one of the following:\ndiabetes mellitus [is diagnosed with ICD code beginning with 250:http://icd9cm.chrisendres.com/icd9cm/index.php?action=child&recordid=1894 ],\nasthma [is diagnosed with ICD code beginning with 493:http://icd9cm.chrisendres.com/icd9cm/index.php?action=child&recordid=5000 ], or\ncirculatory-system disease [is diagnosed with an ICD code between 390 and 459 inclusive: http://icd9cm.chrisendres.com/icd9cm/index.php?action=child&recordid=4314 ]."
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The patient list is titled with the HCP's name.",
+                    "The patient list includes the patient's name (i.e., first name and last name), phone number, and contact email address [E1] (so that confirmation calls or emails can be made or sent outside of the iTrust system).",
+                    "The list is sorted based on the ascending alphabetical order of the patients' last names, and then first names.",
+                    "When a chronic special-diagnosis-history patient satisfies all three conditions and has multiple prescriptions satisfying the third condition, the patient is listed in the list only once.",
+                    "The list is a static list with no link on the patient's name, phone number, or contact email address)\n32.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "If there are no patients satisfying the three conditions, an empty list is presented."
+            }
+        ],
+        "Basic Flow": [
+            "The HCP chooses “Potential Prescription-Renewals” and is presented with a list of patients [S2] that satisfy ALL of the three conditions: (1) patients for whom the HCP is a DLHCP, (2) special-diagnosis-history patients [S1], (3) patients whose prescriptions will expire within 7 days (including the 7th day) from the current date (i.e., (currentDate < = expiredDate < = (currentDate + 7 days))."
+        ]
+    },
+    {
+        "id": 23,
+        "dataset": "iTrust",
+        "Name": "Manage Patient Referrals",
+        "Precondition": [
+            "The iTrust user (patient or HCP) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "An HCP chooses to refer a patient to another receiving HCP through the referral feature on a patient's office visit page (UC11).",
+                    "The sending HCP must select a receiving HCP by either entering the HCP's MID and confirming the selection [E1], or by searching for the HCP by name.",
+                    "The sending HCP is also presented with a text box to include notes about the referral.",
+                    "The sending HCP then chooses a priority from 1-3 (1 is most important, 3 is least important) for the referral.",
+                    "The HCP may send the referral, cancel the referral, or edit the referral [E2].",
+                    "Upon sending a referral, the patient, sending HCP, and receiving HCP receive a message summarizing the newly created referral information (sending HCP name & specialty, receiving HCP name & specialty, patient name, referral notes, and referral creation timestamp); additionally, the sending and receiving HCP messages include the referral priority."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "An HCP chooses to view received referrals.",
+                    "The receiving HCP is presented with a list of referrals sorted by priority (from most important to least important).",
+                    "The receiving HCP then selects a referral to view details and is presented with the name and specialty of the sending HCP, the patient's name, the referral notes, the referral priority, the office visit date with a link to the office visit, and the time the referral was created."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "A sending HCP views a list of previously sent patient referrals.",
+                    "The HCP may sort the list of referrals by patient name, receiving HCP name, time generated, and/or priority.",
+                    "The HCP chooses a specific referral from the list to view complete details about the referral: patient name, receiving HCP name and specialty, time generated, priority, office visit date, and notes."
+                ]
+            },
+            {
+                "id": "S4",
+                "text": [
+                    "A patient views a list of his/her referrals.",
+                    "The patient may sort the list of referrals by receiving HCP name, time generated, and/or priority.",
+                    "The patient chooses a specific referral from the list to view complete details about the referral: sending HCP name and specialty, receiving HCP name and specialty, time generated, priority, office visit date, and notes.",
+                    "The patient is also provided with the option to send a message to the receiving HCP to request that an appointment be scheduled."
+                ]
+            },
+            {
+                "id": "S5",
+                "text": [
+                    "A sending HCP edits a previously created patient referral as long as the referral has not been viewed by the receiving HCP.",
+                    "The sending HCP may edit the priority of the referral and/or the referral notes.",
+                    "The sending HCP then chooses to save the edits, cancel the edits, or re-enter the data [E2]."
+                ]
+            },
+            {
+                "id": "S6",
+                "text": [
+                    "A sending HCP cancels a previously sent patient referral by visiting the office visit page, viewing the details of a previously sent patient referral [S3], and choosing cancel.",
+                    "The HCP is asked to confirm the decision to cancel the referral.",
+                    "The patient and receiving HCP receive a message (UC30) indicating that the referral was canceled.",
+                    "33.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": [
+                    "The receiving HCP chosen is not the desired HCP.",
+                    "The sending HCP does not confirm the selection and is prompted to try again."
+                ]
+            },
+            {
+                "id": "E2",
+                "text": "The patient, receiving HCP, referral notes, and/or referral priority are invalid, and the HCP is prompted to enter this information again."
+            }
+        ],
+        "Basic Flow": [
+            "A sending HCP refers a patient to another receiving HCP [S1].",
+            "A receiving HCP views a list of received referrals [S2].",
+            "A sending HCP views a list of previously sent patient referrals [S3].",
+            "A patient views the details of his/her referrals [S4].",
+            "A sending HCP edits a previously sent patient referral [S5].",
+            "A sending HCP cancels a previously sent patient referral [S6].",
+            "All events are logged (UC5)."
+        ]
+    },
+    {
+        "id": 24,
+        "dataset": "iTrust",
+        "Name": "Report Telemedicine Monitoring Details",
+        "Precondition": [
+            "The iTrust user (LHCP, UAP, or patient) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "An LHCP or UAP can add and delete patients from his or her monitoring list.",
+                    "A patient is added to the list by the LHCP or UAP typing in the patient's MID [E1] or name.",
+                    "An LHCP can delete a patient from his or her monitoring list by the LHCP typing the the patient's MID [E1].",
+                    "In both cases, the LHCP is presented the name of the patient and must confirm the add/delete.",
+                    "For each patient from the monitoring list, the LHCP can choose to edit which types of remote monitoring information (blood pressure, glucose levels, height, weight, and pedometer readings) should be submitted by the patient.",
+                    "By default, all types of information are selected for monitoring."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "A patient whose at least one physiologic data type is specified to be under monitoring chooses to report their physiologic data.",
+                    "He or she can report his or her blood pressure (systolic and diastolic) [E2] and/or glucose levels [E3].",
+                    "The input data, a timestamp, and the fact that the status is “self-reported” are saved."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "An LHCP chooses to view the physiologic data monitoring details.",
+                    "The LHCP is presented with a listing of all his or her patients whose at least one physiologic data type is specified to be under monitoring with their blood pressure and glucose levels, recording timestamp, and whom reported the data (patient, UAP name, personal representative name).",
+                    "Patients with no information for the current day are highlighted.",
+                    "Patients with blood pressure or glucose level out of range are highlighted (normal blood pressure: systolic 90-140; diastolic 60-90; normal glucose 70-150).",
+                    "The LHCP can select a patient to obtain additional information about a patient [S4]."
+                ]
+            },
+            {
+                "id": "S4",
+                "text": [
+                    "An LHCP selects to view additional information for a patient.",
+                    "The LHCP is presented with a screen upon which he/she can choose a date range.",
+                    "Once the date range is selected, the LHCP can see the patient name; patient phone number; personal representative (name and phone number), if applicable; and the blood pressure, glucose levels, height, weight, and pedometer readings as well as whom reported the data (patient, UAP name, personal representative name) for that date range."
+                ]
+            },
+            {
+                "id": "S5",
+                "text": [
+                    "A UAP can select to report physiologic measurements.",
+                    "He/she is presented with a list of the patients whose at least one physiologic data type is specified to be under monitoring and for whom he/she is allowed to report measurements.",
+                    "He or she can select a patient and then enter data.",
+                    "He or she can report the blood pressure (systolic and diastolic) [E2] and/or glucose levels [E3] for the patient.",
+                    "The input data, a timestamp, and the fact the the status was reported by “case manager” and their MID are saved.",
+                    "Only the applicable input entries (those whose corresponding data types of the patient are specified to be under monitoring) are displayed to the UAP."
+                ]
+            },
+            {
+                "id": "S6",
+                "text": [
+                    "A patient can select to report physiologic measurements for those whose at least one physiologic data type is specified to be under monitoring andfor whom he/she is a patient representative.",
+                    "He/she is presented with a list of the patients whose at least one physiologic data type is specified to be under monitoring and for which he/she is allowed to report measurements.",
+                    "He or she can select a patient and then enter data.",
+                    "He or she can report the blood pressure (systolic and diastolic) [E2] and/or glucose levels [E3] for the patient.",
+                    "The input data and a timestamp and the fact that the status was reported by “patient representative” and their MID are saved.",
+                    "Only the applicable input entries (those whose corresponding data types of the patient are specified to be under monitoring) are displayed to the patient."
+                ]
+            },
+            {
+                "id": "S7",
+                "text": [
+                    "A patient whose height, weight, or pedometer data type is specified to be under monitoring chooses to report his/her height/weight/pedometer data.",
+                    "He or she can report his or her daily height (in the format of digits XXXX.X with the units of “feet”), daily weight (in the format of digits XXXX.X with units of “lbs”), and/or pedometer readings (in the format of up to 10 digits of integer with units of “footsteps”) [E5].",
+                    "The input data, a timestamp, and the fact that the status is “self-reported” are saved.",
+                    "Only the applicable input entries (those whose corresponding data types of the patient are specified to be under monitoring) are displayed to the patient."
+                ]
+            },
+            {
+                "id": "S8",
+                "text": [
+                    "An LHCP chooses to view the height/weight/pedometer data monitoring details.",
+                    "The LHCP is presented with a listing of all his or her patients whose height, weight, or pedometer data type is specified to be under monitoring with their height, weight and pedometer reading numbers, recording timestamp, and who reported the data (patient name, UAP name, or personal representative name).",
+                    "Patients with no information for the current day are highlighted in red.",
+                    "Patients with a weight value 5% more or less than the immediate previously recorded weight value are highlighted (if the new weight value exceeds 105% of the previous weight value, the entry should be highlighted yellow; if the new weight value is below 95% of the previous weight value, the entry should be highlighted yellow).",
+                    "The LHCP can select a patient to obtain additional information about a patient [S4]."
+                ]
+            },
+            {
+                "id": "S9",
+                "text": [
+                    "A UAP can select to report height/weight/pedometer measurements.",
+                    "He/she is presented with a list of the patients whose height, weight, or pedometer data type is specified to be under monitoring and for which he/she is allowed to report measurements.",
+                    "He or she can select a patient and then enter data.",
+                    "He or she can report the height, weight, and/or pedometer reading [E5] for the patient.",
+                    "The input data, a timestamp, and the fact that the status was reported by “case manager” and his/her MID are saved.",
+                    "Only the applicable input entries (those whose corresponding data types of the patient are specified to be under monitoring) are displayed to the UAP."
+                ]
+            },
+            {
+                "id": "S10",
+                "text": [
+                    "A patient can select to report height, weight, and/or pedometer readings for those for whom he/she is a patient representative.",
+                    "He/she is presented with a list of the patients for which he/she is allowed to report measurements.",
+                    "He or she can select a patient and then enter data.",
+                    "He or she can report the height, weight, and/or pedometer readings [E5] for the patient.",
+                    "The input data, a timestamp, and the fact that the status was reported by “patient representative” and his/her MID are saved.",
+                    "Only the applicable input entries (those whose corresponding data types of the patient are specified to be under monitoring) are displayed to the patient.",
+                    "34.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": [
+                    "The patient chosen is not the desired patient.",
+                    "The HCP does not confirm the selection and is prompted to try again."
+                ]
+            },
+            {
+                "id": "E2",
+                "text": "The patient, UAP, or personal representative enters a systolic blood pressure outside the range 40-240 or a diastolic blood pressure outside the range 40-150. He/she is notified of an error and is prompted to try again."
+            },
+            {
+                "id": "E3",
+                "text": "The patient, UAP, or personal representative enters a glucose level outside the range 0-250. He/she is notified of an error and is prompted to try again."
+            },
+            {
+                "id": "E4",
+                "text": "The patient, UAP, or personal representative tries to enter more than ten physiologic data points for one day and is told additional data cannot be entered."
+            },
+            {
+                "id": "E5",
+                "text": "The patient, UAP, or personal representative enters an alpha invalid value for weight and/or pedometer reading and is notified of an error and prompted to try again."
+            },
+            {
+                "id": "E6",
+                "text": "The patient, UAP, or personal representative tries to enter more than one weight data point or more than one pedometer data point for the day and is told additional data cannot be entered."
+            }
+        ],
+        "Basic Flow": [
+            "An LHCP or UAP creates a list of patients by adding and confirming patients (by MID) for which he or she will monitor remotely [E1, S1].",
+            "A patient either chooses to input his or her physiologic measurements (blood pressure and/or glucose levels) [S2], or to input his or her weight, height, and/or pedometer readings [S7].",
+            "An LHCP can see the blood pressure and glucose levels [S3], or weight, height, and pedometer readings [S8] for the patients he or she is monitoring, with two separate lists for physiologic and height/weight/pedometer readings [S3].",
+            "A UAP [S5 & S9] or patient representative [S6 & S10] can input the blood pressure, glucose levels, height, weight, or pedometer readings for a patient.",
+            "A patient may have up to 10 physiologic data points in any one day, reported by him/herself, a UAP, or a personal representative [E4].",
+            "A patient may have at most one height data point, one weight data point, and one pedometer data point in any one day, reported by him/herself, a UAP, or a personal representative [E6]."
+        ]
+    },
+    {
+        "id": 25,
+        "dataset": "iTrust",
+        "Name": "Report Adverse Event",
+        "Precondition": [
+            "The iTrust user (patient) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "A patient is presented with a listing of all prescription drugs for which he/she has been prescribed and/or has taken in the last 12 months.",
+                    "The patient chooses one or more drug(s) for which to report the adverse event.",
+                    "The patient is then able to write a textual description which describes the symptoms of the adverse event and to save the information.",
+                    "A fake email is sent to the LHCP who prescribed the medication indicating the patient name and MID, drug, and symptoms."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "A patient is presented with a listing of all immunizations for which he/she has been administered in the last 12 months.",
+                    "The patient chooses the immunization for which to report the adverse event.",
+                    "The patient is then able to write a textual description which describes the symptoms of the adverse event and to save the information.",
+                    "A fake email is sent to the LHCP who administered the immunization indicating the patient name and MID, drug, and symptoms.",
+                    "35.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "A patient selects to report an event related to a prescription drug [S1] or immunization [S2] reaction."
+        ]
+    },
+    {
+        "id": 26,
+        "dataset": "iTrust",
+        "Name": "Monitor Adverse Event",
+        "Precondition": [
+            "The iTrust user (patient or PHA) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "A public health agent is presented with a listing of prescription drug-related adverse events for the time period that do not have a status of “removed”, sorted by NDC.",
+                    "The public health agent can select to see the detail of a specific report.",
+                    "Upon reading the report, the public health agent can choose to send a “fake email” message to the adverse event reporter to gain more information about the report.",
+                    "The public health agent may also choose to remove an adverse event report (such as based upon communication with the reporter or because the report appears to be bogus) [S3]."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "A public health agent is presented with a listing of immunization-related adverse events for the time period that do not have a status of “removed”, sorted by CPT code .",
+                    "The public health agent can select to see the detail of a specific report.",
+                    "Upon reading the report, the public health agent can choose to send a “fake email” message to the adverse event reporter to gain more information about the report.",
+                    "The public health agent may also choose to remove an adverse event report (such as based upon communication with the reporter or because the report appears to be bogus) [S3]."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "The adverse event report changes to a status of “removed.” A message of the removal is sent to the adverse event reporter and to the LHCP involved in the report (because the LHCP prescribed the drug or administered the immunization).",
+                    "36.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "A public health agent (PHA) selects a specific time period for which he/she would like to see a detailed listing of all adverse events related to prescription drugs [S1] or immunizations [S2] or to see trends in adverse events related to prescription drugs [S4] or immunizations [S5]."
+        ]
+    },
+    {
+        "id": 27,
+        "dataset": "iTrust",
+        "Name": "Safe Drug Prescription",
+        "Precondition": [
+            "The iTrust user (HCP) or administrator has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The drug desired to be prescribed is checked against the patient's drug allergies.",
+                    "The HCP is notified of drug allergy."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The drug desired to be prescribed is checked for interactions between other drugs currently taken by the patient.",
+                    "The HCP is notified of possible interactions."
+                ]
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "The HCP selects one or more of the override reasons available for selection [E1].",
+                    "The patient is sent a “fake email” that the HCP has prescribed a medication that he/she is allergic to or that has a known interaction with a drug he/she is taking."
+                ]
+            },
+            {
+                "id": "S4",
+                "text": [
+                    "The system shall enable the administrator to add a new entry for a reason or modify the reason name in an existing entry [S5].",
+                    "Note that the administrator is not allowed through the system interface to delete an existing entry or modify the reason ID number in an existing entry."
+                ]
+            },
+            {
+                "id": "S5",
+                "text": [
+                    "The system shall store (1) reason id number for the reason [E2]; and (2) up to 80 alphanumeric characters giving the name of the reason [E3].",
+                    "37.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "When the HCP selects the “Other” reason, the HCP shall enter free-style text to provide the details for “Other” reasons."
+            },
+            {
+                "id": "E2",
+                "text": "The administrator types an invalid ID and is prompted to try again."
+            },
+            {
+                "id": "E3",
+                "text": "The administrator types an invalid name and is prompted to try again."
+            }
+        ],
+        "Basic Flow": [
+            "While documenting an office visit, the HCP selects to prescribe a patient a drug by selecting its NDC and name [S1, S2].",
+            "Upon notice of allergies and/or interactions the HCP must either choose to proceed with the prescription [S3] or cancel the prescription and remain on the office visit page.",
+            "The administrator maintains the override reasons that an HCP can select from [S4]."
+        ]
+    },
+    {
+        "id": 28,
+        "dataset": "iTrust",
+        "Name": "Maintain Drug Interaction",
+        "Precondition": [
+            "The iTrust user (admin) has been authenticated in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The administer is presented with two lists of NDC codes/names.",
+                    "The administrator chooses a drug from each list to record an interaction between the two drugs [E1].",
+                    "The two drugs and a textual description of the possible effects of the interaction are stored."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The administrator selects one drug and is presented with a listing of all drug interactions currently associated with that drug.",
+                    "The administrator can select a particular pair of drugs and delete the interaction between the two drugs.",
+                    "38.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": [
+                    "The administrator has chosen the same drug from both lists.",
+                    "The system directs the user to make a different choice."
+                ]
+            }
+        ],
+        "Basic Flow": [
+            "The administrator records [S1] or deletes [S2] a drug interaction between two prescription drugs."
+        ]
+    },
+    {
+        "id": 29,
+        "dataset": "iTrust",
+        "Name": "Enter/edit Demographics",
+        "Precondition": [
+            "UC1 has completed and a patient has been created.",
+            "The iTrust user has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "A patient or personal health representative may enter or edit their own demographic information including their security question/answer according to data format 6.1. When answer to the security question is typed in, the answer should not appear on the screen (similar to how a password normally appears) and the answer should be confirmed (by the patient or personal health representative) before it is saved.",
+                    "[E1]."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": "HCP must enter the MID of a patient and then enter or edit demographic information with the exception of the patient's security question/password according to data format 6.1 [E1]."
+            },
+            {
+                "id": "S3",
+                "text": "An HCP may enter or edit their own demographic information according to data format 6.2 [E1]."
+            },
+            {
+                "id": "S4",
+                "text": [
+                    "An HCP may upload a photo of the patient as part of the patient's demographic records [E2].",
+                    "4.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [
+            {
+                "id": "E1",
+                "text": "The system prompts the patient or HCP to correct the format of a required data field because the input of that data field does not match that specified in data format 6.1 or data format 6.2, as appropriate."
+            },
+            {
+                "id": "E2",
+                "text": "The system shall display a default placeholder image for patients who do not have a photograph on file."
+            }
+        ],
+        "Basic Flow": [
+            "Demographic information is entered and/or edited [S1, S2, S3, S4].",
+            "The user is presented with a success or failure message and the form is updated so that the user may correct the form or add more information."
+        ]
+    },
+    {
+        "id": 30,
+        "dataset": "iTrust",
+        "Name": "Log Transaction",
+        "Precondition": [
+            "None"
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": "For Login Failures, the IP Address of the machine, transaction type = 1, and timestamp are recorded."
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "For creating, viewing, modifying, or deleting information, the following information is recorded: the MID of the logged in user, any appropriate secondary MID of the user whose information is being accessed, a transaction type corresponding to the given action, and the current timestamp.",
+                    "5.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "Any event which creates, views, edits, or deletes information is logged [S2].",
+            "Login failures, valid authentication, and log outs are also logged [S1].",
+            "Individual audit codes related to specific use cases are presented within each Use Case description."
+        ]
+    },
+    {
+        "id": 31,
+        "dataset": "iTrust",
+        "Name": "View HCP; Designate/Undesignate Designated Licensed Health Care Professional",
+        "Precondition": [
+            "The patient has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The LHCP's name, specialty, address, date of office visit, and whether or not the LHCP is a DLHCP for this patient is indicated.",
+                    "The list is sorted by the date of the last office visit (most recent first)."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": "The patient can choose to toggle between designating/undesignating any LHCP as being a DLHCP for them."
+            },
+            {
+                "id": "S3",
+                "text": [
+                    "The patient types a last name or partial last name, and/or providing the specialty.",
+                    "The patient may optionally enter a zip code (match on first three numbers of zip code), in addition to the name and/or specialty.",
+                    "The LHCP's name, specialty, and address are provided.",
+                    "6.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "The patient chooses to view all LHCPs the patient has ever had an office visit with and those whom he/she had designated [S1, S2].",
+            "The patient can also add a LHCP to their provider list by searching for the name and/or specialty of a LHCP [S3] and then selecting to add the HCP to their list of providers."
+        ]
+    },
+    {
+        "id": 32,
+        "dataset": "iTrust",
+        "Name": "View Access Log",
+        "Precondition": [
+            "A patient is a registered user of the iTrust Medical Records system (UC1).",
+            "The patient has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": "By default, the patient is presented with a list sorted by dates, most recent access first."
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The patient may choose to view the list sorted by the role of the accessor relative to the patient (personal health representative, LHCP, UAP, Emergency Responder; any order is fine as long as the list is sorted by role) as well as by date for each role type, most recent access first.",
+                    "8.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "The patient chooses to view his or her access log or that for a person for whom they are a personal health representative.",
+            "The patient then chooses the beginning and end date for the period of time they would like to view their access log for [S1, S2].",
+            "The resulting list should include the following for each access: Name of non-DLHCP accessor (with a link to contact information if the viewer is an LHCP), Role of non-DLHCP accessor relative to the patient, Date and time of access, Transaction Type (See Data Format 6.3)"
+        ]
+    },
+    {
+        "id": 33,
+        "dataset": "iTrust",
+        "Name": "View records",
+        "Precondition": [
+            "A patient is a registered user of the iTrust Medical Records system (UC1).",
+            "The iTrust user has authenticated himself or herself in the iTrust Medical Records system (UC3)."
+        ],
+        "Sub. Flow": [
+            {
+                "id": "S1",
+                "text": [
+                    "The patient or personal health representative can see patient personal health information (including historical values), immunizations, and office visit information (date, diagnoses, medication, name of attending physician but not notes, laboratory procedures) for (a) their own records and (b) the records for whom the user is a personal representative.",
+                    "If a patient or personal health representative has not taken an office visit satisfaction survey for an office visit yet, the patient may choose to take the survey for an office visit (if the survey has already been taken, the patient or personal health representative will not have the ability to take the survey or view their previously submitted survey) (UC24)."
+                ]
+            },
+            {
+                "id": "S2",
+                "text": [
+                    "The patient or personal health representative can see an abbreviated health history of their siblings, parents, and both sets of grandparents for which MIDs are available in iTrust.",
+                    "They can see diagnoses related to the following [presented as a table with an x if the family member suffered from that diagnosis]:\nhigh blood pressure (Systolic blood pressure over 240 mmHg and/or a diastolic blood pressure over 120 mmHg);\nhigh cholesterol (HDL (“good”) cholesterol levels under 35 mg/dL (milligrams per deciliter) and/or a triglyceride level over 250 mg/dL);\ndiabetes [is diagnosed with ICD-9CM code beginning with 250:http://icd9cm.chrisendres.com/index.php?action=child&recordid=1765,;\ncancer [is diagnosed with ICD-9CM code beginning with 199:http://icd9cm.chrisendres.com/index.php?action=child&recordid=1765,;\nheart disease [is diagnosed with ICD=9CM code beginning with 402:http://icd9cm.chrisendres.com/index.php?action=child&recordid=1765,;\nsmoking; and\nthe cause of death if the family member is deceased.",
+                    "9.4"
+                ]
+            }
+        ],
+        "Alt. Flow": [],
+        "Basic Flow": [
+            "A patient or personal health representative chooses to view medical records [S1] including family history [S2]."
+        ]
+    }
+]
