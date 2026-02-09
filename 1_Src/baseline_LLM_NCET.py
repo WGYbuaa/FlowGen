@@ -252,7 +252,7 @@ def find_tp_gpt_cn(pred_node, af_list, model_name):
 
     # 定义请求头
     headers={
-        "Authorization": "Bearer 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"
+        "Authorization": "xxx"
     }
 
     # 定义请求数据
@@ -454,5 +454,6 @@ if __name__ == '__main__':
             use_case_list = read_uc_from_stand_json(in_path)
             
             calculate_all_dataset(use_case_list, out_path)
+
 
     print(f'*** task_name: {task_name} Finish! {datetime.now()}! *** ')
