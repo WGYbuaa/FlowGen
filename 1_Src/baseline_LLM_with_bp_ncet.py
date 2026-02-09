@@ -36,7 +36,7 @@ def pred_bp_af_ernie_cn(uc,model_name):
 
 def pred_bp_af_gpt_cn(uc,model_name):
     url = "https://openrouter.ai/api/v1/chat/completions"
-    api_key = "Bearer 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"
+    api_key = "xxx"
 
 
     sys_pmt = "给定一个用例，判断其是否包含分支流。" \
@@ -684,6 +684,7 @@ if __name__ == '__main__':
             print(f'{lable} Micro: bp_p: {bp_p}, bp_r: {bp_r}, bp_f1: {bp_f1}')
 
             print(f'{lable} Macro: bp_p: {sum(macro_list_p)/len(macro_list_p)}, bp_r: {sum(macro_list_r)/len(macro_list_r)}, bp_f1: {sum(macro_list_f1)/len(macro_list_f1)}')
+
 
 
 
