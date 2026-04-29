@@ -1,0 +1,25 @@
+{
+  "dataset": "ncet",
+  "fixed_context": "local",
+  "selection_metric": "decoder_f1",
+  "best_epoch": 7,
+  "best_selection_score": 0.6566523605150215,
+  "branch_metrics": {
+    "threshold": 0.9599999785423279,
+    "micro_p": 0.5995370370370371,
+    "micro_r": 0.7383124287343216,
+    "micro_f1": 0.6617271333673991,
+    "macro_p": 0.5502671112330462,
+    "macro_r": 0.7315432127965736,
+    "macro_f1": 0.5992924388111703,
+    "valid_group_count": 61
+  },
+  "decoder_metrics": {
+    "threshold": 0.9800000190734863,
+    "p": 0.7121786767804467,
+    "r": 0.4029566046733429,
+    "f1": 0.5146946855489568,
+    "auc": 0.929916262626648
+  },
+  "timestamp": "2026-04-29T17:38:01.206514"
+}

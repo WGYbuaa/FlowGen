@@ -1,0 +1,25 @@
+{
+  "dataset": "pub",
+  "fixed_context": "local",
+  "selection_metric": "decoder_f1",
+  "best_epoch": 12,
+  "best_selection_score": 0.2021276595744681,
+  "branch_metrics": {
+    "threshold": 0.9800000190734863,
+    "micro_p": 0.23809523809523808,
+    "micro_r": 0.4166666666666667,
+    "micro_f1": 0.30303030303030304,
+    "macro_p": 0.18043478260869564,
+    "macro_r": 0.3833333333333333,
+    "macro_f1": 0.24415584415584415,
+    "valid_group_count": 3
+  },
+  "decoder_metrics": {
+    "threshold": 0.9800000190734863,
+    "p": 0.24060150375939848,
+    "r": 0.4155844155844156,
+    "f1": 0.3047619047619048,
+    "auc": 0.8258209228515625
+  },
+  "timestamp": "2026-04-29T16:12:46.495610"
+}
